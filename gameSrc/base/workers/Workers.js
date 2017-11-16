@@ -33,7 +33,7 @@ class Workers{
     return this._totalEffortLastTurn
   }
 
-  prepareEffortValues(){
+  prepareEffortValuesForNextTurn(){
     this._effortUsedLastTurn = this._effortUsedThisTurn
     this._totalEffortLastTurn = this._totalEffortThisTurn
 

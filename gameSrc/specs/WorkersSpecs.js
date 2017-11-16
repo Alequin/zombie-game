@@ -34,7 +34,7 @@ describe("Workers", function(){
   })
 
   it("can use effort", () => {
-    workersNonEmpty.prepareEffortValues()
+    workersNonEmpty.prepareEffortValuesForNextTurn()
     workersNonEmpty.useEffort(10)
     const expected = 10
     const result = workersNonEmpty.getEffortUsedThisTurn()
@@ -54,7 +54,7 @@ describe("Workers", function(){
   })
 
   it("cannot use effort greater than the max", () => {
-    workersNonEmpty.prepareEffortValues()
+    workersNonEmpty.prepareEffortValuesForNextTurn()
     workersNonEmpty.useEffort(10)
     workersNonEmpty.useEffort(10)
     workersNonEmpty.useEffort(10)
@@ -99,13 +99,13 @@ describe("Workers - prepare effort values", function(){
       new Worker(1),
     ]
 
-    workers.prepareEffortValues()
+    workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,0,0)
-    workers.prepareEffortValues()
+    workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,30,0)
     workers.useEffort(10)
     testEffortValues(30,10,30,0)
-    workers.prepareEffortValues()
+    workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,30,10)
   })
 })
