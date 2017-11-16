@@ -4,8 +4,13 @@ class Worker{
     this.setSkill(skill)
   }
 
+  getSkill(){
+    return this._skill
+  }
+
   setSkill(skill){
-    this.skill = skill
+    if(skill <= 0) throw new Error("Skill must be greater than 0")
+    this._skill = skill
   }
 }
 

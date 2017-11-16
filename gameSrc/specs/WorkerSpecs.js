@@ -15,15 +15,27 @@ describe("Worker", function(){
 
   it("can get a workers skill", () => {
     const expected = 1
-    const result = worker.skill
+    const result = worker.getSkill()
     assert.ok(result, expected)
   })
 
   it("can set a workers skill", () => {
     worker.setSkill(3)
     const expected = 1
-    const result = worker.skill
+    const result = worker.getSkill()
     assert.ok(result, expected)
+  })
+
+  it("cannot set a workers skill at 0 or below", () => {
+    assert.throws(() => {
+      worker.setSkill(0)
+    })
+    assert.throws(() => {
+      worker.setSkill(-10)
+    })
+    assert.throws(() => {
+      worker.setSkill(-100)
+    })
   })
 
 })
