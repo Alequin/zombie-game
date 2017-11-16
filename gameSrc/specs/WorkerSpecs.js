@@ -13,4 +13,17 @@ describe("Worker", function(){
     assert.ok(worker)
   })
 
+  it("can get a workers skill", () => {
+    const expected = 1
+    const result = worker.skill
+    assert.ok(result, expected)
+  })
+
+  it("can set a workers skill", () => {
+    worker.setSkill(3)
+    const expected = 1
+    const result = worker.skill
+    assert.ok(result, expected)
+  })
+
 })
