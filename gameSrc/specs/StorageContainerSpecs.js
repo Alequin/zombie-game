@@ -87,4 +87,10 @@ describe("Storage Container", function(){
     result = storageContainer.getContentCount("one")
     assert.strictEqual(result, expected)
   })
+
+  it("can get a sections capacity", () => {
+    let expected = 25
+    let result = storageContainer.getCapacity("one")
+    assert.strictEqual(result, expected)
+  })
 })
