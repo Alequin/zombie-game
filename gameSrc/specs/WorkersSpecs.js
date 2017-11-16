@@ -5,9 +5,16 @@ import Workers from "./../base/workers/Workers.js"
 describe("Workers", function(){
 
   let workers
+  let workersNonEmpty
 
   beforeEach(() => {
     workers = new Workers()
+    workersNonEmpty = new Workers()
+    workersNonEmpty.workers = [
+      new Worker(1),
+      new Worker(1),
+      new Worker(1),
+    ]
   })
 
   it("can initialise workers", () => {
@@ -21,14 +28,15 @@ describe("Workers", function(){
   })
 
   it("can get total effort of all workers", () => {
-    workers.workers = [
-      new Worker(1),
-      new Worker(1),
-      new Worker(1),
-    ]
-
     const expected = 30
-    const result = workers.getTotalEffort()
+    const result = workersNonEmpty.getTotalEffort()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can use effort", () => {
+    workersNonEmpty.useEffort(10)
+    const expected = 10
+    const result = workersNonEmpty.getEffortUsedThisTurn()
     assert.strictEqual(result, expected)
   })
 })

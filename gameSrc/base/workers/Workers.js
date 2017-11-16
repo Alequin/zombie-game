@@ -36,9 +36,13 @@ class Workers{
   prepareEffortValues(){
     this._effortUsedLastTurn = this._effortUsedThisTurn
     this._totalEffortLastTurn = this._totalEffortThisTurn
-    
+
     this._totalEffortThisTurn = this.getTotalEffort()
     this._effortUsedThisTurn = 0
+  }
+
+  useEffort(amount){
+    this._effortUsedThisTurn += amount
   }
 }
 
