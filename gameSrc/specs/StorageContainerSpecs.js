@@ -122,4 +122,18 @@ describe("Storage Container", function(){
       storageContainer.setCapacityPercentage("one", 100)
     })
   })
+
+  it("cannot set section capacity percentage that cause the section to overflow", () => {
+    storageContainer.add("two", 25)
+    assert.throws(() => {
+      storageContainer.setCapacityPercentage("two", 20)
+    })
+  })
+
+  it("cannot set section capacity percentage that cause other sections to overflow", () => {
+    storageContainer.add("two", 25)
+    assert.throws(() => {
+      storageContainer.setCapacityPercentage("one", 30)
+    })
+  })
 })

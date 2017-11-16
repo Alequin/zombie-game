@@ -24,12 +24,18 @@ class StorageContainer{
       throw new Error("Percentage must be between 1 and 99 inclusivly: " + percentage)
     }
     const targetSectionSize = this._capacity * (percentage/100)
+    if(targetSectionSize < this._sections[targetKey].contentCount){
+      throw new Error("Cannot set section capacity at less than the current contents")
+    }
     this._sections[targetKey].capacity = Math.floor(targetSectionSize)
 
     const remainingCapacity = this._capacity - targetSectionSize
     const otherSectionsSize = remainingCapacity / (Object.keys(this._sections).length-1)
     for(let sectionKey in this._sections){
       if(targetKey != sectionKey){
+        if(otherSectionsSize < this._sections[sectionKey].contentCount){
+          throw new Error("Cannot set section capacity at less than the current contents")
+        }
         this._sections[sectionKey].capacity = Math.floor(otherSectionsSize)
       }
     }
