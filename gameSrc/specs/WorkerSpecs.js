@@ -39,7 +39,7 @@ describe("Worker", function(){
   })
 
   it("cannot set a workers skill above max", () => {
-    const max = worker._maxSkill
+    const max = 5
     assert.throws(() => {
       worker.setSkill(max+1)
     })

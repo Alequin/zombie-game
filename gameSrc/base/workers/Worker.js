@@ -1,8 +1,11 @@
 
 class Worker{
   constructor(skill){
-    this._maxSkill = 5
     this.setSkill(skill)
+  }
+
+  static maxSkillValue(){
+    return 5
   }
 
   getSkill(){
@@ -10,12 +13,14 @@ class Worker{
   }
 
   setSkill(skill){
-    if(skill <= 0 || skill > this._maxSkill){
+    const max = Worker.maxSkillValue()
+    if(skill <= 0 || skill > max){
       throw new Error(`
         Skill must be greater than 0 and less
-        than ${this._maxSkill}: currently ${skill}
+        than ${max}: currently ${skill}
       `)
     }
+    
     this._skill = skill
   }
 }
