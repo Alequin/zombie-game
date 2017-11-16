@@ -39,6 +39,18 @@ describe("Workers", function(){
     const result = workersNonEmpty.getEffortUsedThisTurn()
     assert.strictEqual(result, expected)
   })
+
+  it("cannot use 0 or less effort", () => {
+    assert.throws(() => {
+      workersNonEmpty.useEffort(0)
+    })
+    assert.throws(() => {
+      workersNonEmpty.useEffort(-10)
+    })
+    assert.throws(() => {
+      workersNonEmpty.useEffort(-100)
+    })
+  })
 })
 
 describe("Workers - prepare effort values", function(){

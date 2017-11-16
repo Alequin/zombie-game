@@ -42,6 +42,7 @@ class Workers{
   }
 
   useEffort(amount){
+    if(amount <= 0) throw new Error("Effort used cannot be less than or equal to 0")
     this._effortUsedThisTurn += amount
   }
 }
