@@ -43,18 +43,19 @@ class Workers{
 
   useEffort(amount){
     if(amount <= 0) throw new Error("Effort used cannot be less than or equal to 0")
-    if(this._effortUsedThisTurn + amount > this._totalEffortThisTurn){
+    this._effortUsedThisTurn += amount
+    if(this._effortUsedThisTurn > this._totalEffortThisTurn){
       throw new Error("Effort used cannot be greater than the current max")
     }
-    this._effortUsedThisTurn += amount
+
   }
 
   returnEffort(amount){
     if(amount <= 0) throw new Error("Effort returned cannot be less than or equal to 0")
-    if(amount > this._effortUsedThisTurn){
+    this._effortUsedThisTurn-=amount
+    if(this._effortUsedThisTurn < 0){
       throw new Error("Returned effort cannot be greater than the used effort")
     }
-    this._effortUsedThisTurn-=amount
   }
 }
 
