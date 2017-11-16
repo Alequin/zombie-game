@@ -93,4 +93,24 @@ describe("Storage Container", function(){
     let result = storageContainer.getCapacity("one")
     assert.strictEqual(result, expected)
   })
+
+  it("can set section capacity and have other section manage their capacity", () => {
+    storageContainer.setCapacityPercentage("one", 50)
+
+    let expected = 50
+    let result = storageContainer.getCapacity("one")
+    assert.strictEqual(result, expected)
+
+    expected = 16
+    result = storageContainer.getCapacity("two")
+    assert.strictEqual(result, expected)
+
+    expected = 16
+    result = storageContainer.getCapacity("three")
+    assert.strictEqual(result, expected)
+
+    expected = 16
+    result = storageContainer.getCapacity("four")
+    assert.strictEqual(result, expected)
+  })
 })

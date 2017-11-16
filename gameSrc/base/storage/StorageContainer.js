@@ -19,6 +19,19 @@ class StorageContainer{
     return this._sections[key].capacity
   }
 
+  setCapacityPercentage(targetKey, percentage){
+    const targetSectionSize = this._capacity * (percentage/100)
+    this._sections[targetKey].capacity = Math.floor(targetSectionSize)
+
+    const remainingCapacity = this._capacity - targetSectionSize
+    const otherSectionsSize = remainingCapacity / (Object.keys(this._sections).length-1)
+    for(let sectionKey in this._sections){
+      if(targetKey != sectionKey){
+        this._sections[sectionKey].capacity = Math.floor(otherSectionsSize)
+      }
+    }
+  }
+
   add(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
 
