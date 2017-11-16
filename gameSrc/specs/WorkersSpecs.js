@@ -31,17 +31,46 @@ describe("Workers", function(){
     const result = workers.getTotalEffort()
     assert.strictEqual(result, expected)
   })
+})
 
-  it("can set the total effort to be used this turn", () => {
+describe("Workers - prepare effort values", function(){
+
+  let workers
+
+  beforeEach(() => {
+    workers = new Workers()
+  })
+
+  function testEffortValues(
+    thisTurnTotal, thisTurnUsed, lastTurnTotal, lastTurnUsed)
+  {
+    let expected = thisTurnTotal
+    let result = workers.getTotalEffortThisTurn()
+    assert.strictEqual(result, expected)
+
+    expected = thisTurnUsed
+    result = workers.getEffortUsedThisTurn()
+    assert.strictEqual(result, expected)
+
+    expected = lastTurnTotal
+    result = workers.getTotalEffortLastTurn()
+    assert.strictEqual(result, expected)
+
+    expected = lastTurnUsed
+    result = workers.getEffortUsedLastTurn()
+    assert.strictEqual(result, expected)
+  }
+
+  it("can prepare effort for next turn", () => {
     workers.workers = [
       new Worker(1),
       new Worker(1),
       new Worker(1),
     ]
-    workers.setTotalEffortThisTurn()
 
-    const expected = 30
-    const result = workers.getTotalEffortThisTurn()
-    assert.deepEqual(result, expected)
+    workers.prepareEffortValues()
+    testEffortValues(30,0,0,0)
+    workers.prepareEffortValues()
+    testEffortValues(30,0,30,0)
   })
 })

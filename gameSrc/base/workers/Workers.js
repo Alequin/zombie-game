@@ -3,10 +3,10 @@ class Workers{
 
   constructor(){
     this.workers = []
-    this._thisTurnEffortUsed = 0
-    this._thisTurnTotalEffort = 0
-    this.lastTurnEffortUsed = 0
-    this.lastTurnTotalEffort = 0
+    this._effortUsedThisTurn = 0
+    this._totalEffortThisTurn = 0
+    this._effortUsedLastTurn = 0
+    this._totalEffortLastTurn = 0
   }
 
   getTotalEffort(){
@@ -17,12 +17,28 @@ class Workers{
     return count
   }
 
-  setTotalEffortThisTurn(){
-    this._thisTurnTotalEffort = this.getTotalEffort()
+  getEffortUsedThisTurn(){
+    return this._effortUsedThisTurn
   }
 
   getTotalEffortThisTurn(){
-    return this._thisTurnTotalEffort
+    return this._totalEffortThisTurn
+  }
+
+  getEffortUsedLastTurn(){
+    return this._effortUsedLastTurn
+  }
+
+  getTotalEffortLastTurn(){
+    return this._totalEffortLastTurn
+  }
+
+  prepareEffortValues(){
+    this._effortUsedLastTurn = this._effortUsedThisTurn
+    this._totalEffortLastTurn = this._totalEffortThisTurn
+    
+    this._totalEffortThisTurn = this.getTotalEffort()
+    this._effortUsedThisTurn = 0
   }
 }
 
