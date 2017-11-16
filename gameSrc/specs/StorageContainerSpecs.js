@@ -113,4 +113,13 @@ describe("Storage Container", function(){
     result = storageContainer.getCapacity("four")
     assert.strictEqual(result, expected)
   })
+
+  it("cannot set section capacity percentage of less than 1 or more than 99", () => {
+    assert.throws(() => {
+      storageContainer.setCapacityPercentage("one", 0)
+    })
+    assert.throws(() => {
+      storageContainer.setCapacityPercentage("one", 100)
+    })
+  })
 })

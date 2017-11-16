@@ -20,6 +20,9 @@ class StorageContainer{
   }
 
   setCapacityPercentage(targetKey, percentage){
+    if(percentage < 1 || percentage > 99){
+      throw new Error("Percentage must be between 1 and 99 inclusivly: " + percentage)
+    }
     const targetSectionSize = this._capacity * (percentage/100)
     this._sections[targetKey].capacity = Math.floor(targetSectionSize)
 
