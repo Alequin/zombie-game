@@ -20,6 +20,16 @@ class StorageContainer{
     }
     this._sections[key].contentCount = result
   }
+
+  remove(key, amount){
+    if(amount < 0) throw new Error("Cannot use negative values")
+
+    const result = this._sections[key].contentCount - amount
+    if(result < 0){
+      throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
+    }
+    this._sections[key].contentCount = result
+  }
 }
 
 export default StorageContainer

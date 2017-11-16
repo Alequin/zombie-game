@@ -36,12 +36,44 @@ describe("Storage Container", function(){
     assert.throws(() => {
       storageContainer.add("one", -1)
     })
+    assert.throws(() => {
+      storageContainer.add("one", -10)
+    })
+    assert.throws(() => {
+      storageContainer.add("one", -100)
+    })
   })
 
   it("cannot add a value to section contents that takes it over its capacity", () => {
     const amount = storageContainer._sections["one"].capacity+1
     assert.throws(() => {
       storageContainer.add("one", amount)
+    })
+  })
+
+  it("can remove from section contents", () => {
+    storageContainer.add("one", 15)
+    storageContainer.remove("one", 10)
+    let expected = 5
+    let result = storageContainer._sections["one"].contentCount
+    assert.strictEqual(result, expected)
+  })
+
+  it("cannot remove negative values from section contents", () => {
+    assert.throws(() => {
+      storageContainer.remove("one", -1)
+    })
+    assert.throws(() => {
+      storageContainer.remove("one", -10)
+    })
+    assert.throws(() => {
+      storageContainer.remove("one", -100)
+    })
+  })
+
+  it("cannot remove a value from section contents that reduces it to less than 0", () => {
+    assert.throws(() => {
+      storageContainer.remove("one", 1)
     })
   })
 })
