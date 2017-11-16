@@ -24,4 +24,24 @@ describe("Storage Container", function(){
     result = storageContainer._sections["one"].capacity
     assert.strictEqual(result, expected)
   })
+
+  it("can add to section contents", () => {
+    storageContainer.add("one", 10)
+    let expected = 10
+    let result = storageContainer._sections["one"].contentCount
+    assert.strictEqual(result, expected)
+  })
+
+  it("cannot add negative values to section contents", () => {
+    assert.throws(() => {
+      storageContainer.add("one", -1)
+    })
+  })
+
+  it("cannot add a value to section contents that takes it over its capacity", () => {
+    const amount = storageContainer._sections["one"].capacity+1
+    assert.throws(() => {
+      storageContainer.add("one", amount)
+    })
+  })
 })
