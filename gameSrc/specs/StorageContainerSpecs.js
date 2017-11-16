@@ -76,4 +76,15 @@ describe("Storage Container", function(){
       storageContainer.remove("one", 1)
     })
   })
+
+  it("can get a sections content count", () => {
+    let expected = 0
+    let result = storageContainer.getContentCount("one")
+    assert.strictEqual(result, expected)
+
+    storageContainer.add("one", 10)
+    expected = 10
+    result = storageContainer.getContentCount("one")
+    assert.strictEqual(result, expected)
+  })
 })

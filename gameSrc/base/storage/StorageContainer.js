@@ -11,6 +11,10 @@ class StorageContainer{
     }
   }
 
+  getContentCount(key){
+    return this._sections[key].contentCount
+  }
+
   add(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
 
