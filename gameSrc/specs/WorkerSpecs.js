@@ -16,16 +16,16 @@ describe("Worker", function(){
   it("can get a workers skill", () => {
     const expected = 1
     const result = worker.getSkill()
-    assert.ok(result, expected)
+    assert.strictEqual(result, expected)
   })
 
   it("can set a workers skill", () => {
     const max = Worker.maxSkillValue()
     for(let num=1; num <= max; num++){
       worker.setSkill(num)
-      const expected = 1
+      const expected = num
       const result = worker.getSkill()
-      assert.ok(result, expected)
+      assert.strictEqual(result, expected)
     }
   })
 
@@ -60,7 +60,7 @@ describe("Worker", function(){
       worker.setSkill(num)
       const expected = num*10
       const result = worker.getEffort()
-      assert.ok(result, expected)
+      assert.strictEqual(result, expected)
     }
   })
 })
