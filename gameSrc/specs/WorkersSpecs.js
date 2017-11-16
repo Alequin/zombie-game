@@ -141,11 +141,17 @@ describe("Workers - prepare effort values", function(){
 
     workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,0,0)
+
     workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,30,0)
     workers.useEffort(10)
     testEffortValues(30,10,30,0)
+
     workers.prepareEffortValuesForNextTurn()
     testEffortValues(30,0,30,10)
+    workers.workers.push(new Worker(1))
+    
+    workers.prepareEffortValuesForNextTurn()
+    testEffortValues(40,0,30,0)
   })
 })
