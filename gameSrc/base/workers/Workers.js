@@ -50,6 +50,10 @@ class Workers{
   }
 
   returnEffort(amount){
+    if(amount <= 0) throw new Error("Effort returned cannot be less than or equal to 0")
+    if(amount > this._effortUsedThisTurn){
+      throw new Error("Returned effort cannot be greater than the used effort")
+    }
     this._effortUsedThisTurn-=amount
   }
 }
