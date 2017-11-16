@@ -34,6 +34,7 @@ describe("Workers", function(){
   })
 
   it("can use effort", () => {
+    workersNonEmpty.prepareEffortValues()
     workersNonEmpty.useEffort(10)
     const expected = 10
     const result = workersNonEmpty.getEffortUsedThisTurn()
@@ -49,6 +50,16 @@ describe("Workers", function(){
     })
     assert.throws(() => {
       workersNonEmpty.useEffort(-100)
+    })
+  })
+
+  it("cannot use effort greater than the max", () => {
+    workersNonEmpty.prepareEffortValues()
+    workersNonEmpty.useEffort(10)
+    workersNonEmpty.useEffort(10)
+    workersNonEmpty.useEffort(10)
+    assert.throws(() => {
+      workersNonEmpty.useEffort(1)
     })
   })
 })
