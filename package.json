@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack -w",
-    "test": "mocha --compilers js:babel-register --require babel-polyfill --recursive src/specs",
-    "pack-tests": "webpack src/specs/**/*.js tests-bundle.js"
+    "test": "mocha --compilers js:babel-register --require babel-polyfill --recursive clientSrc/specs; mocha --compilers js:babel-register --require babel-polyfill --recursive gameSrc/specs"
   },
   "author": "",
   "license": "ISC",
