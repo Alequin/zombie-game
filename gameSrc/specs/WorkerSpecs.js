@@ -20,10 +20,13 @@ describe("Worker", function(){
   })
 
   it("can set a workers skill", () => {
-    worker.setSkill(3)
-    const expected = 1
-    const result = worker.getSkill()
-    assert.ok(result, expected)
+    const max = Worker.maxSkillValue()
+    for(let num=1; num <= max; num++){
+      worker.setSkill(num)
+      const expected = 1
+      const result = worker.getSkill()
+      assert.ok(result, expected)
+    }
   })
 
   it("cannot set a workers skill at 0 or below", () => {
