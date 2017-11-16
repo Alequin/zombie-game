@@ -41,6 +41,15 @@ describe("Workers", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can return effort", () => {
+    workersNonEmpty.prepareEffortValuesForNextTurn()
+    workersNonEmpty.useEffort(15)
+    workersNonEmpty.returnEffort(10)
+    const expected = 5
+    const result = workersNonEmpty.getEffortUsedThisTurn()
+    assert.strictEqual(result, expected)
+  })
+
   it("cannot use 0 or less effort", () => {
     assert.throws(() => {
       workersNonEmpty.useEffort(0)

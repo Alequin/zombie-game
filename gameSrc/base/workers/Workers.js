@@ -48,6 +48,10 @@ class Workers{
     }
     this._effortUsedThisTurn += amount
   }
+
+  returnEffort(amount){
+    this._effortUsedThisTurn-=amount
+  }
 }
 
 export default Workers
