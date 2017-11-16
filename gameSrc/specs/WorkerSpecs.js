@@ -53,4 +53,14 @@ describe("Worker", function(){
       worker.setSkill(max+100)
     })
   })
+
+  it("can get correct effort", () => {
+    const max = Worker.maxSkillValue()
+    for(let num=1; num <= max; num++){
+      worker.setSkill(num)
+      const expected = num*10
+      const result = worker.getEffort()
+      assert.ok(result, expected)
+    }
+  })
 })

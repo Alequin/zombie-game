@@ -5,7 +5,7 @@ class Worker{
   }
 
   static maxSkillValue(){
-    return 5
+    return 3
   }
 
   getSkill(){
@@ -20,8 +20,12 @@ class Worker{
         than ${max}: currently ${skill}
       `)
     }
-    
+
     this._skill = skill
+  }
+
+  getEffort(){
+    return this._skill * 10
   }
 }
 
