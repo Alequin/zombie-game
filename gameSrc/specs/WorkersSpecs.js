@@ -31,4 +31,17 @@ describe("Workers", function(){
     const result = workers.getTotalEffort()
     assert.strictEqual(result, expected)
   })
+
+  it("can set the total effort to be used this turn", () => {
+    workers.workers = [
+      new Worker(1),
+      new Worker(1),
+      new Worker(1),
+    ]
+    workers.setTotalEffortThisTurn()
+
+    const expected = 30
+    const result = workers.getTotalEffortThisTurn()
+    assert.deepEqual(result, expected)
+  })
 })
