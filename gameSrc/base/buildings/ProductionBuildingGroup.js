@@ -1,6 +1,6 @@
-import buildingGroup from "./buildingGroup"
+import BuildingGroup from "./BuildingGroup"
 
-class ProductionBuildingGroup extends buildingGroup{
+class ProductionBuildingGroup extends BuildingGroup{
   constructor(productionPerEffort, singleBuildingEffortCapacity, singleBuildingSize){
     super(singleBuildingSize)
     this._productionPerEffort = productionPerEffort

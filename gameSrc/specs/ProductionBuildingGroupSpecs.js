@@ -1,7 +1,7 @@
 import assert from "assert"
 import ProductionBuildingGroup from "./../base/buildings/ProductionBuildingGroup.js"
 
-describe("Building Group - basic", function(){
+describe("production Building Group - basic", function(){
 
   let productionBuildingGroup
 
@@ -9,7 +9,7 @@ describe("Building Group - basic", function(){
     productionBuildingGroup = new ProductionBuildingGroup(2, 10, 2)
   })
 
-  it("can initialise buildingGroup", () => {
+  it("can initialise ProductionBuildingGroup", () => {
     assert.ok(productionBuildingGroup)
     assert.strictEqual(productionBuildingGroup._productionPerEffort, 2)
     assert.strictEqual(productionBuildingGroup._singleBuildingEffortCapacity, 10)
