@@ -17,6 +17,14 @@ describe("Population - basic", function(){
     const result = population._people
     assert.deepEqual(result, expected)
   })
+
+  it("can get max skill", () => {
+    assert.ok(population)
+
+    const expected = 4
+    const result = population.getMaxSkill()
+    assert.strictEqual(result, expected)
+  })
 })
 
 describe("Population - max skill 3", function(){
