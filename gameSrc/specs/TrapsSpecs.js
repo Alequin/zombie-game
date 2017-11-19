@@ -16,4 +16,18 @@ describe("Traps", function(){
     assert.strictEqual(traps._productionPerEffort, 10)
     assert.strictEqual(traps.effort._capacity, Number.MAX_SAFE_INTEGER)
   })
+
+  it("can count traps", () => {
+    let expected = 0
+    let result = traps.totalTraps()
+    assert.strictEqual(result, expected)
+
+    traps.effort.add(10)
+    traps.produce()
+
+
+    expected = 100
+    result = traps.totalTraps()
+    assert.strictEqual(result, expected)
+  })
 })
