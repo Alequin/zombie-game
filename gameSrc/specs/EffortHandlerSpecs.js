@@ -6,12 +6,88 @@ describe("test", function(){
   let effortHandler
 
   beforeEach(() => {
-    effortHandler = new EffortHandler
+    effortHandler = new EffortHandler(100)
   })
 
   it("can initialise EffortHandler", () => {
     assert.ok(effortHandler)
     assert.strictEqual(effortHandler._currentEffort, 0)
+    assert.strictEqual(effortHandler._capacity, 100)
+  })
+
+  it("can get effort capacity", () => {
+    let expected = 100
+    let result = effortHandler.effortCapacity()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get current effort", () => {
+    let expected = 0
+    let result = effortHandler.currentEffort()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can add and remove effort", () => {
+    effortHandler.add(10)
+
+    let expected = 10
+    let result = effortHandler.currentEffort()
+    assert.strictEqual(result, expected)
+
+    effortHandler.remove(5)
+
+    expected = 5
+    result = effortHandler.currentEffort()
+    assert.strictEqual(result, expected)
+  })
+
+  it("cannot use negative values to modify the effort", () => {
+    assert.throws(() => {
+      effortHandler.addEffort(-1)
+    })
+    assert.throws(() => {
+      effortHandler.addEffort(-100)
+    })
+    assert.throws(() => {
+      effortHandler.addEffort(-10000)
+    })
+    assert.throws(() => {
+      effortHandler.removeEffort(-1)
+    })
+    assert.throws(() => {
+      effortHandler.removeEffort(-100)
+    })
+    assert.throws(() => {
+      effortHandler.removeEffort(-10000)
+    })
+  })
+
+  it("cannot remove more effort than exists", () => {
+    effortHandler.add(10)
+    effortHandler.addEffort(10)
+    assert.throws(() => {
+      effortHandler.removeEffort(11)
+    })
+    assert.throws(() => {
+      effortHandler.removeEffort(100)
+    })
+    assert.throws(() => {
+      effortHandler.removeEffort(10000)
+    })
+  })
+
+  it("cannot add an amount of effort greater than the capacity", () => {
+    effortHandler.add(10)
+    effortHandler.addEffort(90)
+    assert.throws(() => {
+      effortHandler.addEffort(11)
+    })
+    assert.throws(() => {
+      effortHandler.addEffort(100)
+    })
+    assert.throws(() => {
+      effortHandler.addEffort(10000)
+    })
   })
 
 })
