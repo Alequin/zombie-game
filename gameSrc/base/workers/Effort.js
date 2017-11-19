@@ -2,48 +2,48 @@
 class Effort{
 
   constructor(){
-    this._effortUsedThisTurn = 0
-    this._totalEffortThisTurn = 0
-    this._effortUsedLastTurn = 0
-    this._totalEffortLastTurn = 0
+    this._usedThisTurn = 0
+    this._totalThisTurn = 0
+    this._usedLastTurn = 0
+    this._totalLastTurn = 0
   }
 
-  getEffortUsedThisTurn(){
-    return this._effortUsedThisTurn
+  getUsedThisTurn(){
+    return this._usedThisTurn
   }
 
-  getTotalEffortThisTurn(){
-    return this._totalEffortThisTurn
+  getTotalThisTurn(){
+    return this._totalThisTurn
   }
 
-  getEffortUsedLastTurn(){
-    return this._effortUsedLastTurn
+  getUsedLastTurn(){
+    return this._usedLastTurn
   }
 
-  getTotalEffortLastTurn(){
-    return this._totalEffortLastTurn
+  getTotalLastTurn(){
+    return this._totalLastTurn
   }
 
-  prepareEffortValuesForNextTurn(effortToUse){
-    this._effortUsedLastTurn = this._effortUsedThisTurn
-    this._totalEffortLastTurn = this._totalEffortThisTurn
+  prepareValuesForNextTurn(ToUse){
+    this._usedLastTurn = this._usedThisTurn
+    this._totalLastTurn = this._totalThisTurn
 
-    this._totalEffortThisTurn = effortToUse
-    this._effortUsedThisTurn = 0
+    this._totalThisTurn = ToUse
+    this._usedThisTurn = 0
   }
 
-  useEffort(amount){
+  use(amount){
     if(amount <= 0) throw new Error("Effort used cannot be less than or equal to 0")
-    this._effortUsedThisTurn += amount
-    if(this._effortUsedThisTurn > this._totalEffortThisTurn){
+    this._usedThisTurn += amount
+    if(this._usedThisTurn > this._totalThisTurn){
       throw new Error("Effort used cannot be greater than the current max")
     }
   }
 
-  returnEffort(amount){
+  return(amount){
     if(amount <= 0) throw new Error("Effort returned cannot be less than or equal to 0")
-    this._effortUsedThisTurn-=amount
-    if(this._effortUsedThisTurn < 0){
+    this._usedThisTurn-=amount
+    if(this._usedThisTurn < 0){
       throw new Error("Returned effort cannot be greater than the used effort")
     }
   }
