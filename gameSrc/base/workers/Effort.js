@@ -1,20 +1,11 @@
 
-class Workers{
+class Effort{
 
   constructor(){
-    this.workers = []
     this._effortUsedThisTurn = 0
     this._totalEffortThisTurn = 0
     this._effortUsedLastTurn = 0
     this._totalEffortLastTurn = 0
-  }
-
-  getTotalEffort(){
-    let count = 0
-    for(let worker of this.workers){
-      count += worker.getEffort()
-    }
-    return count
   }
 
   getEffortUsedThisTurn(){
@@ -33,11 +24,11 @@ class Workers{
     return this._totalEffortLastTurn
   }
 
-  prepareEffortValuesForNextTurn(){
+  prepareEffortValuesForNextTurn(effortToUse){
     this._effortUsedLastTurn = this._effortUsedThisTurn
     this._totalEffortLastTurn = this._totalEffortThisTurn
 
-    this._totalEffortThisTurn = this.getTotalEffort()
+    this._totalEffortThisTurn = effortToUse
     this._effortUsedThisTurn = 0
   }
 
@@ -47,7 +38,6 @@ class Workers{
     if(this._effortUsedThisTurn > this._totalEffortThisTurn){
       throw new Error("Effort used cannot be greater than the current max")
     }
-
   }
 
   returnEffort(amount){
@@ -59,4 +49,4 @@ class Workers{
   }
 }
 
-export default Workers
+export default Effort
