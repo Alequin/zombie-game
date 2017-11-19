@@ -18,7 +18,9 @@ class ProductionBuildingGroup extends buildingGroup{
 
   addEffort(amount){
     if(amount < 0) throw new Error("Amount cannot be negative")
-    this._effort += amount
+    const result = this._effort + amount
+    if(result > this.effortCapacity()) throw new Error("Amount cannot push effort over capacity")
+    this._effort += result
   }
 
   removeEffort(amount){
