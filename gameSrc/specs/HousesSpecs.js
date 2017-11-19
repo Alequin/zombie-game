@@ -15,4 +15,11 @@ describe("Houses", function(){
     assert.strictEqual(houses._singleBuildingSize, 2)
   })
 
+  it("can get total capacity of houses", () => {
+    houses.add(10)
+
+    let expected = 40
+    let result = houses.totalCapacity()
+    assert.strictEqual(result, expected)
+  })
 })
