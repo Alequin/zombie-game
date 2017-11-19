@@ -13,6 +13,21 @@ class Population{
     return this._maxSkill
   }
 
+  addToPopulation(amount, skillLevel){
+    this._people[skillLevel - 1] += amount
+  }
+
+  countPopulation(skillLevel){
+    return this._people[skillLevel - 1]
+  }
+
+  totalPopulation(){
+    const count = this._people.reduce((total, nexVal) => {
+      return total+=nexVal
+    })
+    return count
+  }
+
   getEffort(){
     let effort = 0
     for(let index in this.people){

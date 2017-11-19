@@ -29,6 +29,37 @@ describe("Population - basic", function(){
     const result = population.getEffort()
     assert.strictEqual(result, expected)
   })
+
+  it("can get population count", () => {
+    let expected = 0
+    let result = population.countPopulation(1)
+    assert.strictEqual(result, expected)
+  })
+
+  it("can add to population", () => {
+    population.addToPopulation(10, 1)
+
+    let expected = 10
+    let result = population.countPopulation(1)
+    assert.strictEqual(result, expected)
+
+    population.addToPopulation(20, 3)
+
+    expected = 20
+    result = population.countPopulation(3)
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get total population", () => {
+    population.addToPopulation(100, 1)
+    population.addToPopulation(200, 2)
+    population.addToPopulation(300, 3)
+    population.addToPopulation(400, 4)
+
+    let expected = 1000
+    let result = population.totalPopulation()
+    assert.strictEqual(result, expected)
+  })
 })
 
 describe("Population - max skill 3", function(){
