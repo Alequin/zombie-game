@@ -37,4 +37,17 @@ describe("production Building Group - basic", function(){
     result = productionBuildingGroup.effort.currentEffort()
     assert.strictEqual(result, expected)
   })
+
+  it("can produce", () => {
+    productionBuildingGroup.add(10)
+    productionBuildingGroup.effort.add(50)
+
+    let expected = 100
+    let result = productionBuildingGroup.produce()
+    assert.strictEqual(result, expected)
+
+    expected = 0
+    result = productionBuildingGroup.effort.currentEffort()
+    assert.strictEqual(result, expected)
+  })
 })

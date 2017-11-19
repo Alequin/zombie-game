@@ -5,8 +5,8 @@ class ProductionBuildingGroup extends BuildingGroup{
   constructor(productionPerEffort, singleBuildingEffortCapacity, singleBuildingSize){
     super(singleBuildingSize)
     this._productionPerEffort = productionPerEffort
-    this.effort = new EffortHandler(this.effortCapacity())
     this._singleBuildingEffortCapacity = singleBuildingEffortCapacity
+    this.effort = new EffortHandler(this.effortCapacity())
   }
 
   effortCapacity(){
