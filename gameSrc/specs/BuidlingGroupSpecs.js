@@ -37,4 +37,44 @@ describe("Building Group - basic", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can get space used by all buildings in group", () => {
+    buildingGroup.add(10)
+
+    let expected = 20
+    let result = buildingGroup.usedSpace()
+    assert.strictEqual(result, expected)
+  })
+
+  it("cannot alter count with negative values", () => {
+    assert.throws(() => {
+      buildingGroup.add(-1)
+    })
+    assert.throws(() => {
+      buildingGroup.add(-100)
+    })
+    assert.throws(() => {
+      buildingGroup.add(-10000)
+    })
+    assert.throws(() => {
+      buildingGroup.remove(-1)
+    })
+    assert.throws(() => {
+      buildingGroup.remove(-100)
+    })
+    assert.throws(() => {
+      buildingGroup.remove(-10000)
+    })
+  })
+
+  it("cannot remove more buildings than are available", () => {
+    assert.throws(() => {
+      buildingGroup.remove(1)
+    })
+    assert.throws(() => {
+      buildingGroup.remove(100)
+    })
+    assert.throws(() => {
+      buildingGroup.remove(10000)
+    })
+  })
 })
