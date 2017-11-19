@@ -23,6 +23,14 @@ describe("Wall", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can calculate materials required", () => {
+    wall.effort.add(10)
+
+    let expected = 100
+    let result = wall.calcRequiredInput()
+    assert.strictEqual(result, expected)
+  })
+
   it("can produce (add materials to the wall)", () => {
     wall.effort.add(10)
 
@@ -43,7 +51,5 @@ describe("Wall", function(){
     expected = 100
     result = wall.countMaterials()
     assert.strictEqual(result, expected)
-
-
   })
 })

@@ -11,8 +11,12 @@ class Wall{
     return this._materials
   }
 
+  calcRequiredInput(){
+    return this.effort.currentEffort() * this._productionPerEffort
+  }
+
   produce(){
-    this._materials += this.effort.currentEffort() * this._productionPerEffort
+    this._materials += this.calcRequiredInput()
     this.effort.reset()
   }
 
