@@ -83,4 +83,16 @@ describe("Building Group - basic", function(){
       buildingGroup.remove(10000)
     })
   })
+
+  it("single building size cannot 0 or less", () => {
+    assert.throws(() => {
+      new BuildingGroup(0)
+    })
+    assert.throws(() => {
+      new BuildingGroup(-100)
+    })
+    assert.throws(() => {
+      new BuildingGroup(-10000)
+    })
+  })
 })

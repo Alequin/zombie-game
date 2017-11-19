@@ -1,6 +1,8 @@
 
 class BuildingGroup{
   constructor(singleBuildingSize){
+    if(singleBuildingSize < 1) throw new Error("Single size must be at least 1")
+
     this._count = 0
     this._singleBuildingSize = singleBuildingSize
   }
