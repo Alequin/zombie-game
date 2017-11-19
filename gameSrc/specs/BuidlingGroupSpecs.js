@@ -43,6 +43,12 @@ describe("Building Group - basic", function(){
     let expected = 20
     let result = buildingGroup.usedSpace()
     assert.strictEqual(result, expected)
+
+    const buildingGroup2 = new BuildingGroup(10)
+    buildingGroup2.add(10)
+    expected = 100
+    result = buildingGroup2.usedSpace()
+    assert.strictEqual(result, expected)
   })
 
   it("cannot alter count with negative values", () => {
