@@ -149,6 +149,13 @@ describe("Population - basic", function(){
       population.upgradeSkill(10, 100)
     })
   })
+
+  it("cannot upgrade skill there are not enough people", () => {
+    population.addToPopulation(100, 1)
+    assert.throws(() => {
+      population.upgradeSkill(101, 1,2)
+    })
+  })
 })
 
 describe("Population - max skill 3", function(){

@@ -42,6 +42,8 @@ class Population{
   upgradeSkill(amount, from, to){
     this._isSkillInCorrectRange(from)
     this._isSkillInCorrectRange(to)
+    if(this._people[from-1] < amount) throw new Error("Not enough people to upgrade")
+
     this._people[from-1] -= amount
     this._people[to-1] += amount
   }
