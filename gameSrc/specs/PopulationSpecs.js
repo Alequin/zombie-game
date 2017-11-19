@@ -1,5 +1,5 @@
 import assert from "assert"
-import Population from "./../base/workers/Population.js"
+import Population from "./../base/population/Population.js"
 
 describe("Population - basic", function(){
 

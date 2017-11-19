@@ -1,5 +1,5 @@
 import assert from "assert"
-import Effort from "./../base/workers/Effort.js"
+import Effort from "./../base/population/Effort.js"
 
 describe("Effort", function(){
 
