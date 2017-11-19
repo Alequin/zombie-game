@@ -1,10 +1,9 @@
 import EffortHandler from "./../../util/EffortHandler.js"
+import Structure from "./../other/Structure.js"
 
-class Traps{
+class Traps extends Structure{
   constructor(productionPerEffort){
-    this._count = 0
-    this.effort = new EffortHandler(Number.MAX_SAFE_INTEGER)
-    this._productionPerEffort = productionPerEffort
+    super(productionPerEffort, Number.MAX_SAFE_INTEGER)
   }
 }
 
