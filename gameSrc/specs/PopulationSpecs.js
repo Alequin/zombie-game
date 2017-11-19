@@ -25,8 +25,17 @@ describe("Population - basic", function(){
   })
 
   it("can get total effort", () => {
-    const expected = 0
-    const result = population.getEffort()
+    let expected = 0
+    let result = population.getEffort()
+    assert.strictEqual(result, expected)
+
+    population.addToPopulation(100, 1)
+    population.addToPopulation(200, 2)
+    population.addToPopulation(300, 3)
+    population.addToPopulation(400, 4)
+
+    expected = 3000
+    result = population.getEffort()
     assert.strictEqual(result, expected)
   })
 

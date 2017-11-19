@@ -51,9 +51,9 @@ class Population{
 
   getEffort(){
     let effort = 0
-    for(let index in this.people){
+    for(let index=0; index< this._people.length; index++){
       const multiplier = index+1
-      effort += this.people[index] * multiplier
+      effort += this._people[index] * multiplier
     }
     return effort
   }
