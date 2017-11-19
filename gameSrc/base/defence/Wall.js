@@ -1,30 +1,14 @@
 import EffortHandler from "./../../util/EffortHandler.js"
+import Structure from "./../other/Structure.js"
 
-class Wall{
+class Wall extends Structure{
   constructor(productionPerEffort){
-    this._materials = 0
-    this.effort = new EffortHandler(Number.MAX_SAFE_INTEGER)
-    this._productionPerEffort = productionPerEffort
-  }
-
-  countMaterials(){
-    return this._materials
-  }
-
-  calcRequiredInput(){
-    return this.effort.currentEffort() * this._productionPerEffort
-  }
-
-  produce(){
-    this._materials += this.calcRequiredInput()
-    this.effort.reset()
+    super(productionPerEffort, Number.MAX_SAFE_INTEGER)
   }
 
   calcDefence(baseSize){
-    return Math.floor((Math.pow(this._materials,0.625))/((baseSize*0.75+0.25)/3.7))
-
+    return Math.floor((Math.pow(this._input,0.625))/((baseSize*0.75+0.25)/3.7))
   }
-
 }
 
 export default Wall
