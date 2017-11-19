@@ -29,6 +29,16 @@ class ProductionBuildingGroup extends buildingGroup{
     if(result < 0) throw new Error("Cannot remove more effort than is within the building")
     this._effort = result
   }
+
+  calcProduction(){
+    return this._productionPerEffort * this._effort
+  }
+
+  produce(){
+    const result = this.calcProduction()
+    this._effort = 0
+    return result
+  }
 }
 
 export default ProductionBuildingGroup

@@ -6,12 +6,12 @@ describe("Building Group - basic", function(){
   let productionBuildingGroup
 
   beforeEach(() => {
-    productionBuildingGroup = new ProductionBuildingGroup(1, 10, 2)
+    productionBuildingGroup = new ProductionBuildingGroup(2, 10, 2)
   })
 
   it("can initialise buildingGroup", () => {
     assert.ok(productionBuildingGroup)
-    assert.strictEqual(productionBuildingGroup._productionPerEffort, 1)
+    assert.strictEqual(productionBuildingGroup._productionPerEffort, 2)
     assert.strictEqual(productionBuildingGroup._singleBuildingEffortCapacity, 10)
     assert.strictEqual(productionBuildingGroup._singleBuildingSize, 2)
   })
@@ -94,4 +94,25 @@ describe("Building Group - basic", function(){
     })
   })
 
+  it("can calculate production", () => {
+    productionBuildingGroup.add(10)
+    productionBuildingGroup.addEffort(50)
+
+    let expected = 100
+    let result = productionBuildingGroup.calcProduction()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can produce", () => {
+    productionBuildingGroup.add(10)
+    productionBuildingGroup.addEffort(50)
+
+    let expected = 100
+    let result = productionBuildingGroup.produce()
+    assert.strictEqual(result, expected)
+
+    expected = 0
+    result = productionBuildingGroup._effort
+    assert.strictEqual(result, expected)
+  })
 })
