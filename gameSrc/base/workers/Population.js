@@ -3,9 +3,9 @@ class Population{
   constructor(maxSkill){
     if(maxSkill <= 0) throw new Error("Max Skill cannot be less than 1")
     this._maxSkill = maxSkill
-    this._people = []
-    for(let j=0; j<maxSkill; j++){
-      this._people.push(0)
+    this._people = {}
+    for(let j=1; j<=maxSkill; j++){
+      this._people[j] = 0
     }
   }
 
@@ -25,35 +25,36 @@ class Population{
 
   _alterPopulation(amount, skillLevel){
     this._isSkillInCorrectRange(skillLevel)
-    this._people[skillLevel - 1] += amount
+    this._people[skillLevel] += amount
   }
 
   countPopulation(skillLevel){
     this._isSkillInCorrectRange(skillLevel)
-    return this._people[skillLevel - 1]
+    return this._people[skillLevel]
   }
 
   totalPopulation(){
-    const count = this._people.reduce((total, nexVal) => {
-      return total+=nexVal
-    })
+    let count = 0
+    for(let key of Object.keys(this._people)){
+      count += this._people[key]
+    }
     return count
   }
 
   upgradeSkill(amount, from, to){
     this._isSkillInCorrectRange(from)
     this._isSkillInCorrectRange(to)
-    if(this._people[from-1] < amount) throw new Error("Not enough people to upgrade")
+    if(this._people[from] < amount) throw new Error("Not enough people to upgrade")
 
-    this._people[from-1] -= amount
-    this._people[to-1] += amount
+    this._people[from] -= amount
+    this._people[to] += amount
   }
 
   getEffort(){
     let effort = 0
-    for(let index=0; index< this._people.length; index++){
-      const multiplier = index+1
-      effort += this._people[index] * multiplier
+    for(let key of Object.keys(this._people)){
+      const multiplier = parseInt(key)
+      effort += this._people[key] * multiplier
     }
     return effort
   }

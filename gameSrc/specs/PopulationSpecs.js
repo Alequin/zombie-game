@@ -13,7 +13,7 @@ describe("Population - basic", function(){
   it("can initialise a population", () => {
     assert.ok(population)
 
-    const expected = [0,0,0,0]
+    const expected = {1: 0, 2: 0, 3: 0, 4: 0}
     const result = population._people
     assert.deepEqual(result, expected)
   })
@@ -192,7 +192,7 @@ describe("Population - max skill 3", function(){
   })
 
   it("can use different numbers of maxSkill", () => {
-    const expected = [0,0,0]
+    const expected = {1: 0, 2: 0, 3: 0}
     const result = population._people
     assert.deepEqual(result, expected)
   })
