@@ -11,6 +11,10 @@ describe("Base Buildings", function(){
 
   it("can initialise base builings", () => {
     assert.ok(baseBuildings)
+    assert.ok(baseBuildings.houses)
+    assert.ok(baseBuildings.farms)
+    assert.ok(baseBuildings.lumbarYards)
+    assert.ok(baseBuildings.scrapYards)
   })
 
 })
