@@ -1,23 +1,35 @@
 import assert from "assert"
-import Houses from "./../base/buildings/Houses.js"
-import ProductionBuildingGroup from "./../base/buildings/ProductionBuildingGroup.js"
-import InputProductionBuildingGroup from "./../base/buildings/InputProductionBuildingGroup.js"
 import BaseBuildings from "./../base/buildings/BaseBuildings.js"
 
 describe("Base Buildings", function(){
 
-  let houses
-  let farms
-  let lumberYards
-  let scrapYards
   let baseBuildings
 
   beforeEach(() => {
-    houses = new Houses(6, 1)
-    farms = new ProductionBuildingGroup(10, 100, 10)
-    lumberYards = new InputProductionBuildingGroup(3, 3, 50, 3)
-    scrapYards = new InputProductionBuildingGroup(1.5, 3, 50, 3)
-    baseBuildings = new BaseBuildings(houses, farms, lumberYards, scrapYards)
+    const buildings = {
+      houses: {
+        singleHouseCapacity: 6,
+        singleHouseSize: 1,
+      },
+      farms: {
+        productionPerEffort: 10,
+        singleBuildingEffortCapacity: 100,
+        singleBuildingSize: 10,
+      },
+      lumberYards: {
+        productionRatio: 3,
+        productionPerEffort: 3,
+        singleBuildingEffortCapacity: 50,
+        singleBuildingSize: 3,
+      },
+      scrapYards: {
+        productionRatio: 1.5,
+        productionPerEffort: 3,
+        singleBuildingEffortCapacity: 50,
+        singleBuildingSize: 3,
+      },
+    }
+    baseBuildings = new BaseBuildings(buildings)
   })
 
   it("can initialise base builings", () => {
@@ -28,33 +40,14 @@ describe("Base Buildings", function(){
     assert.ok(baseBuildings.scrapYards)
   })
 
-
-  it("cannot initialise with invalid objects", () => {
-    assert.throws(() => {
-      baseBuildings = new BaseBuildings(0, farms, lumberYards, scrapYards)
-    })
-    assert.throws(() => {
-      baseBuildings = new BaseBuildings(houses, 0, lumberYards, scrapYards)
-    })
-    assert.throws(() => {
-      baseBuildings = new BaseBuildings(houses, farms, 0, scrapYards)
-    })
-    assert.throws(() => {
-      baseBuildings = new BaseBuildings(houses, farms, lumberYards, 0)
-    })
-  })
-
   it("can calculate overall size used", () => {
     baseBuildings.houses.add(10)
     baseBuildings.farms.add(10)
     baseBuildings.lumberYards.add(10)
     baseBuildings.scrapYards.add(10)
 
-    let expected = houses.usedSpace() + farms.usedSpace() +
-    lumberYards.usedSpace() + scrapYards.usedSpace()
-
+    let expected = 10 + (10*10) + (10*3) + (10*3)
     let result = baseBuildings.totalSpaceUsed()
     assert.strictEqual(result, expected)
   })
-
 })

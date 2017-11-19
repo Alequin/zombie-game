@@ -1,19 +1,33 @@
+import Houses from "./Houses.js"
+import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
+import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{
-  constructor(houses, farms, lumberYards, scrapYards){
-    if(houses.constructor.name != "Houses")
-      throw new Error("houses must be a Houses object")
-    if(farms.constructor.name != "ProductionBuildingGroup")
-      throw new Error("farms must be a ProductionBuildingGroup object")
-    if(lumberYards.constructor.name != "InputProductionBuildingGroup")
-      throw new Error("lumberYards must be a inputProductionBuildingGroup object")
-    if(scrapYards.constructor.name != "InputProductionBuildingGroup")
-      throw new Error("scrapYards must be a inputProductionBuildingGroup object")
+  constructor({ houses, farms, lumberYards, scrapYards }){
+    this.houses = new Houses(
+      houses.singleHouseCapacity,
+      houses.singleHouseSize
+    )
 
-    this.houses = houses
-    this.farms = farms
-    this.lumberYards = lumberYards
-    this.scrapYards = scrapYards
+    this.farms = new ProductionBuildingGroup(
+      farms.productionPerEffort,
+      farms.singleBuildingEffortCapacity,
+      farms.singleBuildingSize
+    )
+
+    this.lumberYards = new InputProductionBuildingGroup(
+      lumberYards.productionRatio,
+      lumberYards.productionPerEffort,
+      lumberYards.singleBuildingEffortCapacity,
+      lumberYards.singleBuildingSize
+    )
+
+    this.scrapYards = new InputProductionBuildingGroup(
+      scrapYards.productionRatio,
+      scrapYards.productionPerEffort,
+      scrapYards.singleBuildingEffortCapacity,
+      scrapYards.singleBuildingSize
+    )
   }
 
   totalSpaceUsed(){

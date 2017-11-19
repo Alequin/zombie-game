@@ -10,7 +10,7 @@
     * Food: feeds people
       * One person eats 60 per month
     * Materials: used to build and upgrade
-    * Lumbar: used to make materials
+    * lumber: used to make materials
     * Scrap: used to make materials
 
 
@@ -56,7 +56,7 @@
   |:-|:-|
   |House|Increases total population|
   |Farm|Produces Food, requires at least 1 worker (has a max number of workers )|
-  |Lumbar Yard|Turns lumbar into materials|
+  |lumber Yard|Turns lumber into materials|
   |Scrap Yard|Turns scrap into materials|
   |Storage|Stores resources. The play can control the max capacity of each resource. At the start each has an equal amount of space|
   |Wall|Increases defence percentage increase. The defence of the wall is determined by how many materials are provided to it and the base size. More materials == more defence, greater base size == less defence per material|
