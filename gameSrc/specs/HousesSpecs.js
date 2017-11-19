@@ -22,4 +22,19 @@ describe("Houses", function(){
     let result = houses.totalCapacity()
     assert.strictEqual(result, expected)
   })
+
+  it("cannot set a house capacity of less than 1", () => {
+    assert.throws(() => {
+      new Houses(0)
+    })
+    assert.throws(() => {
+      new Houses(-1)
+    })
+    assert.throws(() => {
+      new Houses(-100)
+    })
+    assert.throws(() => {
+      new Houses(-10000)
+    })
+  })
 })
