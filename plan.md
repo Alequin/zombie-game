@@ -63,7 +63,7 @@
   |Traps|Each trap has a 25% chance of killing an enemy|
 
   * Wall defence equation
-    defencePercentageIncrease = (materials^0.9)/(baseSize/3.7)
+    defencePercentageIncrease = (materials^0.625)/((baseSize*0.75+0.25)/3.7)
 
 ## Past MVP
 

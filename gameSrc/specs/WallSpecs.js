@@ -52,4 +52,21 @@ describe("Wall", function(){
     result = wall.countMaterials()
     assert.strictEqual(result, expected)
   })
+
+  it("can calculate defence", () => {
+    wall.effort.add(10)
+    wall.produce()
+
+    let expected = 65
+    let result = wall.calcDefence(1)
+    assert.strictEqual(result, expected)
+
+    expected = 37
+    result = wall.calcDefence(2)
+    assert.strictEqual(result, expected)
+
+    expected = 26
+    result = wall.calcDefence(3)
+    assert.strictEqual(result, expected)
+  })
 })

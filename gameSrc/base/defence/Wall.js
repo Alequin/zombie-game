@@ -20,6 +20,11 @@ class Wall{
     this.effort.reset()
   }
 
+  calcDefence(baseSize){
+    return Math.floor((Math.pow(this._materials,0.625))/((baseSize*0.75+0.25)/3.7))
+
+  }
+
 }
 
 export default Wall
