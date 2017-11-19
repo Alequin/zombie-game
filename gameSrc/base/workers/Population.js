@@ -29,6 +29,7 @@ class Population{
   }
 
   countPopulation(skillLevel){
+    this._isSkillInCorrectRange(skillLevel)
     return this._people[skillLevel - 1]
   }
 

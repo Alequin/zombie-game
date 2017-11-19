@@ -156,6 +156,21 @@ describe("Population - basic", function(){
       population.upgradeSkill(101, 1,2)
     })
   })
+
+  it("cannot count population with invalid skill level", () => {
+    assert.throws(() => {
+      population.countPopulation(-10)
+    })
+    assert.throws(() => {
+      population.countPopulation(0)
+    })
+    assert.throws(() => {
+      population.countPopulation(5)
+    })
+    assert.throws(() => {
+      population.countPopulation(100)
+    })
+  })
 })
 
 describe("Population - max skill 3", function(){
