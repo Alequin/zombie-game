@@ -60,6 +60,18 @@ describe("Population - basic", function(){
     let result = population.totalPopulation()
     assert.strictEqual(result, expected)
   })
+
+  it("can upgrade population", () => {
+    population.addToPopulation(100, 1)
+    population.upgradeSkill(25, 1, 4)
+
+    let expected = 75
+    let result = population.countPopulation(1)
+    assert.strictEqual(result, expected)
+    expected = 25
+    result = population.countPopulation(4)
+    assert.strictEqual(result, expected)
+  })
 })
 
 describe("Population - max skill 3", function(){

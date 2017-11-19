@@ -28,6 +28,11 @@ class Population{
     return count
   }
 
+  upgradeSkill(amount, from, to){
+    this._people[from-1] -= amount
+    this._people[to-1] += amount
+  }
+
   getEffort(){
     let effort = 0
     for(let index in this.people){
