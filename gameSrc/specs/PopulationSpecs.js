@@ -86,6 +86,54 @@ describe("Population - basic", function(){
     result = population.countPopulation(2)
     assert.strictEqual(result, expected)
   })
+
+  it("cannot use negative values to modify the population", () => {
+    assert.throws(() => {
+      population.addToPopulation(-1, 1)
+    })
+    assert.throws(() => {
+      population.addToPopulation(-100, 1)
+    })
+    assert.throws(() => {
+      population.addToPopulation(-10000, 1)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(-1, 1)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(-100, 1)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(-10000, 1)
+    })
+  })
+
+  it("cannot modify the population with non existant skill values", () => {
+    assert.throws(() => {
+      population.addToPopulation(10, -10)
+    })
+    assert.throws(() => {
+      population.addToPopulation(10, 0)
+    })
+    assert.throws(() => {
+      population.addToPopulation(10, 5)
+    })
+    assert.throws(() => {
+      population.addToPopulation(10, 100)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(10, -10)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(10, 0)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(10, 5)
+    })
+    assert.throws(() => {
+      population.removeFromPopulation(10, 100)
+    })
+  })
 })
 
 describe("Population - max skill 3", function(){

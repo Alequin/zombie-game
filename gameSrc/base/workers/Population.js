@@ -14,11 +14,21 @@ class Population{
   }
 
   addToPopulation(amount, skillLevel){
-    this._people[skillLevel - 1] += amount
+    if(amount < 0) throw new Error("Amount cannot be negative")
+    this._alterPopulation(amount, skillLevel)
   }
 
   removeFromPopulation(amount, skillLevel){
-    this._people[skillLevel - 1] -= amount
+    if(amount < 0) throw new Error("Amount cannot be negative")
+    this._alterPopulation(-amount, skillLevel)
+  }
+
+  _alterPopulation(amount, skillLevel){
+    if(skillLevel < 1 ||skillLevel > this._maxSkill) {
+      throw new Error(`Skill level is set from
+      1 to ${this._maxSkill}. Alterations must be in this range`)
+    }
+    this._people[skillLevel - 1] += amount
   }
 
   countPopulation(skillLevel){
