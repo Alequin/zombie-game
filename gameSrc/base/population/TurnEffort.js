@@ -1,5 +1,5 @@
 
-class Effort{
+class TurnEffort{
 
   constructor(){
     this._usedThisTurn = 0
@@ -51,4 +51,4 @@ class Effort{
   }
 }
 
-export default Effort
+export default TurnEffort

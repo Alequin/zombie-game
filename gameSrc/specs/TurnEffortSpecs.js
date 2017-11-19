@@ -1,12 +1,12 @@
 import assert from "assert"
-import Effort from "./../base/population/Effort.js"
+import TurnEffort from "./../base/population/TurnEffort.js"
 
 describe("Effort", function(){
 
   let effort
 
   beforeEach(() => {
-    effort = new Effort()
+    effort = new TurnEffort()
   })
 
   it("can initialise effort", () => {
@@ -90,7 +90,7 @@ describe("effort - prepare effort values", function(){
   let effort
 
   beforeEach(() => {
-    effort = new Effort()
+    effort = new TurnEffort()
   })
 
   function testEffortValues(
