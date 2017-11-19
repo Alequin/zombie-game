@@ -1,12 +1,13 @@
 import assert from "assert"
 import Traps from "./../base/defence/Traps.js"
+import Dice from "./../util/Dice.js"
 
 describe("Traps", function(){
 
   let traps
 
   beforeEach(() => {
-    traps = new Traps(10)
+    traps = new Traps(10, 20)
   })
 
   it("can initialise", () => {
@@ -15,6 +16,7 @@ describe("Traps", function(){
     assert.strictEqual(traps._input, 0)
     assert.strictEqual(traps._productionPerEffort, 10)
     assert.strictEqual(traps.effort._capacity, Number.MAX_SAFE_INTEGER)
+    assert.strictEqual(traps._chanceToKill, 20)
   })
 
   it("can count traps", () => {
@@ -25,9 +27,40 @@ describe("Traps", function(){
     traps.effort.add(10)
     traps.produce()
 
-
     expected = 100
     result = traps.totalTraps()
     assert.strictEqual(result, expected)
+  })
+
+  it("can calculate number caught in traps", () => {
+    traps.effort.add(10)
+    traps.produce()
+
+    let result = traps.calcNumberKilled()
+    assert.ok(result > 0 && result < traps.totalTraps())
+  })
+
+  it(`can kill 10 with 10 trap if dice roll is always
+    less than or equal to 20`, () => {
+    traps.effort.add(1)
+    traps.produce()
+
+    for(let j=1; j<=20; j++){
+      let expected = 10
+      let result = traps._rollForNumberkilled(new Dice(j, j))
+      assert.strictEqual(result, expected)
+    }
+  })
+
+  it(`can kill 0 with 10 trap if dice roll is always
+    greater than 20`, () => {
+    traps.effort.add(1)
+    traps.produce()
+
+    for(let j=21; j<=100; j++){
+      let expected = 0
+      let result = traps._rollForNumberkilled(new Dice(j, j))
+      assert.strictEqual(result, expected)
+    }
   })
 })
