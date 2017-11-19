@@ -7,7 +7,7 @@
 //
 //   })
 //
-//   it("do stuff", () => {
+//   it("can initialise", () => {
 //
 //   })
 //
