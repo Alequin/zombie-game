@@ -43,50 +43,48 @@ describe("test", function(){
 
   it("cannot use negative values to modify the effort", () => {
     assert.throws(() => {
-      effortHandler.addEffort(-1)
+      effortHandler.add(-1)
     })
     assert.throws(() => {
-      effortHandler.addEffort(-100)
+      effortHandler.add(-100)
     })
     assert.throws(() => {
-      effortHandler.addEffort(-10000)
+      effortHandler.add(-10000)
     })
     assert.throws(() => {
-      effortHandler.removeEffort(-1)
+      effortHandler.remove(-1)
     })
     assert.throws(() => {
-      effortHandler.removeEffort(-100)
+      effortHandler.remove(-100)
     })
     assert.throws(() => {
-      effortHandler.removeEffort(-10000)
+      effortHandler.remove(-10000)
     })
   })
 
   it("cannot remove more effort than exists", () => {
     effortHandler.add(10)
-    effortHandler.addEffort(10)
     assert.throws(() => {
-      effortHandler.removeEffort(11)
+      effortHandler.remove(11)
     })
     assert.throws(() => {
-      effortHandler.removeEffort(100)
+      effortHandler.remove(100)
     })
     assert.throws(() => {
-      effortHandler.removeEffort(10000)
+      effortHandler.remove(10000)
     })
   })
 
   it("cannot add an amount of effort greater than the capacity", () => {
-    effortHandler.add(10)
-    effortHandler.addEffort(90)
+    effortHandler.add(90)
     assert.throws(() => {
-      effortHandler.addEffort(11)
+      effortHandler.add(11)
     })
     assert.throws(() => {
-      effortHandler.addEffort(100)
+      effortHandler.add(100)
     })
     assert.throws(() => {
-      effortHandler.addEffort(10000)
+      effortHandler.add(10000)
     })
   })
 

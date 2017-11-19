@@ -1,7 +1,8 @@
 
 class EffortHandler{
-  constructor(){
+  constructor(capacity){
     this._currentEffort = 0
+    this._capacity = capacity
   }
 }
 
