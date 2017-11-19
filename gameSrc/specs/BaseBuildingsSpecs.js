@@ -23,4 +23,16 @@ describe("Base Buildings", function(){
     assert.ok(baseBuildings.lumbarYards)
     assert.ok(baseBuildings.scrapYards)
   })
+
+  it("can calculate overall size used", () => {
+    baseBuildings.houses.add(10)
+    baseBuildings.farms.add(10)
+    baseBuildings.lumbarYards.add(10)
+    baseBuildings.scrapYards.add(10)
+
+    let expected = 10 + (10*10) + (10*3) + (10*3)
+    let result = baseBuildings.totalSpaceUsed()
+    assert.strictEqual(result, expected)
+  })
+
 })
