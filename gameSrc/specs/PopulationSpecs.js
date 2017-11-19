@@ -134,6 +134,21 @@ describe("Population - basic", function(){
       population.removeFromPopulation(10, 100)
     })
   })
+
+  it("cannot upgrade skill if to or from arguments are invalid", () => {
+    assert.throws(() => {
+      population.upgradeSkill(10, -10)
+    })
+    assert.throws(() => {
+      population.upgradeSkill(10, 0)
+    })
+    assert.throws(() => {
+      population.upgradeSkill(10, 5)
+    })
+    assert.throws(() => {
+      population.upgradeSkill(10, 100)
+    })
+  })
 })
 
 describe("Population - max skill 3", function(){

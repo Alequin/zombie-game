@@ -24,10 +24,7 @@ class Population{
   }
 
   _alterPopulation(amount, skillLevel){
-    if(skillLevel < 1 ||skillLevel > this._maxSkill) {
-      throw new Error(`Skill level is set from
-      1 to ${this._maxSkill}. Alterations must be in this range`)
-    }
+    this._isSkillInCorrectRange(skillLevel)
     this._people[skillLevel - 1] += amount
   }
 
@@ -43,6 +40,8 @@ class Population{
   }
 
   upgradeSkill(amount, from, to){
+    this._isSkillInCorrectRange(from)
+    this._isSkillInCorrectRange(to)
     this._people[from-1] -= amount
     this._people[to-1] += amount
   }
@@ -54,6 +53,13 @@ class Population{
       effort += this.people[index] * multiplier
     }
     return effort
+  }
+
+  _isSkillInCorrectRange(skillLevel){
+    if(skillLevel < 1 ||skillLevel > this._maxSkill) {
+      throw new Error(`Skill level is set from
+      1 to ${this._maxSkill}. Alterations must be in this range`)
+    }
   }
 }
 
