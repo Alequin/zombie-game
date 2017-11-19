@@ -28,6 +28,13 @@ describe("test", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("cannot set capacity to less than the current effort", () => {
+    effortHandler.add(50)
+    assert.throws(() => {
+      effortHandler.setCapacity(49)
+    })
+  })
+
   it("can get current effort", () => {
     let expected = 0
     let result = effortHandler.currentEffort()

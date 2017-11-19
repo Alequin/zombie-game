@@ -10,6 +10,9 @@ class EffortHandler{
   }
 
   setCapacity(capacity){
+    if(capacity < this._effort)
+      throw new Error("Cannot set capacity to less than the current effort")
+
     this._capacity = capacity
   }
 
