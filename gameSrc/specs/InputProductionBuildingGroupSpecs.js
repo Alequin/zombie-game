@@ -19,7 +19,7 @@ describe("Input Production Building Group - basic", function(){
 
   it("can calculate required input", () => {
     inputProductionBuildingGroup.add(10)
-    inputProductionBuildingGroup.addEffort(50)
+    inputProductionBuildingGroup.effort.add(50)
 
     let expected = 450
     let result = inputProductionBuildingGroup.calcRequiredInput()
@@ -29,7 +29,7 @@ describe("Input Production Building Group - basic", function(){
   it("can calculate required input - floors decimal values", () => {
     inputProductionBuildingGroup = new InputProductionBuildingGroup(1.5, 1, 10, 2)
     inputProductionBuildingGroup.add(10)
-    inputProductionBuildingGroup.addEffort(51)
+    inputProductionBuildingGroup.effort.add(51)
 
     let expected = 77
     let result = inputProductionBuildingGroup.calcRequiredInput()

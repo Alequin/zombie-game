@@ -16,87 +16,9 @@ describe("production Building Group - basic", function(){
     assert.strictEqual(productionBuildingGroup._singleBuildingSize, 2)
   })
 
-  it("can get effort capacity", () => {
-    productionBuildingGroup.add(10)
-
-    let expected = 100
-    let result = productionBuildingGroup.effortCapacity()
-    assert.strictEqual(result, expected)
-  })
-
-  it("can get current effort", () => {
-    let expected = 0
-    let result = productionBuildingGroup.currentEffort()
-    assert.strictEqual(result, expected)
-  })
-
-  it("can add and remove effort", () => {
-    productionBuildingGroup.add(10)
-    productionBuildingGroup.addEffort(10)
-
-    let expected = 10
-    let result = productionBuildingGroup.currentEffort()
-    assert.strictEqual(result, expected)
-
-    productionBuildingGroup.removeEffort(5)
-
-    expected = 5
-    result = productionBuildingGroup.currentEffort()
-    assert.strictEqual(result, expected)
-  })
-
-  it("cannot use negative values to modify the effort", () => {
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(-1)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(-100)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(-10000)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(-1)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(-100)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(-10000)
-    })
-  })
-
-  it("cannot remove more effort than exists", () => {
-    productionBuildingGroup.add(10)
-    productionBuildingGroup.addEffort(10)
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(11)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(100)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.removeEffort(10000)
-    })
-  })
-
-  it("cannot add an amount of effort greater than the capacity", () => {
-    productionBuildingGroup.add(10)
-    productionBuildingGroup.addEffort(90)
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(11)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(100)
-    })
-    assert.throws(() => {
-      productionBuildingGroup.addEffort(10000)
-    })
-  })
-
   it("can calculate production", () => {
     productionBuildingGroup.add(10)
-    productionBuildingGroup.addEffort(50)
+    productionBuildingGroup.effort.add(50)
 
     let expected = 100
     let result = productionBuildingGroup.calcProduction()
@@ -105,14 +27,14 @@ describe("production Building Group - basic", function(){
 
   it("can produce", () => {
     productionBuildingGroup.add(10)
-    productionBuildingGroup.addEffort(50)
+    productionBuildingGroup.effort.add(50)
 
     let expected = 100
     let result = productionBuildingGroup.produce()
     assert.strictEqual(result, expected)
 
     expected = 0
-    result = productionBuildingGroup._effort
+    result = productionBuildingGroup.effort.currentEffort()
     assert.strictEqual(result, expected)
   })
 })

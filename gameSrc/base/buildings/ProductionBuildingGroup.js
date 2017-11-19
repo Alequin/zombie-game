@@ -1,10 +1,11 @@
 import BuildingGroup from "./BuildingGroup"
+import EffortHandler from "./../../util/EffortHandler.js"
 
 class ProductionBuildingGroup extends BuildingGroup{
   constructor(productionPerEffort, singleBuildingEffortCapacity, singleBuildingSize){
     super(singleBuildingSize)
     this._productionPerEffort = productionPerEffort
-    this._effort = 0
+    this.effort = new EffortHandler(this.effortCapacity())
     this._singleBuildingEffortCapacity = singleBuildingEffortCapacity
   }
 
@@ -12,31 +13,13 @@ class ProductionBuildingGroup extends BuildingGroup{
     return this._singleBuildingEffortCapacity * this._count
   }
 
-  currentEffort(){
-    return this._effort
-  }
-
-  addEffort(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._effort + amount
-    if(result > this.effortCapacity()) throw new Error("Amount cannot push effort over capacity")
-    this._effort += result
-  }
-
-  removeEffort(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._effort - amount
-    if(result < 0) throw new Error("Cannot remove more effort than is within the building")
-    this._effort = result
-  }
-
   calcProduction(){
-    return this._productionPerEffort * this._effort
+    return this._productionPerEffort * this.effort.currentEffort()
   }
 
   produce(){
     const result = this.calcProduction()
-    this._effort = 0
+    this.effort.reset()
     return result
   }
 }

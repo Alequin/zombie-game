@@ -41,6 +41,15 @@ describe("test", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can reset effort", () => {
+    effortHandler.add(100)
+    effortHandler.reset()
+
+    let expected = 0
+    let result = effortHandler.currentEffort()
+    assert.strictEqual(result, expected)
+  })
+
   it("can add and remove effort", () => {
     effortHandler.add(10)
 

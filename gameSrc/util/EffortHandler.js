@@ -33,6 +33,11 @@ class EffortHandler{
     if(result < 0) throw new Error("Cannot remove more effort than is within the building")
     this._effort = result
   }
+
+  reset(){
+    this._effort = 0
+  }
+
 }
 
 export default EffortHandler
