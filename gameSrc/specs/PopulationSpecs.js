@@ -19,10 +19,14 @@ describe("Population - basic", function(){
   })
 
   it("can get max skill", () => {
-    assert.ok(population)
-
     const expected = 4
     const result = population.getMaxSkill()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get total effort", () => {
+    const expected = 0
+    const result = population.getEffort()
     assert.strictEqual(result, expected)
   })
 })

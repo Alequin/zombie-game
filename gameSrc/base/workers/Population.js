@@ -14,7 +14,12 @@ class Population{
   }
 
   getEffort(){
-    return this._skill * 10
+    let effort = 0
+    for(let index in this.people){
+      const multiplier = index+1
+      effort += this.people[index] * multiplier
+    }
+    return effort
   }
 }
 
