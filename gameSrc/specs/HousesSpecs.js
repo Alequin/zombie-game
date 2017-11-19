@@ -6,7 +6,7 @@ describe("Houses", function(){
   let houses
 
   beforeEach(() => {
-    houses = new Houses(4)
+    houses = new Houses(4, 2)
   })
 
   it("can initialise houses", () => {

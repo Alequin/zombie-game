@@ -6,8 +6,9 @@
   * A month is the unit of time a single turn is considered to take.
 
 
-*Resources
+* Resources
     * Food: feeds people
+      * One person eats 60 per month
     * Materials: used to build and upgrade
     * Lumbar: used to make materials
     * Scrap: used to make materials
@@ -32,6 +33,11 @@
 * Locations
   * Locations are places. At the start the player will have knowledge about 2-4 places excluding their own location.
   Locations have a number of resources, a zombie count and a zombie capacity. These values are determined by the locations size.
+
+
+* Size
+  * Size measurement for buildings:
+    * 1 == 50m<sup>2</sup>
 
 
 * Actions

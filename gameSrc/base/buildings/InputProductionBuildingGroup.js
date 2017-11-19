@@ -14,7 +14,7 @@ class InputProductionBuildingGroup extends ProductionBuildingGroup{
 
   calcRequiredInput(){
     const maxOutput = this.calcProduction()
-    return maxOutput * this._productionRatio
+    return Math.ceil(maxOutput * this._productionRatio)
   }
 }
 

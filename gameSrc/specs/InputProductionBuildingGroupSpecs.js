@@ -25,4 +25,14 @@ describe("Input Production Building Group - basic", function(){
     let result = inputProductionBuildingGroup.calcRequiredInput()
     assert.strictEqual(result, expected)
   })
+
+  it("can calculate required input - floors decimal values", () => {
+    inputProductionBuildingGroup = new InputProductionBuildingGroup(1.5, 1, 10, 2)
+    inputProductionBuildingGroup.add(10)
+    inputProductionBuildingGroup.addEffort(51)
+
+    let expected = 77
+    let result = inputProductionBuildingGroup.calcRequiredInput()
+    assert.strictEqual(result, expected)
+  })
 })

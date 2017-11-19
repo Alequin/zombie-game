@@ -1,8 +1,8 @@
 import BuildingGroup from "./BuildingGroup"
 
 class Houses extends BuildingGroup{
-  constructor(singleHouseCapacity){
-    super(2)
+  constructor(singleHouseCapacity, singleHouseSize){
+    super(singleHouseSize)
     if(singleHouseCapacity < 1){
       throw new Error("House capacity cannot be less than 1")
     }
