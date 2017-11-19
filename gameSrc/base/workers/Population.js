@@ -17,6 +17,10 @@ class Population{
     this._people[skillLevel - 1] += amount
   }
 
+  removeFromPopulation(amount, skillLevel){
+    this._people[skillLevel - 1] -= amount
+  }
+
   countPopulation(skillLevel){
     return this._people[skillLevel - 1]
   }

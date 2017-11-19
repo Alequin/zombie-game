@@ -72,6 +72,20 @@ describe("Population - basic", function(){
     result = population.countPopulation(4)
     assert.strictEqual(result, expected)
   })
+
+  it("can remove from population population", () => {
+    population.addToPopulation(100, 1)
+    population.addToPopulation(200, 2)
+    population.removeFromPopulation(75, 1)
+    population.removeFromPopulation(110, 2)
+
+    let expected = 25
+    let result = population.countPopulation(1)
+    assert.strictEqual(result, expected)
+    expected = 90
+    result = population.countPopulation(2)
+    assert.strictEqual(result, expected)
+  })
 })
 
 describe("Population - max skill 3", function(){
