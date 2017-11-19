@@ -21,6 +21,13 @@ describe("test", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can set effort capacity", () => {
+    effortHandler.setCapacity(150)
+    let expected = 150
+    let result = effortHandler.getCapacity()
+    assert.strictEqual(result, expected)
+  })
+
   it("can get current effort", () => {
     let expected = 0
     let result = effortHandler.currentEffort()
@@ -87,5 +94,4 @@ describe("test", function(){
       effortHandler.add(10000)
     })
   })
-
 })

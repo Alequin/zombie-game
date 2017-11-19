@@ -9,6 +9,10 @@ class EffortHandler{
     return this._capacity
   }
 
+  setCapacity(capacity){
+    this._capacity = capacity
+  }
+
   currentEffort(){
     return this._effort
   }
