@@ -38,16 +38,17 @@ describe("production Building Group - basic", function(){
     assert.strictEqual(result, expected)
   })
 
-  it("can produce", () => {
+  it("effort capacity changes when buildings are added and removed", () => {
     productionBuildingGroup.add(10)
-    productionBuildingGroup.effort.add(50)
 
     let expected = 100
-    let result = productionBuildingGroup.produce()
+    let result = productionBuildingGroup.effort.getCapacity()
     assert.strictEqual(result, expected)
 
-    expected = 0
-    result = productionBuildingGroup.effort.currentEffort()
+    productionBuildingGroup.remove(5)
+
+    expected = 50
+    result = productionBuildingGroup.effort.getCapacity()
     assert.strictEqual(result, expected)
   })
 })

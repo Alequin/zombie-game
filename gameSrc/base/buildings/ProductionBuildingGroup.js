@@ -9,6 +9,16 @@ class ProductionBuildingGroup extends BuildingGroup{
     this.effort = new EffortHandler(this.effortCapacity())
   }
 
+  add(amount){
+    super.add(amount)
+    this.effort.setCapacity(this.effortCapacity())
+  }
+
+  remove(amount){
+    super.remove(amount)
+    this.effort.setCapacity(this.effortCapacity())
+  }
+
   effortCapacity(){
     return this._singleBuildingEffortCapacity * this._count
   }
