@@ -6,7 +6,7 @@ describe("Wall", function(){
   let wall
 
   beforeEach(() => {
-    wall = new Wall(1)
+    wall = new Wall(1, 1)
   })
 
   it("can initialise Wall", () => {
@@ -14,6 +14,7 @@ describe("Wall", function(){
     assert.ok(wall.effort)
     assert.strictEqual(wall._input, 0)
     assert.strictEqual(wall._effortPerProduction, 1)
+    assert.strictEqual(wall._materialsPerEffort, 1)
     assert.strictEqual(wall.effort._capacity, Number.MAX_SAFE_INTEGER)
   })
 

@@ -6,7 +6,7 @@ describe("Storage Container", function(){
   let storageContainer
 
   beforeEach(() => {
-    storageContainer = new StorageContainer(["one", "two", "three", "four"])
+    storageContainer = new StorageContainer(["one", "two", "three", "four"], 100)
   })
 
   it("can initialise a storage container", () => {
@@ -135,5 +135,20 @@ describe("Storage Container", function(){
     assert.throws(() => {
       storageContainer.setCapacityPercentage("one", 30)
     })
+  })
+
+  it("Can get max capacity", () => {
+    let expected = 100
+    let result = storageContainer.totalCapacity()
+    assert.strictEqual(result, expected)
+  })
+
+  it("On call of produce capacity increases", () => {
+    storageContainer.effort.add(100)
+    storageContainer.produce()
+
+    let expected = 200
+    let result = storageContainer.totalCapacity()
+    assert.strictEqual(result, expected)
   })
 })

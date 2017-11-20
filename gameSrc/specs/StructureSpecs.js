@@ -6,7 +6,7 @@ describe("structure", function(){
   let structure
 
   beforeEach(() => {
-    structure = new Structure(10, 10000)
+    structure = new Structure(10, 10, 10000)
   })
 
   it("can initialise structure", () => {
@@ -15,6 +15,7 @@ describe("structure", function(){
     assert.strictEqual(structure._input, 0)
     assert.strictEqual(structure._effortPerProduction, 10)
     assert.strictEqual(structure.effort._capacity, 10000)
+    assert.strictEqual(structure._materialsPerEffort, 10)
   })
 
   it("can get materials count", () => {
@@ -27,7 +28,7 @@ describe("structure", function(){
     structure.effort.add(10)
 
     let expected = 1
-    let result = structure.calcRequiredInput()
+    let result = structure.calcInputFromCurrentEffort()
     assert.strictEqual(result, expected)
   })
 
@@ -56,6 +57,14 @@ describe("structure", function(){
   it("can get effort required for one production", () => {
     let expected = 10
     let result = structure._effortPerProduction
+    assert.strictEqual(result, expected)
+  })
+
+  it("can calculate the required materials", () => {
+    structure.effort.add(10)
+
+    let expected = 100
+    let result = structure.calcMaterialsRequired()
     assert.strictEqual(result, expected)
   })
 })

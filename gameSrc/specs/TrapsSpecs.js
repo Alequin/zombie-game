@@ -7,7 +7,7 @@ describe("Traps", function(){
   let traps
 
   beforeEach(() => {
-    traps = new Traps(10, 20)
+    traps = new Traps(10, 5, 20)
   })
 
   it("can initialise", () => {
@@ -17,6 +17,7 @@ describe("Traps", function(){
     assert.strictEqual(traps._effortPerProduction, 10)
     assert.strictEqual(traps.effort._capacity, Number.MAX_SAFE_INTEGER)
     assert.strictEqual(traps._chanceToKill, 20)
+    assert.strictEqual(traps._materialsPerEffort, 5)
   })
 
   it("can count traps", () => {

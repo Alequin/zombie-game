@@ -2,8 +2,8 @@ import EffortHandler from "./../../util/EffortHandler.js"
 import Structure from "./../other/Structure.js"
 
 class Wall extends Structure{
-  constructor(effortPerProduction){
-    super(effortPerProduction, Number.MAX_SAFE_INTEGER)
+  constructor(effortPerProduction, materialsPerEffort){
+    super(effortPerProduction, materialsPerEffort, Number.MAX_SAFE_INTEGER)
   }
 
   calcCurrentDefence(baseSize){

@@ -1,10 +1,11 @@
 import EffortHandler from "./../../util/EffortHandler.js"
 
 class Structure{
-  constructor(effortPerProduction, effortCapacity){
+  constructor(effortPerProduction, materialsPerEffort, effortCapacity){
     this._input = 0
     this.effort = new EffortHandler(effortCapacity)
     this._effortPerProduction = effortPerProduction
+    this._materialsPerEffort = materialsPerEffort
   }
 
   getEffortPerProduction(){
@@ -15,12 +16,16 @@ class Structure{
     return this._input
   }
 
-  calcRequiredInput(){
+  calcInputFromCurrentEffort(){
     return this.effort.currentEffort() / this._effortPerProduction
   }
 
+  calcMaterialsRequired(){
+    return this.effort.currentEffort() * this._materialsPerEffort
+  }
+
   produce(){
-    this._input += this.calcRequiredInput()
+    this._input += this.calcInputFromCurrentEffort()
     this.effort.reset()
   }
 }

@@ -3,8 +3,8 @@ import Structure from "./../other/Structure.js"
 import Dice from "./../../util/Dice.js"
 
 class Traps extends Structure{
-  constructor(effortPerProduction, chanceToKill){
-    super(effortPerProduction, Number.MAX_SAFE_INTEGER)
+  constructor(effortPerProduction, materialsPerEffort, chanceToKill){
+    super(effortPerProduction, materialsPerEffort, Number.MAX_SAFE_INTEGER)
     this._chanceToKill = chanceToKill
   }
 

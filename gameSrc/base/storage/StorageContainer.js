@@ -1,14 +1,21 @@
 import StorageSection from "./StorageSection.js"
+import Structure from "./../other/Structure.js"
 
-class StorageContainer{
-  constructor(sectionNames){
+class StorageContainer extends Structure{
+  constructor(sectionNames, effortPerConstruction){
+    super(effortPerConstruction, Number.MAX_SAFE_INTEGER)
     this._capacity = 100
     this._sections = {}
+    this._input = 1
 
     const sectionBaseCapacity = this._capacity / sectionNames.length
     for(let name of sectionNames){
       this._sections[name] = new StorageSection(sectionBaseCapacity)
     }
+  }
+
+  totalCapacity(){
+    return this._capacity
   }
 
   getContentCount(key){
@@ -61,6 +68,11 @@ class StorageContainer{
   _alterContentCount(key, amount){
     const result = this._sections[key].contentCount + amount
     this._sections[key].contentCount = result
+  }
+
+  produce(){
+    super.produce()
+    this._capacity = 100 * this._input
   }
 }
 
