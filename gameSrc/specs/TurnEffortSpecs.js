@@ -85,47 +85,13 @@ describe("Effort", function(){
 
 })
 
-describe("effort - prepare effort values", function(){
+describe("effort - initial values", function(){
 
-  let effort
-
-  beforeEach(() => {
-    effort = new TurnEffort()
-  })
-
-  function testEffortValues(
-    thisTurnTotal, thisTurnUsed, lastTurnTotal, lastTurnUsed)
-  {
-    let expected = thisTurnTotal
-    let result = effort.getTotalThisTurn()
-    assert.strictEqual(result, expected)
-
-    expected = thisTurnUsed
-    result = effort.getUsedThisTurn()
-    assert.strictEqual(result, expected)
-
-    expected = lastTurnTotal
-    result = effort.getTotalLastTurn()
-    assert.strictEqual(result, expected)
-
-    expected = lastTurnUsed
-    result = effort.getUsedLastTurn()
-    assert.strictEqual(result, expected)
-  }
-
-  it("can prepare effort for next turn", () => {
-    effort.prepareValuesForNextTurn(30)
-    testEffortValues(30,0,0,0)
-
-    effort.prepareValuesForNextTurn(30)
-    testEffortValues(30,0,30,0)
-    effort.use(10)
-    testEffortValues(30,10,30,0)
-
-    effort.prepareValuesForNextTurn(30)
-    testEffortValues(30,0,30,10)
-
-    effort.prepareValuesForNextTurn(40)
-    testEffortValues(40,0,30,0)
+  it("can set inital values manually", () => {
+    let effort = new TurnEffort(1,2,3,4)
+    assert.strictEqual(effort._usedThisTurn, 1)
+    assert.strictEqual(effort._totalThisTurn, 2)
+    assert.strictEqual(effort._usedLastTurn, 3)
+    assert.strictEqual(effort._totalLastTurn, 4)
   })
 })
