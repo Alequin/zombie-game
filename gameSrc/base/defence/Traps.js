@@ -24,6 +24,10 @@ class Traps extends Structure{
     }
     return killed
   }
+
+  calcMaxTraps(baseSize){
+    return baseSize*4
+  }
 }
 
 export default Traps

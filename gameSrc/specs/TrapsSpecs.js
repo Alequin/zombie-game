@@ -54,7 +54,7 @@ describe("Traps", function(){
 
   it(`can kill 0 with 10 trap if dice roll is always
     greater than 20`, () => {
-    traps.effort.add(1)
+    traps.effort.add(100)
     traps.produce()
 
     for(let j=21; j<=100; j++){
@@ -62,5 +62,11 @@ describe("Traps", function(){
       let result = traps._rollForNumberkilled(new Dice(j, j))
       assert.strictEqual(result, expected)
     }
+  })
+
+  it(`can calculate max traps based on base size`, () => {
+    let expected = 2000
+    let result = traps.calcMaxTraps(500)
+    assert.strictEqual(result, expected)
   })
 })
