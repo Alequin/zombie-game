@@ -3,7 +3,8 @@ import BaseBuildings from "./../base/buildings/BaseBuildings.js"
 import {
   houseSettings,
   farmSettings,
-  lumberYardSettings
+  lumberYardSettings,
+  scrapYardSettings
 } from "./../base/Settings.js"
 
 describe("Base Buildings", function(){
@@ -11,26 +12,7 @@ describe("Base Buildings", function(){
   let baseBuildings
 
   beforeEach(() => {
-    const buildings = {
-      farms: {
-        productionPerEffort: 10,
-        singleBuildingEffortCapacity: 100,
-        singleBuildingSize: 10,
-      },
-      lumberYards: {
-        productionRatio: 3,
-        productionPerEffort: 3,
-        singleBuildingEffortCapacity: 50,
-        singleBuildingSize: 3,
-      },
-      scrapYards: {
-        productionRatio: 1.5,
-        productionPerEffort: 3,
-        singleBuildingEffortCapacity: 50,
-        singleBuildingSize: 3,
-      },
-    }
-    baseBuildings = new BaseBuildings(buildings)
+    baseBuildings = new BaseBuildings()
   })
 
   it("can initialise base builings", () => {
@@ -50,7 +32,7 @@ describe("Base Buildings", function(){
     let expected = 10*houseSettings.singleHouseSize +
     (10*farmSettings.singleBuildingSize) +
     (10*lumberYardSettings.singleBuildingSize) +
-    (10*3)
+    (10*scrapYardSettings.singleBuildingSize)
 
     let result = baseBuildings.totalSpaceUsed()
     assert.strictEqual(result, expected)

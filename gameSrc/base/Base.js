@@ -2,6 +2,7 @@ import Population from "./population/Population.js"
 import TurnEffort from "./population/TurnEffort.js"
 import Wall from "./defence/Wall.js"
 import Traps from "./defence/Traps.js"
+import BaseBuildings from "./buildings/BaseBuildings.js"
 import { baseSettings } from "./Settings.js"
 
 class Base{
@@ -27,6 +28,7 @@ class Base{
     const trapCount = options.totalTraps || 0
     this.traps = new Traps(trapCount)
 
+    this.buildings = new BaseBuildings()
   }
 
   getSize(){
