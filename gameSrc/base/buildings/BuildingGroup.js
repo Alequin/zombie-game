@@ -1,10 +1,17 @@
+import Construction from "./Construction.js"
 
 class BuildingGroup{
-  constructor(singleBuildingSize){
+  constructor(singleBuildingSize, effortPerConstruction){
     if(singleBuildingSize < 1) throw new Error("Single size must be at least 1")
 
     this._count = 0
     this._singleBuildingSize = singleBuildingSize
+
+    this.construction = new Construction(
+      effortPerConstruction,
+      this.add.bind(this),
+      this.remove.bind(this)
+    )
   }
 
   count(){
