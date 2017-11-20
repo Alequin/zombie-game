@@ -2,7 +2,8 @@ import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 import {
   farmSettings,
-  lumberYardSettings
+  lumberYardSettings,
+  scrapYardSettings
 } from "./../Settings.js"
 
 export function buildFarms(){
@@ -26,4 +27,16 @@ export function buildLumberYards(){
     lumberYardSettings.materialsPerYard
   )
   return lumberYards
+}
+
+export function buildScrapYards(){
+  const scrapYards = new InputProductionBuildingGroup(
+    scrapYardSettings.productionRatio,
+    scrapYardSettings.productionPerEffort,
+    scrapYardSettings.singleBuildingEffortCapacity,
+    scrapYardSettings.singleBuildingSize,
+    scrapYardSettings.effortPerConstruction,
+    scrapYardSettings.materialsPerYard
+  )
+  return scrapYards
 }

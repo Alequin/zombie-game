@@ -41,17 +41,11 @@ export const lumberYardSettings = {
   singleBuildingSize: 40,
 }
 
-export const baseBuildingsSettings = {
-  lumberYards: {
-    productionRatio: 3,
-    productionPerEffort: 5,
-    singleBuildingEffortCapacity: 100,
-    singleBuildingSize: 40,
-  },
-  scrapYards: {
-    productionRatio: 1.5,
-    productionPerEffort: 5,
-    singleBuildingEffortCapacity: 100,
-    singleBuildingSize: 40,
-  },
+export const scrapYardSettings = {
+  effortPerConstruction: 35,
+  materialsPerYard: 50,
+  productionRatio: 1.5,
+  productionPerEffort: 5,
+  singleBuildingEffortCapacity: 100,
+  singleBuildingSize: 40,
 }

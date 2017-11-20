@@ -1,6 +1,10 @@
 import assert from "assert"
 import BaseBuildings from "./../base/buildings/BaseBuildings.js"
-import { houseSettings, farmSettings } from "./../base/Settings.js"
+import {
+  houseSettings,
+  farmSettings,
+  lumberYardSettings
+} from "./../base/Settings.js"
 
 describe("Base Buildings", function(){
 
@@ -45,7 +49,7 @@ describe("Base Buildings", function(){
 
     let expected = 10*houseSettings.singleHouseSize +
     (10*farmSettings.singleBuildingSize) +
-    (10*3) +
+    (10*lumberYardSettings.singleBuildingSize) +
     (10*3)
 
     let result = baseBuildings.totalSpaceUsed()

@@ -2,10 +2,12 @@ import assert from "assert"
 import {
   farmSettings,
   lumberYardSettings,
+  scrapYardSettings,
 } from "./../base/Settings.js"
 import {
   buildFarms,
   buildLumberYards,
+  buildScrapYards,
 } from "./../base/buildings/BuildingFactory.js"
 
 describe("Building Factory", function(){
@@ -61,6 +63,34 @@ describe("Building Factory", function(){
     assert.strictEqual(
       lumberYards._productionRatio,
       lumberYardSettings.productionRatio,
+    )
+  })
+
+  it("can build scrapYards", () => {
+    const scrapYards = buildScrapYards()
+    assert.strictEqual(
+      scrapYards._productionPerEffort,
+      scrapYardSettings.productionPerEffort
+    )
+    assert.strictEqual(
+      scrapYards._singleBuildingEffortCapacity,
+      scrapYardSettings.singleBuildingEffortCapacity
+    )
+    assert.strictEqual(
+      scrapYards._singleBuildingSize,
+      scrapYardSettings.singleBuildingSize
+    )
+    assert.strictEqual(
+      scrapYards.construction._effortPerConstruction,
+      scrapYardSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      scrapYards.construction._materialsPerEffort,
+      scrapYardSettings.materialsPerYard
+    )
+    assert.strictEqual(
+      scrapYards._productionRatio,
+      scrapYardSettings.productionRatio,
     )
   })
 
