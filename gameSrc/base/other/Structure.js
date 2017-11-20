@@ -1,10 +1,14 @@
 import EffortHandler from "./../../util/EffortHandler.js"
 
 class Structure{
-  constructor(productionPerEffort, effortCapacity){
+  constructor(effortPerProduction, effortCapacity){
     this._input = 0
     this.effort = new EffortHandler(effortCapacity)
-    this._productionPerEffort = productionPerEffort
+    this._effortPerProduction = effortPerProduction
+  }
+
+  getEffortPerProduction(){
+    return this._effortPerProduction
   }
 
   totalInput(){
@@ -12,7 +16,7 @@ class Structure{
   }
 
   calcRequiredInput(){
-    return this.effort.currentEffort() * this._productionPerEffort
+    return this.effort.currentEffort() / this._effortPerProduction
   }
 
   produce(){
