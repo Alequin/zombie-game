@@ -1,11 +1,15 @@
 
 class Population{
-  constructor(maxSkill){
+  constructor(maxSkill, people){
     if(maxSkill <= 0) throw new Error("Max Skill cannot be less than 1")
     this._maxSkill = maxSkill
-    this._people = {}
-    for(let j=1; j<=maxSkill; j++){
-      this._people[j] = 0
+    if(people){
+      this._people = people
+    }else{
+      this._people = {}
+      for(let j=1; j<=maxSkill; j++){
+        this._people[j] = 0
+      }
     }
   }
 

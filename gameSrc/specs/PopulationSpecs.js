@@ -209,3 +209,22 @@ describe("Population - negative skill", function(){
     })
   })
 })
+
+describe("Population - input people", function(){
+
+  it("can provide a hashTable of people", () => {
+    const people = {}
+    people[1] = 5
+    people[2] = 10
+
+    const population = new Population(2, people)
+
+    let expected = 5
+    let result = population.countPopulation(1)
+    assert.strictEqual(result, expected)
+
+    expected = 10
+    result = population.countPopulation(2)
+    assert.strictEqual(result, expected)
+  })
+})
