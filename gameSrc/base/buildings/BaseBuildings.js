@@ -7,11 +7,11 @@ import {
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{
-  constructor(){
-    this.houses = new Houses()
-    this.farms = buildFarms()
-    this.lumberYards = buildLumberYards()
-    this.scrapYards = buildScrapYards()
+  constructor(houses = 0, farms = 0, lumberYards = 0, scrapYards = 0){
+    this.houses = new Houses(houses)
+    this.farms = buildFarms(farms)
+    this.lumberYards = buildLumberYards(lumberYards)
+    this.scrapYards = buildScrapYards(scrapYards)
   }
 
   totalSpaceUsed(){

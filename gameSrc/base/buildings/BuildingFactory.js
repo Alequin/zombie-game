@@ -6,7 +6,7 @@ import {
   scrapYardSettings
 } from "./../Settings.js"
 
-export function buildFarms(){
+export function buildFarms(count = 0){
   const farms = new ProductionBuildingGroup(
     farmSettings.productionPerEffort,
     farmSettings.singleBuildingEffortCapacity,
@@ -14,10 +14,11 @@ export function buildFarms(){
     farmSettings.effortPerConstruction,
     farmSettings.materialsPerFarm
   )
+  farms.add(count)
   return farms
 }
 
-export function buildLumberYards(){
+export function buildLumberYards(count = 0){
   const lumberYards = new InputProductionBuildingGroup(
     lumberYardSettings.productionRatio,
     lumberYardSettings.productionPerEffort,
@@ -26,10 +27,11 @@ export function buildLumberYards(){
     lumberYardSettings.effortPerConstruction,
     lumberYardSettings.materialsPerYard
   )
+  lumberYards.add(count)
   return lumberYards
 }
 
-export function buildScrapYards(){
+export function buildScrapYards(count = 0){
   const scrapYards = new InputProductionBuildingGroup(
     scrapYardSettings.productionRatio,
     scrapYardSettings.productionPerEffort,
@@ -38,5 +40,6 @@ export function buildScrapYards(){
     scrapYardSettings.effortPerConstruction,
     scrapYardSettings.materialsPerYard
   )
+  scrapYards.add(count)
   return scrapYards
 }
