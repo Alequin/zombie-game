@@ -6,7 +6,7 @@ describe("Storage Container", function(){
   let storageContainer
 
   beforeEach(() => {
-    storageContainer = new StorageContainer(["one", "two", "three", "four"], 100)
+    storageContainer = new StorageContainer(["one", "two", "three", "four"], 100, 1)
   })
 
   it("can initialise a storage container", () => {
@@ -143,12 +143,44 @@ describe("Storage Container", function(){
     assert.strictEqual(result, expected)
   })
 
-  it("On call of produce capacity increases", () => {
+  function testCapacity(key, capacity){
+    let expected = capacity
+    let result = storageContainer.getCapacity(key)
+    assert.strictEqual(result, expected)
+  }
+  it("On call of build and tearDown capacity changes", () => {
+    storageContainer.setCapacityPercentage("one", 50)
+
     storageContainer.effort.add(100)
-    storageContainer.produce()
+    storageContainer.build()
 
     let expected = 200
     let result = storageContainer.totalCapacity()
     assert.strictEqual(result, expected)
+    let toTest = {
+      "one": 100,
+      "two": 32,
+      "three": 32,
+      "four": 32,
+    }
+    for(let key of Object.keys(toTest)){
+      testCapacity(key, toTest[key])
+    }
+
+    storageContainer.effort.add(100)
+    storageContainer.tearDown()
+
+    expected = 100
+    result = storageContainer.totalCapacity()
+    assert.strictEqual(result, expected)
+    toTest = {
+      "one": 50,
+      "two": 16,
+      "three": 16,
+      "four": 16,
+    }
+    for(let key of Object.keys(toTest)){
+      testCapacity(key, toTest[key])
+    }
   })
 })

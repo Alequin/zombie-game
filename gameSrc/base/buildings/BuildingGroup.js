@@ -1,4 +1,4 @@
-import Construction from "./Construction.js"
+import Construction from "./../other/Construction.js"
 
 class BuildingGroup{
   constructor(singleBuildingSize, effortPerConstruction, materialsPerEffort){

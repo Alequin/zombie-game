@@ -13,58 +13,61 @@ describe("structure", function(){
     assert.ok(structure)
     assert.ok(structure.effort)
     assert.strictEqual(structure._input, 0)
-    assert.strictEqual(structure._effortPerProduction, 10)
-    assert.strictEqual(structure.effort._capacity, 10000)
+    assert.strictEqual(structure._effortPerConstruction, 10)
     assert.strictEqual(structure._materialsPerEffort, 10)
   })
 
-  it("can get materials count", () => {
+  it("can get input count", () => {
     let expected = 0
     let result = structure.totalInput()
     assert.strictEqual(result, expected)
   })
 
-  it("can calculate materials required", () => {
-    structure.effort.add(10)
-
-    let expected = 1
-    let result = structure.calcInputFromCurrentEffort()
-    assert.strictEqual(result, expected)
-  })
-
-  it("can produce (add input to the structure)", () => {
-    structure.effort.add(10)
-
+  it("can add to input", () => {
+    structure.addToInput(10)
     let expected = 10
-    let result = structure.effort.currentEffort()
-    assert.strictEqual(result, expected)
-
-    expected = 0
-    result = structure.totalInput()
-    assert.strictEqual(result, expected)
-
-    structure.produce()
-
-    expected = 0
-    result = structure.effort.currentEffort()
-    assert.strictEqual(result, expected)
-
-    expected = 1
-    result = structure.totalInput()
+    let result = structure.totalInput()
     assert.strictEqual(result, expected)
   })
 
-  it("can get effort required for one production", () => {
-    let expected = 10
-    let result = structure._effortPerProduction
+  it("can remove from input", () => {
+    structure.addToInput(10)
+    structure.removeFromInput(5)
+    let expected = 5
+    let result = structure.totalInput()
     assert.strictEqual(result, expected)
   })
 
-  it("can calculate the required materials", () => {
-    structure.effort.add(10)
+  it("cannot alter input with negative values", () => {
+    assert.throws(() => {
+      structure.addToInput(-1)
+    })
+    assert.throws(() => {
+      structure.addToInput(-100)
+    })
+    assert.throws(() => {
+      structure.addToInput(-10000)
+    })
+    assert.throws(() => {
+      structure.removeFromInput(-1)
+    })
+    assert.throws(() => {
+      structure.removeFromInput(-100)
+    })
+    assert.throws(() => {
+      structure.removeFromInput(-10000)
+    })
+  })
 
-    let expected = 100
-    let result = structure.calcMaterialsRequired()
-    assert.strictEqual(result, expected)
+  it("cannot reduce input to less than 0", () => {
+    assert.throws(() => {
+      structure.removeFromInput(1)
+    })
+    assert.throws(() => {
+      structure.removeFromInput(100)
+    })
+    assert.throws(() => {
+      structure.removeFromInput(10000)
+    })
   })
 })

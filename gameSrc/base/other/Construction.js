@@ -13,6 +13,10 @@ class Construction{
     return this.effort.currentEffort() / this._effortPerConstruction
   }
 
+  getEffortPerProduction(){
+    return this._effortPerConstruction
+  }
+
   build(){
     const toBuild = this._calcAmountToConstruct()
     this._add(toBuild)

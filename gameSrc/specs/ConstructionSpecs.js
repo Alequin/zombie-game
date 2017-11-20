@@ -1,5 +1,5 @@
 import assert from "assert"
-import Construction from "./../base/buildings/Construction.js"
+import Construction from "./../base/other/Construction.js"
 
 describe("Construction", function(){
 
@@ -56,6 +56,12 @@ describe("Construction", function(){
 
     let expected = 75
     let result = construction.calcMaterialsGainedFromTearDown()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get effort per production", () => {
+    let expected = 10
+    let result = construction.getEffortPerProduction()
     assert.strictEqual(result, expected)
   })
 })

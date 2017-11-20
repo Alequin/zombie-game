@@ -1,32 +1,27 @@
-import EffortHandler from "./../../util/EffortHandler.js"
+import Construction from "./Construction.js"
 
-class Structure{
-  constructor(effortPerProduction, materialsPerEffort, effortCapacity){
+class Structure extends Construction{
+  constructor(effortPerProduction, materialsPerEffort){
+    super(effortPerProduction, materialsPerEffort, null, null)
+    this._add = this.addToInput.bind(this)
+    this._remove = this.removeFromInput.bind(this)
     this._input = 0
-    this.effort = new EffortHandler(effortCapacity)
-    this._effortPerProduction = effortPerProduction
-    this._materialsPerEffort = materialsPerEffort
-  }
-
-  getEffortPerProduction(){
-    return this._effortPerProduction
   }
 
   totalInput(){
     return this._input
   }
 
-  calcInputFromCurrentEffort(){
-    return this.effort.currentEffort() / this._effortPerProduction
+  addToInput(amount){
+    if(amount < 0) throw new Error("Amount cannot be negative")
+    this._input += amount
   }
 
-  calcMaterialsRequired(){
-    return this.effort.currentEffort() * this._materialsPerEffort
-  }
-
-  produce(){
-    this._input += this.calcInputFromCurrentEffort()
-    this.effort.reset()
+  removeFromInput(amount){
+    if(amount < 0) throw new Error("Amount cannot be negative")
+    const result = this._input - amount
+    if(result < 0) throw new Error("Cannot remove more buildings than exist")
+    this._input = result
   }
 }
 

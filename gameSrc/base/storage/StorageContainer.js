@@ -2,8 +2,8 @@ import StorageSection from "./StorageSection.js"
 import Structure from "./../other/Structure.js"
 
 class StorageContainer extends Structure{
-  constructor(sectionNames, effortPerConstruction){
-    super(effortPerConstruction, Number.MAX_SAFE_INTEGER)
+  constructor(sectionNames, effortPerConstruction, materialsPerEffort){
+    super(effortPerConstruction, materialsPerEffort)
     this._capacity = 100
     this._sections = {}
     this._input = 1
@@ -70,9 +70,24 @@ class StorageContainer extends Structure{
     this._sections[key].contentCount = result
   }
 
-  produce(){
-    super.produce()
+  build(){
+    super.build()
+    this._updateCapacity()
+  }
+
+  tearDown(){
+    super.tearDown()
+    this._updateCapacity()
+  }
+
+  _updateCapacity(){
+    const oldCapacity = this._capacity
     this._capacity = 100 * this._input
+
+    for(let key of Object.keys(this._sections)){
+      const percentageCapacity = this._sections[key].capacity/oldCapacity
+      this._setSectionCapacity(key, this._capacity * percentageCapacity)
+    }
   }
 }
 
