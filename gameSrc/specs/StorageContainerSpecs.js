@@ -6,7 +6,7 @@ describe("Storage Container", function(){
   let storageContainer
 
   beforeEach(() => {
-    storageContainer = new StorageContainer(["one", "two", "three", "four"], 100, 1)
+    storageContainer = new StorageContainer(100, ["one", "two", "three", "four"], 100, 1)
   })
 
   it("can initialise a storage container", () => {
@@ -23,6 +23,8 @@ describe("Storage Container", function(){
     expected = 25
     result = storageContainer._sections["one"].capacity
     assert.strictEqual(result, expected)
+
+    assert.strictEqual(storageContainer._startCapacity, 100)
   })
 
   it("can add to section contents", () => {

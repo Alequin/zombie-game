@@ -2,9 +2,10 @@ import StorageSection from "./StorageSection.js"
 import Structure from "./../other/Structure.js"
 
 class StorageContainer extends Structure{
-  constructor(sectionNames, effortPerConstruction, materialsPerEffort){
+  constructor(baseCapacity, sectionNames, effortPerConstruction, materialsPerEffort){
     super(effortPerConstruction, materialsPerEffort)
-    this._capacity = 100
+    this._startCapacity = baseCapacity
+    this._capacity = baseCapacity
     this._sections = {}
     this._input = 1
 
@@ -82,7 +83,7 @@ class StorageContainer extends Structure{
 
   _updateCapacity(){
     const oldCapacity = this._capacity
-    this._capacity = 100 * this._input
+    this._capacity = this._startCapacity * this._input
 
     for(let key of Object.keys(this._sections)){
       const percentageCapacity = this._sections[key].capacity/oldCapacity
