@@ -1,6 +1,6 @@
 import assert from "assert"
 import BaseBuildings from "./../base/buildings/BaseBuildings.js"
-import { houseSettings } from "./../base/Settings.js"
+import { houseSettings, farmSettings } from "./../base/Settings.js"
 
 describe("Base Buildings", function(){
 
@@ -8,10 +8,6 @@ describe("Base Buildings", function(){
 
   beforeEach(() => {
     const buildings = {
-      houses: {
-        singleHouseCapacity: 6,
-        singleHouseSize: 1,
-      },
       farms: {
         productionPerEffort: 10,
         singleBuildingEffortCapacity: 100,
@@ -47,7 +43,11 @@ describe("Base Buildings", function(){
     baseBuildings.lumberYards.add(10)
     baseBuildings.scrapYards.add(10)
 
-    let expected = 10*houseSettings.singleHouseSize + (10*10) + (10*3) + (10*3)
+    let expected = 10*houseSettings.singleHouseSize +
+    (10*farmSettings.singleBuildingSize) +
+    (10*3) +
+    (10*3)
+
     let result = baseBuildings.totalSpaceUsed()
     assert.strictEqual(result, expected)
   })

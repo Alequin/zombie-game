@@ -1,19 +1,11 @@
 import Houses from "./Houses.js"
-import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
+import { buildFarms } from "./BuildingFactory.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{
-  constructor({ houses, farms, lumberYards, scrapYards }){
-    this.houses = new Houses(
-      houses.singleHouseCapacity,
-      houses.singleHouseSize
-    )
-
-    this.farms = new ProductionBuildingGroup(
-      farms.productionPerEffort,
-      farms.singleBuildingEffortCapacity,
-      farms.singleBuildingSize
-    )
+  constructor({ farms, lumberYards, scrapYards }){
+    this.houses = new Houses()
+    this.farms = buildFarms()
 
     this.lumberYards = new InputProductionBuildingGroup(
       lumberYards.productionRatio,

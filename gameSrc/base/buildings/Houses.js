@@ -6,7 +6,7 @@ class Houses extends BuildingGroup{
     super(
       houseSettings.singleHouseSize,
       houseSettings.effortPerConstruction,
-      houseSettings.materialsPerEffort
+      houseSettings.materialsPerHouse
     )
   }
 
