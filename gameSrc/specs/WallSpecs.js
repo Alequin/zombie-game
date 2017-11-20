@@ -22,15 +22,29 @@ describe("Wall", function(){
     wall.produce()
 
     let expected = 65
-    let result = wall.calcDefence(500)
+    let result = wall.calcCurrentDefence(500)
     assert.strictEqual(result, expected)
 
     expected = 37
-    result = wall.calcDefence(1000)
+    result = wall.calcCurrentDefence(1000)
     assert.strictEqual(result, expected)
 
     expected = 26
-    result = wall.calcDefence(1500)
+    result = wall.calcCurrentDefence(1500)
+    assert.strictEqual(result, expected)
+  })
+
+  it("can calculate defence with custom material input", () => {
+    let expected = 65
+    let result = Wall.calcDefence(500, 100)
+    assert.strictEqual(result, expected)
+
+    expected = 37
+    result = Wall.calcDefence(1000, 100)
+    assert.strictEqual(result, expected)
+
+    expected = 26
+    result = Wall.calcDefence(1500, 100)
     assert.strictEqual(result, expected)
   })
 })
