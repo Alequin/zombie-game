@@ -7,6 +7,22 @@ class Construction{
     this._remove = remove
     this._effortPerConstruction = effortPerConstruction
   }
+
+  _calcAmountToConstruct(){
+    return this.effort.currentEffort() / this._effortPerConstruction
+  }
+
+  build(){
+    const toBuild = this._calcAmountToConstruct()
+    this._add(toBuild)
+    this.effort.reset()
+  }
+
+  tearDown(){
+    const toBuild = this._calcAmountToConstruct()
+    this._remove(toBuild)
+    this.effort.reset()
+  }
 }
 
 export default Construction
