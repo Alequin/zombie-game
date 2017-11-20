@@ -1,5 +1,6 @@
 import assert from "assert"
 import Population from "./../base/population/Population.js"
+import { populationSettings } from "./../base/Settings.js"
 
 describe("Population - basic", function(){
 
@@ -12,13 +13,17 @@ describe("Population - basic", function(){
   it("can initialise a population", () => {
     assert.ok(population)
 
-    const expected = {1: 0, 2: 0, 3: 0}
+    const expected = {}
+    for(let j=1; j<=populationSettings.maxSkill; j++){
+      expected[j] = 0
+    }
+
     const result = population._people
     assert.deepEqual(result, expected)
   })
 
   it("can get max skill", () => {
-    const expected = 3
+    const expected = populationSettings.maxSkill
     const result = population.getMaxSkill()
     assert.strictEqual(result, expected)
   })
@@ -28,11 +33,11 @@ describe("Population - basic", function(){
     let result = population.getEffort()
     assert.strictEqual(result, expected)
 
-    population.addToPopulation(100, 1)
-    population.addToPopulation(200, 2)
-    population.addToPopulation(300, 3)
-
-    expected = 14000
+    expected = 0
+    for(let j=1; j<=populationSettings.maxSkill; j++){
+      population.addToPopulation(100, j)
+      expected += 100*j*10
+    }
     result = population.getEffort()
     assert.strictEqual(result, expected)
   })
@@ -50,46 +55,47 @@ describe("Population - basic", function(){
     let result = population.countPopulation(1)
     assert.strictEqual(result, expected)
 
-    population.addToPopulation(20, 3)
+    population.addToPopulation(20, populationSettings.maxSkill)
 
     expected = 20
-    result = population.countPopulation(3)
+    result = population.countPopulation(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 
   it("can get total population", () => {
-    population.addToPopulation(100, 1)
-    population.addToPopulation(200, 2)
-    population.addToPopulation(300, 3)
-
-    let expected = 600
+    let expected = 0
+    for(let j=1; j<=populationSettings.maxSkill; j++){
+      population.addToPopulation(100, j)
+      expected += 100
+    }
     let result = population.totalPopulation()
     assert.strictEqual(result, expected)
   })
 
   it("can upgrade population", () => {
     population.addToPopulation(100, 1)
-    population.upgradeSkill(25, 1, 3)
+    population.upgradeSkill(25, 1, populationSettings.maxSkill)
 
     let expected = 75
     let result = population.countPopulation(1)
     assert.strictEqual(result, expected)
     expected = 25
-    result = population.countPopulation(3)
+    result = population.countPopulation(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 
   it("can remove from population", () => {
-    population.addToPopulation(100, 1)
-    population.addToPopulation(200, 2)
-    population.removeFromPopulation(75, 1)
-    population.removeFromPopulation(110, 2)
 
-    let expected = 25
+    for(let j=1; j<=populationSettings.maxSkill; j++){
+      population.addToPopulation(100, j)
+      population.removeFromPopulation(50, j)
+    }
+
+    let expected = 50
+
     let result = population.countPopulation(1)
     assert.strictEqual(result, expected)
-    expected = 90
-    result = population.countPopulation(2)
+    result = population.countPopulation(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 

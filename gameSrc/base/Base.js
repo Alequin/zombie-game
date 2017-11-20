@@ -17,6 +17,8 @@ class Base{
     }
 
     this._size = options.size || 500
+
+    
   }
 
   getSize(){

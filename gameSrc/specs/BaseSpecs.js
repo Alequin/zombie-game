@@ -16,6 +16,8 @@ describe("Base", function(){
     assert.ok(base.effort)
     assert.strictEqual(base.getSize(), 500)
     // assert.ok(base.wall)
+    
+
     // assert.ok(base.traps)
     // assert.ok(base.buildings)
     // assert.ok(base.storage)
@@ -56,7 +58,9 @@ describe("Base", function(){
 
     assert.strictEqual(base.getSize(), 1500)
 
-    // assert.ok(base.wall)
+    assert.ok(base.wall)
+    
+
     // assert.ok(base.traps)
     // assert.ok(base.buildings)
     // assert.ok(base.storage)

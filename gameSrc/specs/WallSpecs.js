@@ -1,26 +1,30 @@
 import assert from "assert"
 import Wall from "./../base/defence/Wall.js"
+import { wallSettings } from "./../base/Settings.js"
 
 describe("Wall", function(){
 
   let wall
 
   beforeEach(() => {
-    wall = new Wall(1, 1)
+    wall = new Wall()
   })
 
   it("can initialise Wall", () => {
     assert.ok(wall)
     assert.ok(wall.effort)
     assert.strictEqual(wall._input, 0)
-    assert.strictEqual(wall._effortPerConstruction, 1)
-    assert.strictEqual(wall._materialsPerEffort, 1)
+    assert.strictEqual(
+      wall._effortPerConstruction, wallSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      wall._materialsPerEffort, wallSettings.materialsPerEffort
+    )
     assert.strictEqual(wall.effort._capacity, Number.MAX_SAFE_INTEGER)
   })
 
   it("can calculate defence", () => {
-    wall.effort.add(100)
-    wall.build()
+    wall._input = 100
 
     let expected = 65
     let result = wall.calcCurrentDefence(500)

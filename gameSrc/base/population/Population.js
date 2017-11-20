@@ -1,7 +1,8 @@
+import { populationSettings } from "./../Settings.js"
 
 class Population{
   constructor(people){
-    this._maxSkill = 3
+    this._maxSkill = populationSettings.maxSkill
     if(people){
       this._people = people
     }else{

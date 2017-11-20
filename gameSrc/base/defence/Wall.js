@@ -1,9 +1,14 @@
+import { wallSettings } from "./../Settings.js"
 import EffortHandler from "./../../util/EffortHandler.js"
 import Structure from "./../other/Structure.js"
 
 class Wall extends Structure{
-  constructor(effortPerProduction, materialsPerEffort){
-    super(effortPerProduction, materialsPerEffort, Number.MAX_SAFE_INTEGER)
+  constructor(){
+    super(
+      wallSettings.effortPerConstruction,
+      wallSettings.materialsPerEffort,
+      Number.MAX_SAFE_INTEGER
+    )
   }
 
   calcCurrentDefence(baseSize){
