@@ -17,7 +17,7 @@ describe("Base", function(){
     assert.ok(base.effort)
     assert.strictEqual(base.getSize(), baseSettings.initialSize)
     assert.ok(base.wall)
-    // assert.ok(base.traps)
+    assert.ok(base.traps)
     // assert.ok(base.buildings)
     // assert.ok(base.storage)
   })
@@ -35,12 +35,11 @@ describe("Base", function(){
         usedThisTurn: 10,
         totalThisTurn: 11,
         usedLastTurn: 12,
-        totalLastTurn: 13
+        totalLastTurn: 13,
       },
       size: 1500,
-      wall: {
-        materials: 100
-      }
+      wallMaterials: 100,
+      totalTraps: 100,
     }
 
     base = new Base(options)
@@ -63,7 +62,9 @@ describe("Base", function(){
     assert.ok(base.wall)
     assert.strictEqual(base.wall.totalInput(), 100)
 
-    // assert.ok(base.traps)
+    assert.ok(base.traps)
+    assert.strictEqual(base.traps.totalTraps(), 100)
+
     // assert.ok(base.buildings)
     // assert.ok(base.storage)
   })

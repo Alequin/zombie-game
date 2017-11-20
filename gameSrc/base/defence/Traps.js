@@ -1,11 +1,12 @@
+import { trapSettings } from "./../Settings.js"
 import EffortHandler from "./../../util/EffortHandler.js"
 import Structure from "./../other/Structure.js"
-import Dice from "./../../util/Dice.js"
+import PercentageDice from "./../../util/PercentageDice.js"
 
 class Traps extends Structure{
-  constructor(effortPerProduction, materialsPerEffort, chanceToKill){
-    super(effortPerProduction, materialsPerEffort, Number.MAX_SAFE_INTEGER)
-    this._chanceToKill = chanceToKill
+  constructor(trapCount = 0){
+    super(trapSettings.effortPerConstruction, trapSettings.materialsPerEffort, Number.MAX_SAFE_INTEGER)
+    this._input = trapCount
   }
 
   totalTraps(){
@@ -13,14 +14,14 @@ class Traps extends Structure{
   }
 
   calcNumberKilled(){
-    const die = new Dice(1, 100)
+    const die = new PercentageDice(trapSettings.chanceToKill)
     return this._rollForNumberkilled(die)
   }
 
   _rollForNumberkilled(die){
     let killed = 0
     for(let j=0; j<this._input; j++){
-      if(die.roll() <= 20) killed += 1
+      if(die.chance()) killed += 1
     }
     return killed
   }

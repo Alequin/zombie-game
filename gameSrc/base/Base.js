@@ -1,6 +1,7 @@
 import Population from "./population/Population.js"
 import TurnEffort from "./population/TurnEffort.js"
 import Wall from "./defence/Wall.js"
+import Traps from "./defence/Traps.js"
 import { baseSettings } from "./Settings.js"
 
 class Base{
@@ -20,9 +21,11 @@ class Base{
 
     this._size = options.size || baseSettings.initialSize
 
-    let wall
-    if(options.wall) this.wall = new Wall(options.wall.materials)
-    else this.wall = new Wall()
+    let wallMaterials = options.wallMaterials || 0
+    this.wall = new Wall(wallMaterials)
+
+    const trapCount = options.totalTraps || 0
+    this.traps = new Traps(trapCount)
 
   }
 
