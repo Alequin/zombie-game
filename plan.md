@@ -16,6 +16,18 @@
 
 * Base
   * A base is where everyone lives and where buildings are built. A bases size can range from 1-10.
+  * Base Size
+    * size 1 = 500m<sup>2</sup>
+    * size 2 = 1000m<sup>2</sup>
+    * size 5 = 2500m<sup>2</sup>
+    * size 10 = 5000m<sup>2</sup>
+
+
+* Traps
+  * Traps have a small chance to kill an attacker
+  * A trap takes up 10m<sup>2</sup> space and can be placed a max of 100 meters away from the base. This means a base can have
+  (distanceFromBase * baseSize/space) * 4 traps.<br>
+  (10 * baseSize/10) * 4 || baseSize * 4
 
 
 * Workers

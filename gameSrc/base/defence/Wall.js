@@ -7,7 +7,7 @@ class Wall extends Structure{
   }
 
   calcDefence(baseSize){
-    return Math.floor((Math.pow(this._input,0.625))/((baseSize*0.75+0.25)/3.7))
+    return Math.floor((Math.pow(this._input,0.625))/((baseSize/500*0.75+0.25)/3.7))
   }
 }
 

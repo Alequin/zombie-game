@@ -22,15 +22,15 @@ describe("Wall", function(){
     wall.produce()
 
     let expected = 65
-    let result = wall.calcDefence(1)
+    let result = wall.calcDefence(500)
     assert.strictEqual(result, expected)
 
     expected = 37
-    result = wall.calcDefence(2)
+    result = wall.calcDefence(1000)
     assert.strictEqual(result, expected)
 
     expected = 26
-    result = wall.calcDefence(3)
+    result = wall.calcDefence(1500)
     assert.strictEqual(result, expected)
   })
 })
