@@ -6,9 +6,17 @@ class InputProductionBuildingGroup extends ProductionBuildingGroup{
     productionRatio,
     productionPerEffort,
     singleBuildingEffortCapacity,
-    singleBuildingSize)
+    singleBuildingSize,
+    effortPerConstruction,
+    materialsPerEffort)
   {
-    super(productionPerEffort, singleBuildingEffortCapacity, singleBuildingSize)
+    super(
+      productionPerEffort,
+      singleBuildingEffortCapacity,
+      singleBuildingSize,
+      effortPerConstruction,
+      materialsPerEffort)
+      
     this._productionRatio = productionRatio
   }
 

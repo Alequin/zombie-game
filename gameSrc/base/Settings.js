@@ -18,18 +18,27 @@ export const trapSettings = {
 }
 
 export const houseSettings = {
-  effortPerConstruction: 50,
+  effortPerConstruction: 20,
   materialsPerHouse: 30,
   singleHouseCapacity: 6,
   singleHouseSize: 10,
 }
 
 export const farmSettings = {
-  effortPerConstruction: 50,
-  materialsPerFarm: 30,
+  effortPerConstruction: 15,
+  materialsPerFarm: 20,
   productionPerEffort: 10,
   singleBuildingEffortCapacity: 100,
   singleBuildingSize: 100,
+}
+
+export const lumberYardSettings = {
+  effortPerConstruction: 35,
+  materialsPerYard: 50,
+  productionRatio: 3,
+  productionPerEffort: 5,
+  singleBuildingEffortCapacity: 100,
+  singleBuildingSize: 40,
 }
 
 export const baseBuildingsSettings = {

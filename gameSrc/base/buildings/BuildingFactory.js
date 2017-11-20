@@ -1,5 +1,9 @@
 import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
-import { farmSettings } from "./../Settings.js"
+import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
+import {
+  farmSettings,
+  lumberYardSettings
+} from "./../Settings.js"
 
 export function buildFarms(){
   const farms = new ProductionBuildingGroup(
@@ -10,4 +14,16 @@ export function buildFarms(){
     farmSettings.materialsPerFarm
   )
   return farms
+}
+
+export function buildLumberYards(){
+  const lumberYards = new InputProductionBuildingGroup(
+    lumberYardSettings.productionRatio,
+    lumberYardSettings.productionPerEffort,
+    lumberYardSettings.singleBuildingEffortCapacity,
+    lumberYardSettings.singleBuildingSize,
+    lumberYardSettings.effortPerConstruction,
+    lumberYardSettings.materialsPerYard
+  )
+  return lumberYards
 }
