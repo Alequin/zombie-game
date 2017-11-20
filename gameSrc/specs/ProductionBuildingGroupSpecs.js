@@ -6,7 +6,7 @@ describe("production Building Group - basic", function(){
   let productionBuildingGroup
 
   beforeEach(() => {
-    productionBuildingGroup = new ProductionBuildingGroup(2, 10, 2)
+    productionBuildingGroup = new ProductionBuildingGroup(2, 10, 2, 10, 1)
   })
 
   it("can initialise ProductionBuildingGroup", () => {

@@ -1,16 +1,21 @@
 import BuildingGroup from "./BuildingGroup"
+import { houseSettings } from "./../Settings.js"
 
 class Houses extends BuildingGroup{
-  constructor(singleHouseCapacity, singleHouseSize){
-    super(singleHouseSize)
-    if(singleHouseCapacity < 1){
-      throw new Error("House capacity cannot be less than 1")
-    }
-    this._singleHouseCapacity = singleHouseCapacity
+  constructor(){
+    super(
+      houseSettings.singleHouseSize,
+      houseSettings.effortPerConstruction,
+      houseSettings.materialsPerEffort
+    )
   }
 
-  totalCapacity(){
-    return this._singleHouseCapacity * this._count
+  totalPopulationCapacity(){
+    return Houses.calcPossiblePopulationCapacity(this.count())
+  }
+
+  static calcPossiblePopulationCapacity(houses){
+    return houseSettings.singleHouseCapacity * houses
   }
 }
 

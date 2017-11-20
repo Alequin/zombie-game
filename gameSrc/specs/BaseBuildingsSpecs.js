@@ -1,5 +1,6 @@
 import assert from "assert"
 import BaseBuildings from "./../base/buildings/BaseBuildings.js"
+import { houseSettings } from "./../base/Settings.js"
 
 describe("Base Buildings", function(){
 
@@ -46,7 +47,7 @@ describe("Base Buildings", function(){
     baseBuildings.lumberYards.add(10)
     baseBuildings.scrapYards.add(10)
 
-    let expected = 10 + (10*10) + (10*3) + (10*3)
+    let expected = 10*houseSettings.singleHouseSize + (10*10) + (10*3) + (10*3)
     let result = baseBuildings.totalSpaceUsed()
     assert.strictEqual(result, expected)
   })
