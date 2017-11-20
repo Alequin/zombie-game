@@ -1,11 +1,16 @@
 
 class TurnEffort{
 
-  constructor(){
-    this._usedThisTurn = 0
-    this._totalThisTurn = 0
-    this._usedLastTurn = 0
-    this._totalLastTurn = 0
+  constructor(
+    usedThisTurn = 0,
+    totalThisTurn = 0,
+    usedLastTurn = 0,
+    totalLastTurn = 0)
+  {
+    this._usedThisTurn = usedThisTurn
+    this._totalThisTurn = totalThisTurn
+    this._usedLastTurn = usedLastTurn
+    this._totalLastTurn = totalLastTurn
   }
 
   getUsedThisTurn(){
