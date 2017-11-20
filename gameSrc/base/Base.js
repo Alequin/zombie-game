@@ -28,7 +28,19 @@ class Base{
     const trapCount = options.totalTraps || 0
     this.traps = new Traps(trapCount)
 
-    this.buildings = new BaseBuildings()
+    const buildings = options.baseBuildings
+    if(buildings){
+      this.buildings = new BaseBuildings(
+        buildings.houses,
+        buildings.farms,
+        buildings.lumberYards,
+        buildings.scrapYards,
+      )
+    }else{
+      this.buildings = new BaseBuildings()
+    }
+
+
   }
 
   getSize(){

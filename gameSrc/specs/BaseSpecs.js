@@ -40,6 +40,12 @@ describe("Base", function(){
       size: 1500,
       wallMaterials: 100,
       totalTraps: 100,
+      baseBuildings: {
+        houses: 10,
+        farms: 20,
+        lumberYards: 30,
+        scrapYards: 40,
+      }
     }
 
     base = new Base(options)
@@ -66,7 +72,11 @@ describe("Base", function(){
     assert.strictEqual(base.traps.totalTraps(), 100)
 
     assert.ok(base.buildings)
-    
+    assert.strictEqual(base.buildings.houses.count(), 10)
+    assert.strictEqual(base.buildings.farms.count(), 20)
+    assert.strictEqual(base.buildings.lumberYards.count(), 30)
+    assert.strictEqual(base.buildings.scrapYards.count(), 40)
+
     // assert.ok(base.storage)
   })
 
