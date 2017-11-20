@@ -53,3 +53,13 @@ describe("Wall", function(){
     assert.strictEqual(result, expected)
   })
 })
+describe("Wall", function(){
+
+  it("can initialise Wall with materials", () => {
+    let wall = new Wall(100)
+
+    let expected = 100
+    let result = wall.totalInput()
+    assert.strictEqual(result, expected)
+  })
+})
