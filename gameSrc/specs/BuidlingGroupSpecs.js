@@ -6,7 +6,7 @@ describe("Building Group - basic", function(){
   let buildingGroup
 
   beforeEach(() => {
-    buildingGroup = new BuildingGroup(2, 10)
+    buildingGroup = new BuildingGroup(2, 10, 10)
   })
 
   it("can initialise buildingGroup", () => {

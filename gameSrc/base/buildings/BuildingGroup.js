@@ -1,7 +1,7 @@
 import Construction from "./Construction.js"
 
 class BuildingGroup{
-  constructor(singleBuildingSize, effortPerConstruction){
+  constructor(singleBuildingSize, effortPerConstruction, materialsPerEffort){
     if(singleBuildingSize < 1) throw new Error("Single size must be at least 1")
 
     this._count = 0
@@ -9,6 +9,7 @@ class BuildingGroup{
 
     this.construction = new Construction(
       effortPerConstruction,
+      materialsPerEffort,
       this.add.bind(this),
       this.remove.bind(this)
     )
