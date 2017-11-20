@@ -1,5 +1,6 @@
 import assert from "assert"
 import Base from "./../base/Base.js"
+import { baseSettings } from "./../base/Settings.js"
 
 describe("Base", function(){
 
@@ -14,9 +15,9 @@ describe("Base", function(){
     assert.ok(base)
     assert.ok(base.population)
     assert.ok(base.effort)
-    assert.strictEqual(base.getSize(), 500)
+    assert.strictEqual(base.getSize(), baseSettings.initialSize)
     // assert.ok(base.wall)
-    
+
 
     // assert.ok(base.traps)
     // assert.ok(base.buildings)
@@ -59,7 +60,7 @@ describe("Base", function(){
     assert.strictEqual(base.getSize(), 1500)
 
     assert.ok(base.wall)
-    
+
 
     // assert.ok(base.traps)
     // assert.ok(base.buildings)

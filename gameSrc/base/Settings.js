@@ -1,3 +1,7 @@
+export const baseSettings = {
+  initialSize: 500
+}
+
 export const populationSettings = {
   maxSkill: 3
 }

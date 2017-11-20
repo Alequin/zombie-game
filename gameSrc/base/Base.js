@@ -1,5 +1,6 @@
 import Population from "./population/Population.js"
 import TurnEffort from "./population/TurnEffort.js"
+import { baseSettings } from "./Settings.js"
 
 class Base{
   constructor(options = {}){
@@ -16,9 +17,9 @@ class Base{
       )
     }
 
-    this._size = options.size || 500
+    this._size = options.size || baseSettings.initialSize
 
-    
+
   }
 
   getSize(){
