@@ -3,13 +3,18 @@ import Base from "./../base/Base.js"
 
 describe("Base", function(){
 
+  let base
+
+  beforeEach(() => {
+    base = new Base()
+  })
+
   it("can initialise", () => {
-    const base = new Base()
 
     assert.ok(base)
     assert.ok(base.population)
     assert.ok(base.effort)
-    // assert.ok(base.size)
+    assert.strictEqual(base.getSize(), 500)
     // assert.ok(base.wall)
     // assert.ok(base.traps)
     // assert.ok(base.buildings)
@@ -30,10 +35,11 @@ describe("Base", function(){
         totalThisTurn: 11,
         usedLastTurn: 12,
         totalLastTurn: 13
-      }
+      },
+      size: 1500
     }
 
-    const base = new Base(options)
+    base = new Base(options)
 
     assert.ok(base)
 
@@ -48,10 +54,17 @@ describe("Base", function(){
     assert.strictEqual(base.effort._usedLastTurn, 12)
     assert.strictEqual(base.effort._totalLastTurn, 13)
 
-    // assert.ok(base.size)
+    assert.strictEqual(base.getSize(), 1500)
+
     // assert.ok(base.wall)
     // assert.ok(base.traps)
     // assert.ok(base.buildings)
     // assert.ok(base.storage)
+  })
+
+  it("can get base size", () => {
+    let expected = 500
+    let result = base.getSize()
+    assert.strictEqual(result, expected)
   })
 })

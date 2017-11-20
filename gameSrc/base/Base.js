@@ -4,6 +4,7 @@ import TurnEffort from "./population/TurnEffort.js"
 class Base{
   constructor(options = {}){
     this.population = new Population(options.people)
+
     if(!options.turnEffort){
       this.effort = new TurnEffort()
     }else{
@@ -14,6 +15,12 @@ class Base{
         options.turnEffort.totalLastTurn,
       )
     }
+
+    this._size = options.size || 500
+  }
+
+  getSize(){
+    return this._size
   }
 }
 
