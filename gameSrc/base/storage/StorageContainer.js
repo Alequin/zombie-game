@@ -1,18 +1,25 @@
 import StorageSection from "./StorageSection.js"
 import Structure from "./../other/Structure.js"
+import { storageSettings } from "./../Settings.js"
 
 class StorageContainer extends Structure{
-  constructor(baseCapacity, sectionNames, effortPerConstruction, materialsPerEffort){
+  constructor(effortPerConstruction, materialsPerEffort){
     super(effortPerConstruction, materialsPerEffort)
-    this._startCapacity = baseCapacity
-    this._capacity = baseCapacity
-    this._sections = {}
     this._input = 1
+    this._capacity = storageSettings.initialCapacity * this._input
+    this._sections = {}
 
-    const sectionBaseCapacity = this._capacity / sectionNames.length
-    for(let name of sectionNames){
-      this._sections[name] = new StorageSection(sectionBaseCapacity)
+    const capacity = this._capacity / storageSettings.sectionNames.length
+    for(let name of storageSettings.sectionNames){
+      this._sections[name] = {
+        storage: new StorageSection(capacity),
+        percentageCapacity: Math.floor(100 / storageSettings.sectionNames.length)
+      }
     }
+  }
+
+  getSectionNames(){
+    return storageSettings.sectionNames
   }
 
   totalCapacity(){
@@ -20,26 +27,34 @@ class StorageContainer extends Structure{
   }
 
   getContentCount(key){
-    return this._sections[key].contentCount
+    return this._sections[key].storage.contentCount
   }
 
   getCapacity(key){
-    return this._sections[key].capacity
+    return this._sections[key].storage.capacity
   }
 
-  setCapacityPercentage(targetKey, percentage){
-    if(percentage < 1 || percentage > 99){
-      throw new Error("Percentage must be between 1 and 99 inclusivly: " + percentage)
-    }
-    const targetSectionSize = this._capacity * (percentage/100)
-    this._setSectionCapacity(targetKey, targetSectionSize)
+  getPercentageCapacity(key){
+    return this._sections[key].percentageCapacity
+  }
 
-    const remainingCapacity = this._capacity - targetSectionSize
-    const otherSectionsSize = remainingCapacity / (Object.keys(this._sections).length-1)
-    for(let sectionKey in this._sections){
-      if(targetKey != sectionKey){
-        this._setSectionCapacity(sectionKey, otherSectionsSize)
+  setCapacityPercentages(sections){
+
+    for(let section of storageSettings.sectionNames){
+      if(!sections[section]){
+        throw new Error("All sections must be included when calculating the capacity")
       }
+    }
+
+    for(let section of storageSettings.sectionNames){
+      const percentage = sections[section]
+      if(percentage < 1 || percentage > 99){
+        throw new Error("Percentage must be between 1 and 99 inclusivly: " + percentage)
+      }
+
+      this._sections[section].percentageCapacity = percentage
+      const sectionSize = this._capacity * (percentage/100)
+      this._setSectionCapacity(section, sectionSize)
     }
   }
 
@@ -47,28 +62,25 @@ class StorageContainer extends Structure{
     if(capacityToSet < this._sections[key].contentCount){
       throw new Error("Cannot set section capacity at less than the current contents")
     }
-    this._sections[key].capacity = Math.floor(capacityToSet)
+    this._sections[key].storage.capacity = Math.floor(capacityToSet)
   }
 
   add(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
-    this._alterContentCount(key, amount)
-    if(this._sections[key].contentCount > this._sections[key].capacity){
+    const result = this._sections[key].storage.contentCount + amount
+    if(result > this._sections[key].storage.capacity){
       throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
     }
+    this._sections[key].storage.contentCount = result
   }
 
   remove(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
-    this._alterContentCount(key, -amount)
-    if(this._sections[key].contentCount < 0){
+    const result = this._sections[key].storage.contentCount - amount
+    if(result < 0){
       throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
     }
-  }
-
-  _alterContentCount(key, amount){
-    const result = this._sections[key].contentCount + amount
-    this._sections[key].contentCount = result
+    this._sections[key].storage.contentCount = result
   }
 
   build(){
@@ -82,12 +94,12 @@ class StorageContainer extends Structure{
   }
 
   _updateCapacity(){
-    const oldCapacity = this._capacity
-    this._capacity = this._startCapacity * this._input
+    this._capacity = storageSettings.initialCapacity * this._input
 
     for(let key of Object.keys(this._sections)){
-      const percentageCapacity = this._sections[key].capacity/oldCapacity
-      this._setSectionCapacity(key, this._capacity * percentageCapacity)
+      const percentage = this._sections[key].percentageCapacity
+      const capacity = this._capacity*(percentage/100)
+      this._setSectionCapacity(key, capacity)
     }
   }
 }

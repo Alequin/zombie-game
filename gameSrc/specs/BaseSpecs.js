@@ -19,7 +19,7 @@ describe("Base", function(){
     assert.ok(base.wall)
     assert.ok(base.traps)
     assert.ok(base.buildings)
-    // assert.ok(base.storage)
+    assert.ok(base.storage)
   })
 
   it("can initialise with options", () => {
@@ -77,7 +77,7 @@ describe("Base", function(){
     assert.strictEqual(base.buildings.lumberYards.count(), 30)
     assert.strictEqual(base.buildings.scrapYards.count(), 40)
 
-    // assert.ok(base.storage)
+    assert.ok(base.storage)
   })
 
   it("can get base size", () => {

@@ -49,3 +49,8 @@ export const scrapYardSettings = {
   singleBuildingEffortCapacity: 100,
   singleBuildingSize: 40,
 }
+
+export const storageSettings = {
+  initialCapacity: 1000,
+  sectionNames: ["Food", "Materials", "Lumber", "Scraps"]
+}

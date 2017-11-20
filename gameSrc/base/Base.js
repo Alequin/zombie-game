@@ -3,6 +3,7 @@ import TurnEffort from "./population/TurnEffort.js"
 import Wall from "./defence/Wall.js"
 import Traps from "./defence/Traps.js"
 import BaseBuildings from "./buildings/BaseBuildings.js"
+import StorageContainer from "./storage/StorageContainer.js"
 import { baseSettings } from "./Settings.js"
 
 class Base{
@@ -40,7 +41,7 @@ class Base{
       this.buildings = new BaseBuildings()
     }
 
-
+    this.storage = new StorageContainer()
   }
 
   getSize(){

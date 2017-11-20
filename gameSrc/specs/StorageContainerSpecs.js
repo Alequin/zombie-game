@@ -1,146 +1,157 @@
 import assert from "assert"
 import StorageContainer from "./../base/storage/StorageContainer.js"
+import { storageSettings } from "./../base/Settings.js"
 
 describe("Storage Container", function(){
 
   let storageContainer
+  let sections
 
   beforeEach(() => {
-    storageContainer = new StorageContainer(100, ["one", "two", "three", "four"], 100, 1)
+    sections = storageSettings.sectionNames
+    storageContainer = new StorageContainer(100, 1)
   })
 
   it("can initialise a storage container", () => {
     assert.ok(storageContainer)
 
-    let expected = 100
+    let expected = storageSettings.initialCapacity
     let result = storageContainer._capacity
     assert.strictEqual(result, expected)
 
-    expected = 4
+    expected = storageSettings.sectionNames.length
     result = Object.keys(storageContainer._sections).length
     assert.strictEqual(result, expected)
 
-    expected = 25
-    result = storageContainer._sections["one"].capacity
+    expected = storageSettings.initialCapacity/storageSettings.sectionNames.length
+    result = storageContainer._sections[sections[0]].storage.capacity
     assert.strictEqual(result, expected)
-
-    assert.strictEqual(storageContainer._startCapacity, 100)
   })
 
   it("can add to section contents", () => {
-    storageContainer.add("one", 10)
+    storageContainer.add(sections[0], 10)
     let expected = 10
-    let result = storageContainer._sections["one"].contentCount
+    let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
+  })
+
+  it("can get sections name", () => {
+    let expected = storageSettings.sectionNames
+    let result = storageContainer.getSectionNames()
+    assert.deepEqual(result, expected)
   })
 
   it("cannot add negative values to section contents", () => {
     assert.throws(() => {
-      storageContainer.add("one", -1)
+      storageContainer.add(sections[0], -1)
     })
     assert.throws(() => {
-      storageContainer.add("one", -10)
+      storageContainer.add(sections[0], -10)
     })
     assert.throws(() => {
-      storageContainer.add("one", -100)
+      storageContainer.add(sections[0], -100)
     })
   })
 
   it("cannot add a value to section contents that takes it over its capacity", () => {
-    const amount = storageContainer._sections["one"].capacity+1
+    const amount = storageContainer.getCapacity(sections[0]) + 1
     assert.throws(() => {
-      storageContainer.add("one", amount)
+      storageContainer.add(sections[0], amount)
     })
   })
 
   it("can remove from section contents", () => {
-    storageContainer.add("one", 15)
-    storageContainer.remove("one", 10)
+    storageContainer.add(sections[0], 15)
+    storageContainer.remove(sections[0], 10)
     let expected = 5
-    let result = storageContainer._sections["one"].contentCount
+    let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
   })
 
   it("cannot remove negative values from section contents", () => {
     assert.throws(() => {
-      storageContainer.remove("one", -1)
+      storageContainer.remove(sections[0], -1)
     })
     assert.throws(() => {
-      storageContainer.remove("one", -10)
+      storageContainer.remove(sections[0], -10)
     })
     assert.throws(() => {
-      storageContainer.remove("one", -100)
+      storageContainer.remove(sections[0], -100)
     })
   })
 
   it("cannot remove a value from section contents that reduces it to less than 0", () => {
     assert.throws(() => {
-      storageContainer.remove("one", 1)
+      storageContainer.remove(sections[0], 1)
     })
   })
 
   it("can get a sections content count", () => {
     let expected = 0
-    let result = storageContainer.getContentCount("one")
+    let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
 
-    storageContainer.add("one", 10)
+    storageContainer.add(sections[0], 10)
     expected = 10
-    result = storageContainer.getContentCount("one")
+    result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
   })
 
   it("can get a sections capacity", () => {
-    let expected = 25
-    let result = storageContainer.getCapacity("one")
+    let expected = storageSettings.initialCapacity / storageSettings.sectionNames.length
+    let result = storageContainer.getCapacity(sections[0])
     assert.strictEqual(result, expected)
   })
 
-  it("can set section capacity and have other section manage their capacity", () => {
-    storageContainer.setCapacityPercentage("one", 50)
-
-    let expected = 50
-    let result = storageContainer.getCapacity("one")
-    assert.strictEqual(result, expected)
-
-    expected = 16
-    result = storageContainer.getCapacity("two")
-    assert.strictEqual(result, expected)
-
-    expected = 16
-    result = storageContainer.getCapacity("three")
-    assert.strictEqual(result, expected)
-
-    expected = 16
-    result = storageContainer.getCapacity("four")
+  it("can get a sections percentage capacity", () => {
+    let capacity = storageSettings.initialCapacity / storageSettings.sectionNames.length
+    let expected = capacity/storageSettings.initialCapacity*100
+    let result = storageContainer.getPercentageCapacity(sections[0])
     assert.strictEqual(result, expected)
   })
 
-  it("cannot set section capacity percentage of less than 1 or more than 99", () => {
-    assert.throws(() => {
-      storageContainer.setCapacityPercentage("one", 0)
-    })
-    assert.throws(() => {
-      storageContainer.setCapacityPercentage("one", 100)
-    })
-  })
+  it("can set section capacities", () => {
 
-  it("cannot set section capacity percentage that cause the section to overflow", () => {
-    storageContainer.add("two", 25)
-    assert.throws(() => {
-      storageContainer.setCapacityPercentage("two", 20)
-    })
-  })
+    const sectionCapacities = {}
 
-  it("cannot set section capacity percentage that cause other sections to overflow", () => {
-    storageContainer.add("two", 25)
-    assert.throws(() => {
-      storageContainer.setCapacityPercentage("one", 30)
-    })
+    let count = 0
+    const capacities = []
+    for(let j=1; j<=sections.length; j++){
+      if(j === sections.length){
+        capacities.push(100-count)
+      }else{
+        capacities.push(j*2)
+        count += j*2
+      }
+    }
+
+    for(let j in sections){
+      sectionCapacities[sections[j]] = capacities[j]
+    }
+
+    storageContainer.setCapacityPercentages(sectionCapacities)
+
+    for(let j=0; j<sections.length; j++){
+      if(j === sections.length-1){
+        let expected = storageSettings.initialCapacity*((100-count)/100)
+        let result = storageContainer.getCapacity(sections[j])
+        assert.strictEqual(result, expected)
+        expected = 100-count
+        result = storageContainer.getPercentageCapacity(sections[j])
+        assert.strictEqual(result, expected)
+      }else{
+        let expected = storageSettings.initialCapacity*((j+1)*2/100)
+        let result = storageContainer.getCapacity(sections[j])
+        assert.strictEqual(result, expected)
+        expected = (j+1)*2
+        result = storageContainer.getPercentageCapacity(sections[j])
+        assert.strictEqual(result, expected)
+      }
+    }
   })
 
   it("Can get max capacity", () => {
-    let expected = 100
+    let expected = storageSettings.initialCapacity
     let result = storageContainer.totalCapacity()
     assert.strictEqual(result, expected)
   })
@@ -151,38 +162,34 @@ describe("Storage Container", function(){
     assert.strictEqual(result, expected)
   }
   it("On call of build and tearDown capacity changes", () => {
-    storageContainer.setCapacityPercentage("one", 50)
-
     storageContainer.effort.add(100)
     storageContainer.build()
 
-    let expected = 200
+    let capacity = storageSettings.initialCapacity*2
     let result = storageContainer.totalCapacity()
-    assert.strictEqual(result, expected)
-    let toTest = {
-      "one": 100,
-      "two": 32,
-      "three": 32,
-      "four": 32,
+    assert.strictEqual(result, capacity)
+
+    let toTest = {}
+    for(let j=0; j<sections.length; j++){
+      toTest[sections[j]] = Math.floor(capacity/storageSettings.sectionNames.length)
     }
-    for(let key of Object.keys(toTest)){
-      testCapacity(key, toTest[key])
+    for(let section of sections){
+      testCapacity(section, toTest[section])
     }
 
     storageContainer.effort.add(100)
     storageContainer.tearDown()
 
-    expected = 100
+    capacity = storageSettings.initialCapacity
     result = storageContainer.totalCapacity()
-    assert.strictEqual(result, expected)
-    toTest = {
-      "one": 50,
-      "two": 16,
-      "three": 16,
-      "four": 16,
+    assert.strictEqual(result, capacity)
+
+    toTest = {}
+    for(let j=0; j<sections.length; j++){
+      toTest[sections[j]] = Math.floor(capacity/storageSettings.sectionNames.length)
     }
-    for(let key of Object.keys(toTest)){
-      testCapacity(key, toTest[key])
+    for(let section of sections){
+      testCapacity(section, toTest[section])
     }
   })
 })
