@@ -6,20 +6,19 @@ describe("Population - basic", function(){
   let population
 
   beforeEach(() => {
-    const maxSkillLevel = 4
-    population = new Population(maxSkillLevel)
+    population = new Population()
   })
 
   it("can initialise a population", () => {
     assert.ok(population)
 
-    const expected = {1: 0, 2: 0, 3: 0, 4: 0}
+    const expected = {1: 0, 2: 0, 3: 0}
     const result = population._people
     assert.deepEqual(result, expected)
   })
 
   it("can get max skill", () => {
-    const expected = 4
+    const expected = 3
     const result = population.getMaxSkill()
     assert.strictEqual(result, expected)
   })
@@ -32,9 +31,8 @@ describe("Population - basic", function(){
     population.addToPopulation(100, 1)
     population.addToPopulation(200, 2)
     population.addToPopulation(300, 3)
-    population.addToPopulation(400, 4)
 
-    expected = 3000
+    expected = 14000
     result = population.getEffort()
     assert.strictEqual(result, expected)
   })
@@ -63,26 +61,25 @@ describe("Population - basic", function(){
     population.addToPopulation(100, 1)
     population.addToPopulation(200, 2)
     population.addToPopulation(300, 3)
-    population.addToPopulation(400, 4)
 
-    let expected = 1000
+    let expected = 600
     let result = population.totalPopulation()
     assert.strictEqual(result, expected)
   })
 
   it("can upgrade population", () => {
     population.addToPopulation(100, 1)
-    population.upgradeSkill(25, 1, 4)
+    population.upgradeSkill(25, 1, 3)
 
     let expected = 75
     let result = population.countPopulation(1)
     assert.strictEqual(result, expected)
     expected = 25
-    result = population.countPopulation(4)
+    result = population.countPopulation(3)
     assert.strictEqual(result, expected)
   })
 
-  it("can remove from population population", () => {
+  it("can remove from population", () => {
     population.addToPopulation(100, 1)
     population.addToPopulation(200, 2)
     population.removeFromPopulation(75, 1)
@@ -125,7 +122,7 @@ describe("Population - basic", function(){
       population.addToPopulation(10, 0)
     })
     assert.throws(() => {
-      population.addToPopulation(10, 5)
+      population.addToPopulation(10, 4)
     })
     assert.throws(() => {
       population.addToPopulation(10, 100)
@@ -137,7 +134,7 @@ describe("Population - basic", function(){
       population.removeFromPopulation(10, 0)
     })
     assert.throws(() => {
-      population.removeFromPopulation(10, 5)
+      population.removeFromPopulation(10, 4)
     })
     assert.throws(() => {
       population.removeFromPopulation(10, 100)
@@ -152,7 +149,7 @@ describe("Population - basic", function(){
       population.upgradeSkill(10, 0)
     })
     assert.throws(() => {
-      population.upgradeSkill(10, 5)
+      population.upgradeSkill(10, 4)
     })
     assert.throws(() => {
       population.upgradeSkill(10, 100)
@@ -174,38 +171,10 @@ describe("Population - basic", function(){
       population.countPopulation(0)
     })
     assert.throws(() => {
-      population.countPopulation(5)
+      population.countPopulation(4)
     })
     assert.throws(() => {
       population.countPopulation(100)
-    })
-  })
-})
-
-describe("Population - max skill 3", function(){
-
-  let population
-
-  beforeEach(() => {
-    const maxSkillLevel = 3
-    population = new Population(maxSkillLevel)
-  })
-
-  it("can use different numbers of maxSkill", () => {
-    const expected = {1: 0, 2: 0, 3: 0}
-    const result = population._people
-    assert.deepEqual(result, expected)
-  })
-})
-
-describe("Population - negative skill", function(){
-
-  it("cannot have max skill less than 1", () => {
-    assert.throws(() => {
-      new Population(-10)
-    })
-    assert.throws(() => {
-      new Population(0)
     })
   })
 })
@@ -217,7 +186,7 @@ describe("Population - input people", function(){
     people[1] = 5
     people[2] = 10
 
-    const population = new Population(2, people)
+    const population = new Population(people)
 
     let expected = 5
     let result = population.countPopulation(1)

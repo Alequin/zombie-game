@@ -1,13 +1,12 @@
 
 class Population{
-  constructor(maxSkill, people){
-    if(maxSkill <= 0) throw new Error("Max Skill cannot be less than 1")
-    this._maxSkill = maxSkill
+  constructor(people){
+    this._maxSkill = 3
     if(people){
       this._people = people
     }else{
       this._people = {}
-      for(let j=1; j<=maxSkill; j++){
+      for(let j=1; j<=this._maxSkill; j++){
         this._people[j] = 0
       }
     }
@@ -57,7 +56,7 @@ class Population{
   getEffort(){
     let effort = 0
     for(let key of Object.keys(this._people)){
-      const multiplier = parseInt(key)
+      const multiplier = 10*parseInt(key)
       effort += this._people[key] * multiplier
     }
     return effort
