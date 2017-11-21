@@ -1,5 +1,5 @@
 import assert from "assert"
-import PercentageDice from "./../util/PercentageDice.js"
+import PercentageDice from "./../../util/PercentageDice.js"
 
 describe("Percentage Dice", function(){
 

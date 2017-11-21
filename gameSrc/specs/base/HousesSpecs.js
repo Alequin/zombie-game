@@ -1,6 +1,6 @@
 import assert from "assert"
-import Houses from "./../base/buildings/Houses.js"
-import { houseSettings } from "./../base/Settings.js"
+import Houses from "./../../base/buildings/Houses.js"
+import { houseSettings } from "./../../base/Settings.js"
 
 describe("Houses", function(){
 

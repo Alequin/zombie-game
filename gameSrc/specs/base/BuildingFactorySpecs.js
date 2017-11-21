@@ -4,13 +4,13 @@ import {
   schoolSettings,
   lumberYardSettings,
   scrapYardSettings,
-} from "./../base/Settings.js"
+} from "./../../base/Settings.js"
 import {
   buildFarms,
   buildSchools,
   buildLumberYards,
   buildScrapYards,
-} from "./../base/buildings/BuildingFactory.js"
+} from "./../../base/buildings/BuildingFactory.js"
 
 describe("Building Factory", function(){
 

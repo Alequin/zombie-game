@@ -1,6 +1,6 @@
 import assert from "assert"
-import StorageContainer from "./../base/storage/StorageContainer.js"
-import { storageSettings } from "./../base/Settings.js"
+import StorageContainer from "./../../base/storage/StorageContainer.js"
+import { storageSettings } from "./../../base/Settings.js"
 
 describe("Storage Container", function(){
 

@@ -1,5 +1,5 @@
 import assert from "assert"
-import EffortHandler from "./../util/EffortHandler.js"
+import EffortHandler from "./../../util/EffortHandler.js"
 
 describe("test", function(){
 

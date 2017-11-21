@@ -1,5 +1,5 @@
 import assert from "assert"
-import InputProductionBuildingGroup from "./../base/buildings/InputProductionBuildingGroup.js"
+import InputProductionBuildingGroup from "./../../base/buildings/InputProductionBuildingGroup.js"
 
 describe("Input Production Building Group - basic", function(){
 

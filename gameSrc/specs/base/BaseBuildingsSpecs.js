@@ -1,11 +1,11 @@
 import assert from "assert"
-import BaseBuildings from "./../base/buildings/BaseBuildings.js"
+import BaseBuildings from "./../../base/buildings/BaseBuildings.js"
 import {
   houseSettings,
   farmSettings,
   lumberYardSettings,
   scrapYardSettings
-} from "./../base/Settings.js"
+} from "./../../base/Settings.js"
 
 describe("Base Buildings", function(){
 

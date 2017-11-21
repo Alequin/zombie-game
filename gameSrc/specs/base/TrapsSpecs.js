@@ -1,7 +1,7 @@
 import assert from "assert"
-import Traps from "./../base/defence/Traps.js"
-import PercentageDice from "./../util/PercentageDice.js"
-import { trapSettings } from "./../base/Settings.js"
+import Traps from "./../../base/defence/Traps.js"
+import PercentageDice from "./../../util/PercentageDice.js"
+import { trapSettings } from "./../../base/Settings.js"
 
 describe("Traps", function(){
 

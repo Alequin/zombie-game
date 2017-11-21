@@ -1,5 +1,5 @@
 import assert from "assert"
-import TurnEffort from "./../base/population/TurnEffort.js"
+import TurnEffort from "./../../base/population/TurnEffort.js"
 
 describe("Effort", function(){
 

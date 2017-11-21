@@ -1,6 +1,6 @@
 import assert from "assert"
-import Base from "./../base/Base.js"
-import { baseSettings } from "./../base/Settings.js"
+import Base from "./../../base/Base.js"
+import { baseSettings } from "./../../base/Settings.js"
 
 describe("Base", function(){
 

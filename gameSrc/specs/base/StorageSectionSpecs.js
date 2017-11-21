@@ -1,6 +1,6 @@
 
 import assert from "assert"
-import StorageSection from "./../base/storage/StorageSection.js"
+import StorageSection from "./../../base/storage/StorageSection.js"
 
 describe("Storage Section", function(){
 

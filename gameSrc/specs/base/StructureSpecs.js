@@ -1,5 +1,5 @@
 import assert from "assert"
-import Structure from "./../base/other/Structure.js"
+import Structure from "./../../base/other/Structure.js"
 
 describe("structure", function(){
 

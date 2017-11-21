@@ -1,6 +1,6 @@
 import assert from "assert"
-import Wall from "./../base/defence/Wall.js"
-import { wallSettings } from "./../base/Settings.js"
+import Wall from "./../../base/defence/Wall.js"
+import { wallSettings } from "./../../base/Settings.js"
 
 describe("Wall", function(){
 

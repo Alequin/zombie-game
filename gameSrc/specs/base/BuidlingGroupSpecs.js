@@ -1,5 +1,5 @@
 import assert from "assert"
-import BuildingGroup from "./../base/buildings/BuildingGroup.js"
+import BuildingGroup from "./../../base/buildings/BuildingGroup.js"
 
 describe("Building Group - basic", function(){
 

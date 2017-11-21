@@ -1,5 +1,5 @@
 import assert from "assert"
-import Construction from "./../base/other/Construction.js"
+import Construction from "./../../base/other/Construction.js"
 
 describe("Construction", function(){
 
