@@ -1,11 +1,19 @@
+const MIN_ROLL = 1
+const MAX_ROLL = 100
+
 class PercentageDice{
   constructor(probability){
-    if(probability < 0 || probability > 1000) throw new Error("Chance must be between 1 and 100 inclusivly")
-    this.probability = probability*10
+    if(probability < 0 || probability > MAX_ROLL) throw new Error("Chance must be between 1 and 100 inclusivly")
+    this._probability = Math.round(probability*MAX_ROLL)/MAX_ROLL
+  }
+
+  probability(){
+    return this._probability
   }
 
   chance(){
-    return Math.floor(Math.random() * ((1000-1)+1) + 1) <= this.probability
+    const roll = Math.random() * (MAX_ROLL - MIN_ROLL) + MIN_ROLL
+    return roll <= this._probability
   }
 }
 

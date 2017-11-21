@@ -33,37 +33,28 @@ describe("Traps", function(){
   })
 
   it("can calculate number caught in traps", () => {
-    traps.effort.add(1000)
-    traps.build()
+    traps._input = 10
 
     let result = traps.calcNumberKilled()
-    assert.ok(result > 0 && result < traps.totalTraps())
+    assert.ok(result >= 0 && result <= traps.totalTraps())
   })
 
-  it(`can kill 10 with 10 trap if chance is 100%`, () => {
-    traps.effort.add(100)
-    traps.build()
+  it(`can kill 100 with 100 trap if chance is 100%`, () => {
+    traps._input = 100
 
     const dice = new PercentageDice(100)
-    for(let j=1; j<=20; j++){
-      let expected = 10
-      let result = traps._rollForNumberkilled(dice)
-      assert.strictEqual(result, expected)
-    }
+    let expected = 100
+    let result = traps._rollForNumberkilled(dice)
+    assert.strictEqual(result, expected)
   })
 
-  it(`can kill 0 with 10 trap if chance is 0%`, () => {
-    traps.effort.add(100)
-    traps.build()
+  it(`can kill 0 with 100 trap if chance is 0%`, () => {
+    traps._input = 100
 
     const dice = new PercentageDice(0)
-    for(let j=21; j<=100; j++){
-      dice.min = j
-      dice.max = j
-      let expected = 0
-      let result = traps._rollForNumberkilled(dice)
-      assert.strictEqual(result, expected)
-    }
+    let expected = 0
+    let result = traps._rollForNumberkilled(dice)
+    assert.strictEqual(result, expected)
   })
 
   it(`can calculate max traps based on base size`, () => {
