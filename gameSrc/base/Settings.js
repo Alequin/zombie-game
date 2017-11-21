@@ -8,12 +8,12 @@ export const populationSettings = {
 
 export const wallSettings = {
   effortPerConstruction: 1,
-  materialsPerEffort: 1,
+  materialsPerConstruction: 1,
 }
 
 export const trapSettings = {
   effortPerConstruction: 10,
-  materialsPerEffort: 1,
+  materialsPerConstruction: 1,
   chanceToKill: 20,
 }
 
@@ -62,5 +62,5 @@ export const storageSettings = {
   initialCapacity: 1000,
   sectionNames: ["food", "materials", "lumber", "scraps"],
   effortPerConstruction: 200,
-  materialsPerEffort: 1
+  materialsPerConstruction: 200,
 }

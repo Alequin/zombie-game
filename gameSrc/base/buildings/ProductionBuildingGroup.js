@@ -4,9 +4,9 @@ import EffortHandler from "./../../util/EffortHandler.js"
 class ProductionBuildingGroup extends BuildingGroup{
 
   constructor(productionPerEffort, singleBuildingEffortCapacity,
-    singleBuildingSize, effortPerConstruction, materialsPerEffort)
+    singleBuildingSize, effortPerConstruction, materialsPerConstruction)
   {
-    super(singleBuildingSize, effortPerConstruction, materialsPerEffort)
+    super(singleBuildingSize, effortPerConstruction, materialsPerConstruction)
     this._productionPerEffort = productionPerEffort
     this._singleBuildingEffortCapacity = singleBuildingEffortCapacity
     this.effort = new EffortHandler(this.effortCapacity())
@@ -20,6 +20,10 @@ class ProductionBuildingGroup extends BuildingGroup{
   remove(amount){
     super.remove(amount)
     this.effort.setCapacity(this.effortCapacity())
+  }
+
+  getMinimumPossibleEffortInput(){
+
   }
 
   effortCapacity(){

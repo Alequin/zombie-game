@@ -6,7 +6,7 @@ class Wall extends Structure{
   constructor(materials = 0){
     super(
       wallSettings.effortPerConstruction,
-      wallSettings.materialsPerEffort,
+      wallSettings.materialsPerConstruction,
       Number.MAX_SAFE_INTEGER
     )
 

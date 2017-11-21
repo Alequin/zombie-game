@@ -18,7 +18,7 @@ describe("Wall", function(){
       wall._effortPerConstruction, wallSettings.effortPerConstruction
     )
     assert.strictEqual(
-      wall._materialsPerEffort, wallSettings.materialsPerEffort
+      wall._materialsPerConstruction, wallSettings.materialsPerConstruction
     )
     assert.strictEqual(wall.effort._capacity, Number.MAX_SAFE_INTEGER)
   })

@@ -16,7 +16,7 @@ describe("Traps", function(){
     assert.ok(traps.effort)
     assert.strictEqual(traps._input, 0)
     assert.strictEqual(traps._effortPerConstruction, trapSettings.effortPerConstruction)
-    assert.strictEqual(traps._materialsPerEffort, trapSettings.materialsPerEffort)
+    assert.strictEqual(traps._materialsPerConstruction, trapSettings.materialsPerConstruction)
   })
 
   it("can count traps", () => {

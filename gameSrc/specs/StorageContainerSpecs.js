@@ -33,8 +33,8 @@ describe("Storage Container", function(){
     )
 
     assert.strictEqual(
-      storageContainer._materialsPerEffort,
-      storageSettings.materialsPerEffort
+      storageContainer._materialsPerConstruction,
+      storageSettings.materialsPerConstruction
     )
   })
 

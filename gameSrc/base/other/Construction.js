@@ -1,12 +1,12 @@
 import EffortHandler from "./../../util/EffortHandler.js"
 
 class Construction{
-  constructor(effortPerConstruction, materialsPerEffort, add, remove){
+  constructor(effortPerConstruction, materialsPerConstruction, add, remove){
     this.effort = new EffortHandler(Number.MAX_SAFE_INTEGER)
     this._add = add
     this._remove = remove
     this._effortPerConstruction = effortPerConstruction
-    this._materialsPerEffort = materialsPerEffort
+    this._materialsPerConstruction = materialsPerConstruction
   }
 
   _calcAmountToConstruct(){
@@ -24,7 +24,7 @@ class Construction{
   }
 
   calcMaterialsToBuild(){
-    return this.effort.currentEffort() * this._materialsPerEffort
+    return this._calcAmountToConstruct() * this._materialsPerConstruction
   }
 
   tearDown(){
@@ -34,7 +34,7 @@ class Construction{
   }
 
   calcMaterialsGainedFromTearDown(){
-    return Math.floor((this.effort.currentEffort() * this._materialsPerEffort)*0.75)
+    return Math.floor((this._calcAmountToConstruct() * this._materialsPerConstruction)*0.75)
   }
 }
 

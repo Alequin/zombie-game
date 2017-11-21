@@ -14,7 +14,7 @@ describe("structure", function(){
     assert.ok(structure.effort)
     assert.strictEqual(structure._input, 0)
     assert.strictEqual(structure._effortPerConstruction, 10)
-    assert.strictEqual(structure._materialsPerEffort, 10)
+    assert.strictEqual(structure._materialsPerConstruction, 10)
   })
 
   it("can get input count", () => {

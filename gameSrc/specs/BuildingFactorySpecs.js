@@ -33,7 +33,7 @@ describe("Building Factory", function(){
       farmSettings.effortPerConstruction
     )
     assert.strictEqual(
-      farms.construction._materialsPerEffort,
+      farms.construction._materialsPerConstruction,
       farmSettings.materialsPerFarm
     )
   })
@@ -57,7 +57,7 @@ describe("Building Factory", function(){
       schoolSettings.effortPerConstruction
     )
     assert.strictEqual(
-      schools.construction._materialsPerEffort,
+      schools.construction._materialsPerConstruction,
       schoolSettings.materialsPerSchool
     )
   })
@@ -81,7 +81,7 @@ describe("Building Factory", function(){
       lumberYardSettings.effortPerConstruction
     )
     assert.strictEqual(
-      lumberYards.construction._materialsPerEffort,
+      lumberYards.construction._materialsPerConstruction,
       lumberYardSettings.materialsPerYard
     )
     console.log(lumberYards._productionRatio);
@@ -111,7 +111,7 @@ describe("Building Factory", function(){
       scrapYardSettings.effortPerConstruction
     )
     assert.strictEqual(
-      scrapYards.construction._materialsPerEffort,
+      scrapYards.construction._materialsPerConstruction,
       scrapYardSettings.materialsPerYard
     )
     assert.strictEqual(

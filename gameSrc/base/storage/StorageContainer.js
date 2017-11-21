@@ -6,7 +6,7 @@ class StorageContainer extends Structure{
   constructor(input = 1){
     super(
       storageSettings.effortPerConstruction,
-      storageSettings.materialsPerEffort
+      storageSettings.materialsPerConstruction
     )
     this._input = input
     this._capacity = storageSettings.initialCapacity * this._input

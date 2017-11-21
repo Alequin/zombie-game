@@ -12,7 +12,7 @@ describe("Construction", function(){
   it("can initialise", () => {
     assert.ok(construction)
     assert.strictEqual(construction._effortPerConstruction, 10)
-    assert.strictEqual(construction._materialsPerEffort, 10)
+    assert.strictEqual(construction._materialsPerConstruction, 10)
     assert.ok(construction._add)
     assert.ok(construction._remove)
   })
@@ -35,7 +35,7 @@ describe("Construction", function(){
   })
 
   it("can calculate required materials to build", () => {
-    construction.effort.add(10)
+    construction.effort.add(100)
 
     let expected = 100
     let result = construction.calcMaterialsToBuild()
@@ -43,7 +43,7 @@ describe("Construction", function(){
   })
 
   it("can tearDown", () => {
-    construction.effort.add(10)
+    construction.effort.add(100)
     construction.build()
 
     let expected = 0
@@ -52,7 +52,7 @@ describe("Construction", function(){
   })
 
   it("can calculate materials gained from tearing down", () => {
-    construction.effort.add(10)
+    construction.effort.add(100)
 
     let expected = 75
     let result = construction.calcMaterialsGainedFromTearDown()

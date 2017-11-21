@@ -1,8 +1,8 @@
 import Construction from "./Construction.js"
 
 class Structure extends Construction{
-  constructor(effortPerProduction, materialsPerEffort){
-    super(effortPerProduction, materialsPerEffort, null, null)
+  constructor(effortPerProduction, materialsPerConstruction){
+    super(effortPerProduction, materialsPerConstruction, null, null)
     this._add = this.addToInput.bind(this)
     this._remove = this.removeFromInput.bind(this)
     this._input = 0

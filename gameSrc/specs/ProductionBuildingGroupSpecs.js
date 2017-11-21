@@ -51,4 +51,17 @@ describe("production Building Group - basic", function(){
     result = productionBuildingGroup.effort.getCapacity()
     assert.strictEqual(result, expected)
   })
+
+  it("can get the minimum possible effort input", () => {
+    productionBuildingGroup.add(10)
+
+    let expected = 1
+    let result = productionBuildingGroup.getMinimumPossibleEffortInput()
+    assert.strictEqual(result, expected)
+
+    productionBuildingGroup = new ProductionBuildingGroup(2, 10, 2, 0.05, 1)
+    expected = 20
+    result = productionBuildingGroup.getMinimumPossibleEffortInput()
+    assert.strictEqual(result, expected)
+  })
 })

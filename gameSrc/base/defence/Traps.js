@@ -5,7 +5,7 @@ import PercentageDice from "./../../util/PercentageDice.js"
 
 class Traps extends Structure{
   constructor(trapCount = 0){
-    super(trapSettings.effortPerConstruction, trapSettings.materialsPerEffort, Number.MAX_SAFE_INTEGER)
+    super(trapSettings.effortPerConstruction, trapSettings.materialsPerConstruction, Number.MAX_SAFE_INTEGER)
     this._input = trapCount
   }
 
