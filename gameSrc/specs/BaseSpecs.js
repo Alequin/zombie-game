@@ -47,10 +47,13 @@ describe("Base", function(){
         scrapYards: 40,
       },
       storage: {
-        food: 100,
-        materials: 110,
-        lumber: 120,
-        scrap: 130,
+        input: 10,
+        resources: {
+          food: {amount:100, percentageCapacity: 25},
+          materials: {amount:110, percentageCapacity: 25},
+          lumber: {amount:120, percentageCapacity: 25},
+          scraps: {amount:130, percentageCapacity: 25},
+        }
       }
     }
 
@@ -84,6 +87,15 @@ describe("Base", function(){
     assert.strictEqual(base.buildings.scrapYards.count(), 40)
 
     assert.ok(base.storage)
+    assert.strictEqual(base.storage.totalInput(), 10)
+    assert.strictEqual(base.storage.getCapacity("food"), 2500)
+    assert.strictEqual(base.storage.getCapacity("materials"), 2500)
+    assert.strictEqual(base.storage.getCapacity("lumber"), 2500)
+    assert.strictEqual(base.storage.getCapacity("scraps"), 2500)
+    assert.strictEqual(base.storage.getContentCount("food"), 100)
+    assert.strictEqual(base.storage.getContentCount("materials"), 110)
+    assert.strictEqual(base.storage.getContentCount("lumber"), 120)
+    assert.strictEqual(base.storage.getContentCount("scraps"), 130)
   })
 
   it("can get base size", () => {

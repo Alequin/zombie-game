@@ -30,18 +30,37 @@ class Base{
     this.traps = new Traps(trapCount)
 
     const buildings = options.baseBuildings
-    if(buildings){
+    if(!buildings){
+      this.buildings = new BaseBuildings()
+    }else{
       this.buildings = new BaseBuildings(
         buildings.houses,
         buildings.farms,
         buildings.lumberYards,
         buildings.scrapYards,
       )
-    }else{
-      this.buildings = new BaseBuildings()
     }
 
-    this.storage = new StorageContainer()
+    if(!options.storage){
+      this.storage = new StorageContainer()
+    }else{
+      this.storage = new StorageContainer(options.storage.input)
+      if(options.storage.resources){
+        const resources = options.storage.resources
+        const sections = Object.keys(resources)
+
+        const sectionCapacities = {}
+        for(let section of sections){
+          sectionCapacities[section] = resources[section].percentageCapacity
+        }
+        this.storage.setCapacityPercentages(sectionCapacities)
+
+        for(let section of sections){
+          this.storage.add(section, resources[section].amount)
+        }
+      }
+    }
+
   }
 
   getSize(){
