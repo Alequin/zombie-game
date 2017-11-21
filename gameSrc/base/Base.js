@@ -23,11 +23,9 @@ class Base{
 
     this._size = options.size || baseSettings.initialSize
 
-    let wallMaterials = options.wallMaterials || 0
-    this.wall = new Wall(wallMaterials)
-
-    const trapCount = options.totalTraps || 0
-    this.traps = new Traps(trapCount)
+    this.wall = new Wall(options.wallMaterials || 0)
+    
+    this.traps = new Traps(options.totalTraps || 0)
 
     const buildings = options.baseBuildings
     if(!buildings){

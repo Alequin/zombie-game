@@ -160,18 +160,37 @@ describe("Storage Container", function(){
     }
   })
 
+  it("cannot set section capacities if any sections are missing", () => {
+    const sections = storageSettings.sectionNames
+    const length = sections.length
+
+    for(let toSkip=0; toSkip<length; toSkip++){
+      const sectionCapacities = {}
+      for(let j in sections){
+        if(toSkip = j) continue
+        sectionCapacities[sections[j]] = 100/length-1
+      }
+      assert.throws(() => {
+        storageContainer.setCapacityPercentages(sectionsCapacities)
+      })
+    }
+  })
+
   it("Can get max capacity", () => {
     let expected = storageSettings.initialCapacity
     let result = storageContainer.totalCapacity()
     assert.strictEqual(result, expected)
   })
 
-  function testCapacity(key, capacity){
-    let expected = capacity
-    let result = storageContainer.getCapacity(key)
-    assert.strictEqual(result, expected)
-  }
+
   it("On call of build and tearDown capacity changes", () => {
+
+    function testCapacity(key, capacity){
+      let expected = capacity
+      let result = storageContainer.getCapacity(key)
+      assert.strictEqual(result, expected)
+    }
+
     storageContainer.effort.add(200)
     storageContainer.build()
 
