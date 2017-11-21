@@ -23,14 +23,8 @@ describe("Base", function(){
   })
 
   it("can initialise with options", () => {
-    const people = {}
-    people[1] = 5
-    people[2] = 10
-    people[3] = 0
-    people[4] = 0
-
     const options = {
-      people: people,
+      people: [5,10,0,0],
       turnEffort: {
         usedThisTurn: 10,
         totalThisTurn: 11,

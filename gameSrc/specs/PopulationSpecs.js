@@ -187,10 +187,8 @@ describe("Population - basic", function(){
 
 describe("Population - input people", function(){
 
-  it("can provide a hashTable of people", () => {
-    const people = {}
-    people[1] = 5
-    people[2] = 10
+  it("can provide an array of people", () => {
+    const people = [5, 10]
 
     const population = new Population(people)
 
