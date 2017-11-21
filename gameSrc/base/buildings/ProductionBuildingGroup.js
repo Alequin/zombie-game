@@ -23,7 +23,8 @@ class ProductionBuildingGroup extends BuildingGroup{
   }
 
   getMinimumPossibleEffortInput(){
-
+    if(this._productionPerEffort >= 1) return 1
+    else return 1/this._productionPerEffort
   }
 
   effortCapacity(){
