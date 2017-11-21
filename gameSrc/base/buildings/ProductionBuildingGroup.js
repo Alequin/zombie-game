@@ -3,7 +3,9 @@ import EffortHandler from "./../../util/EffortHandler.js"
 
 class ProductionBuildingGroup extends BuildingGroup{
 
-  constructor(productionPerEffort, singleBuildingEffortCapacity, singleBuildingSize, effortPerConstruction, materialsPerEffort){
+  constructor(productionPerEffort, singleBuildingEffortCapacity,
+    singleBuildingSize, effortPerConstruction, materialsPerEffort)
+  {
     super(singleBuildingSize, effortPerConstruction, materialsPerEffort)
     this._productionPerEffort = productionPerEffort
     this._singleBuildingEffortCapacity = singleBuildingEffortCapacity

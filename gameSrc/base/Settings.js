@@ -32,6 +32,14 @@ export const farmSettings = {
   singleBuildingSize: 100,
 }
 
+export const schoolSettings = {
+  effortPerConstruction: 30,
+  materialsPerSchool: 40,
+  productionPerEffort: 0.05,
+  singleBuildingEffortCapacity: 200,
+  singleBuildingSize: 20,
+}
+
 export const lumberYardSettings = {
   effortPerConstruction: 35,
   materialsPerYard: 50,
