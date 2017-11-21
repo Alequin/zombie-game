@@ -2,6 +2,7 @@ import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 import {
   farmSettings,
+  schoolSettings,
   lumberYardSettings,
   scrapYardSettings
 } from "./../Settings.js"
@@ -16,6 +17,18 @@ export function buildFarms(count = 0){
   )
   farms.add(count)
   return farms
+}
+
+export function buildSchools(count = 0){
+  const schools = new ProductionBuildingGroup(
+    schoolSettings.productionPerEffort,
+    schoolSettings.singleBuildingEffortCapacity,
+    schoolSettings.singleBuildingSize,
+    schoolSettings.effortPerConstruction,
+    schoolSettings.materialsPerSchool
+  )
+  schools.add(count)
+  return schools
 }
 
 export function buildLumberYards(count = 0){

@@ -1,11 +1,13 @@
 import assert from "assert"
 import {
   farmSettings,
+  schoolSettings,
   lumberYardSettings,
   scrapYardSettings,
 } from "./../base/Settings.js"
 import {
   buildFarms,
+  buildSchools,
   buildLumberYards,
   buildScrapYards,
 } from "./../base/buildings/BuildingFactory.js"
@@ -33,6 +35,30 @@ describe("Building Factory", function(){
     assert.strictEqual(
       farms.construction._materialsPerEffort,
       farmSettings.materialsPerFarm
+    )
+  })
+
+  it("can build schools", () => {
+    const schools = buildSchools()
+    assert.strictEqual(
+      schools._productionPerEffort,
+      schoolSettings.productionPerEffort
+    )
+    assert.strictEqual(
+      schools._singleBuildingEffortCapacity,
+      schoolSettings.singleBuildingEffortCapacity
+    )
+    assert.strictEqual(
+      schools._singleBuildingSize,
+      schoolSettings.singleBuildingSize
+    )
+    assert.strictEqual(
+      schools.construction._effortPerConstruction,
+      schoolSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      schools.construction._materialsPerEffort,
+      schoolSettings.materialsPerSchool
     )
   })
 
