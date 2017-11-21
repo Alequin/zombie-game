@@ -1,7 +1,7 @@
 import assert from "assert"
 import PercentageDice from "./../util/PercentageDice.js"
 
-describe("test", function(){
+describe("Percentage Dice", function(){
 
   it("can initialise", () => {
     assert.ok(new PercentageDice(50))
