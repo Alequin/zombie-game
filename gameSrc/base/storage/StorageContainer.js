@@ -3,9 +3,12 @@ import Structure from "./../other/Structure.js"
 import { storageSettings } from "./../Settings.js"
 
 class StorageContainer extends Structure{
-  constructor(effortPerConstruction, materialsPerEffort){
-    super(effortPerConstruction, materialsPerEffort)
-    this._input = 1
+  constructor(input = 1){
+    super(
+      storageSettings.effortPerConstruction,
+      storageSettings.materialsPerEffort
+    )
+    this._input = input
     this._capacity = storageSettings.initialCapacity * this._input
     this._sections = {}
 

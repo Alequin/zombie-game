@@ -45,6 +45,12 @@ describe("Base", function(){
         farms: 20,
         lumberYards: 30,
         scrapYards: 40,
+      },
+      storage: {
+        food: 100,
+        materials: 110,
+        lumber: 120,
+        scrap: 130,
       }
     }
 

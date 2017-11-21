@@ -9,7 +9,7 @@ describe("Storage Container", function(){
 
   beforeEach(() => {
     sections = storageSettings.sectionNames
-    storageContainer = new StorageContainer(100, 1)
+    storageContainer = new StorageContainer()
   })
 
   it("can initialise a storage container", () => {
@@ -26,6 +26,16 @@ describe("Storage Container", function(){
     expected = storageSettings.initialCapacity/storageSettings.sectionNames.length
     result = storageContainer._sections[sections[0]].storage.capacity
     assert.strictEqual(result, expected)
+
+    assert.strictEqual(
+      storageContainer._effortPerConstruction,
+      storageSettings.effortPerConstruction
+    )
+
+    assert.strictEqual(
+      storageContainer._materialsPerEffort,
+      storageSettings.materialsPerEffort
+    )
   })
 
   it("can add to section contents", () => {
@@ -162,7 +172,7 @@ describe("Storage Container", function(){
     assert.strictEqual(result, expected)
   }
   it("On call of build and tearDown capacity changes", () => {
-    storageContainer.effort.add(100)
+    storageContainer.effort.add(200)
     storageContainer.build()
 
     let capacity = storageSettings.initialCapacity*2
@@ -177,7 +187,7 @@ describe("Storage Container", function(){
       testCapacity(section, toTest[section])
     }
 
-    storageContainer.effort.add(100)
+    storageContainer.effort.add(200)
     storageContainer.tearDown()
 
     capacity = storageSettings.initialCapacity
