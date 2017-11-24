@@ -8,8 +8,10 @@ class Tracker{
       return (
         {
           get: () => {return value},
-          inc: () => {
-            return ++value
+          inc: (amount) => {
+            amount = amount || 1
+            value += amount
+            return amount
           },
         }
       )

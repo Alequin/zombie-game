@@ -26,6 +26,11 @@ describe("Tracker", function(){
     let expected = 6
     let result = tracker.val.get()
     assert.strictEqual(result, expected)
+
+    tracker.val.inc(4)
+    expected = 10
+    result = tracker.val.get()
+    assert.strictEqual(result, expected)
   })
 
 })
