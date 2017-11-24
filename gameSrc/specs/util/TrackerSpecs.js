@@ -96,4 +96,24 @@ describe("Tracker", function(){
     testMaxMinValues(tracker)
   })
 
+  it("cannot set a min greater than the max", () => {
+    assert.throws(() => {
+      new Tracker(0, 5, 4)
+    })
+    const tracker = new Tracker(0, -5, 5)
+    assert.throws(() => {
+      tracker.val.min(6)
+    })
+  })
+
+  it("cannot set a min greater than the current value", () => {
+    assert.throws(() => {
+      new Tracker(1, 2, 10)
+    })
+    const tracker = new Tracker(0, -5, 5)
+    assert.throws(() => {
+      tracker.val.min(1)
+    })
+  })
+
 })
