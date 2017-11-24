@@ -13,7 +13,7 @@ class PercentageDice{
 
   chance(){
     const roll = Math.random() * (MAX_ROLL - MIN_ROLL) + MIN_ROLL
-    return roll <= this._probability
+    return roll < this._probability
   }
 }
 
