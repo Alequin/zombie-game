@@ -4,13 +4,51 @@ import Tracker from "./../../util/Tracker.js"
 describe("Tracker", function(){
 
   it("can initialise", () => {
-    assert.ok(new Tracker(0))
+    let tracker = new Tracker(0)
+    assert.ok(tracker)
+    assert.strictEqual(
+      tracker.val.get(), 0
+    )
+    assert.strictEqual(
+      tracker.val.getMin(), Number.MIN_SAFE_INTEGER
+    )
+    assert.strictEqual(
+      tracker.val.getMax(), Number.MAX_SAFE_INTEGER
+    )
+  })
+
+  it("can initialise with max and min", () => {
+    let tracker = new Tracker(0, -1000, 1000)
+    assert.ok(tracker)
+    assert.strictEqual(
+      tracker.val.get(), 0
+    )
+    assert.strictEqual(
+      tracker.val.getMin(), -1000
+    )
+    assert.strictEqual(
+      tracker.val.getMax(), 1000
+    )
   })
 
   it("can get the value", () => {
     const tracker = new Tracker(5)
     let expected = 5
     let result = tracker.val.get()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get the min value", () => {
+    const tracker = new Tracker(0, -5, 5)
+    let expected = -5
+    let result = tracker.val.getMin()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get the max value", () => {
+    const tracker = new Tracker(0, -5, 5)
+    let expected = 5
+    let result = tracker.val.getMax()
     assert.strictEqual(result, expected)
   })
 

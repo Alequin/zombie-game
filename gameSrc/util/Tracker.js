@@ -25,11 +25,17 @@ class Tracker{
             }
             min = minValue
           },
+          getMin: () => {
+            return min
+          },
           max: (maxValue) => {
             if(!isMaxValid(value, min, maxValue)){
               throw new Error("Max value is not valid")
             }
             max = maxValue
+          },
+          getMax: () => {
+            return max
           },
           inc: (amount) => {
             amount = amount || 1
