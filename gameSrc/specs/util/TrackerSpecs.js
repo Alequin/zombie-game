@@ -7,13 +7,13 @@ describe("Tracker", function(){
     let tracker = new Tracker(0)
     assert.ok(tracker)
     assert.strictEqual(
-      tracker.val.get(), 0
+      tracker.get(), 0
     )
     assert.strictEqual(
-      tracker.val.getMin(), Number.MIN_SAFE_INTEGER
+      tracker.getMin(), Number.MIN_SAFE_INTEGER
     )
     assert.strictEqual(
-      tracker.val.getMax(), Number.MAX_SAFE_INTEGER
+      tracker.getMax(), Number.MAX_SAFE_INTEGER
     )
   })
 
@@ -21,106 +21,106 @@ describe("Tracker", function(){
     let tracker = new Tracker(0, -1000, 1000)
     assert.ok(tracker)
     assert.strictEqual(
-      tracker.val.get(), 0
+      tracker.get(), 0
     )
     assert.strictEqual(
-      tracker.val.getMin(), -1000
+      tracker.getMin(), -1000
     )
     assert.strictEqual(
-      tracker.val.getMax(), 1000
+      tracker.getMax(), 1000
     )
   })
 
   it("can get the value", () => {
     const tracker = new Tracker(5)
     let expected = 5
-    let result = tracker.val.get()
+    let result = tracker.get()
     assert.strictEqual(result, expected)
   })
 
   it("can get the min value", () => {
     const tracker = new Tracker(0, -5, 5)
     let expected = -5
-    let result = tracker.val.getMin()
+    let result = tracker.getMin()
     assert.strictEqual(result, expected)
   })
 
   it("can get the max value", () => {
     const tracker = new Tracker(0, -5, 5)
     let expected = 5
-    let result = tracker.val.getMax()
+    let result = tracker.getMax()
     assert.strictEqual(result, expected)
   })
 
   it("can increase the value", () => {
     const tracker = new Tracker(5)
-    tracker.val.inc()
+    tracker.inc()
     let expected = 6
-    let result = tracker.val.get()
+    let result = tracker.get()
     assert.strictEqual(result, expected)
 
-    tracker.val.inc(4)
+    tracker.inc(4)
     expected = 10
-    result = tracker.val.get()
+    result = tracker.get()
     assert.strictEqual(result, expected)
   })
 
   it("cannot increase the value with a negative number", () => {
     const tracker = new Tracker(0)
     assert.throws(() => {
-      tracker.val.inc(-1)
+      tracker.inc(-1)
     })
     assert.throws(() => {
-      tracker.val.inc(-100)
+      tracker.inc(-100)
     })
     assert.throws(() => {
-      tracker.val.inc(-10000)
+      tracker.inc(-10000)
     })
   })
 
   it("can decrease the value", () => {
     const tracker = new Tracker(5)
-    tracker.val.dec()
+    tracker.dec()
     let expected = 4
-    let result = tracker.val.get()
+    let result = tracker.get()
     assert.strictEqual(result, expected)
 
-    tracker.val.dec(4)
+    tracker.dec(4)
     expected = 0
-    result = tracker.val.get()
+    result = tracker.get()
     assert.strictEqual(result, expected)
   })
 
   it("cannot increase the value with a negative number", () => {
     const tracker = new Tracker(0)
     assert.throws(() => {
-      tracker.val.dec(-1)
+      tracker.dec(-1)
     })
     assert.throws(() => {
-      tracker.val.dec(-100)
+      tracker.dec(-100)
     })
     assert.throws(() => {
-      tracker.val.dec(-10000)
+      tracker.dec(-10000)
     })
   })
 
   function testMaxMinValues(tracker){
-    tracker.val.inc(5)
+    tracker.inc(5)
     let expected = 5
-    let result = tracker.val.get()
+    let result = tracker.get()
     assert.strictEqual(result, expected)
 
     assert.throws(() => {
-      tracker.val.inc(1)
+      tracker.inc(1)
     })
 
-    tracker.val.dec(10)
+    tracker.dec(10)
     expected = -5
-    result = tracker.val.get()
+    result = tracker.get()
     assert.strictEqual(result, expected)
 
     assert.throws(() => {
-      tracker.val.dec(1)
+      tracker.dec(1)
     })
   }
   it("can set a max and min value - on construction", () => {
@@ -129,8 +129,8 @@ describe("Tracker", function(){
 
   it("can set a max and min value - with methods", () => {
     const tracker = new Tracker(0)
-    tracker.val.max(5)
-    tracker.val.min(-5)
+    tracker.max(5)
+    tracker.min(-5)
     testMaxMinValues(tracker)
   })
 
@@ -140,7 +140,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(0, -5, 5)
     assert.throws(() => {
-      tracker.val.min(6)
+      tracker.min(6)
     })
   })
 
@@ -150,7 +150,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(0, -5, 5)
     assert.throws(() => {
-      tracker.val.min(1)
+      tracker.min(1)
     })
   })
 
@@ -160,7 +160,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(0, -5, 5)
     assert.throws(() => {
-      tracker.val.max(-6)
+      tracker.max(-6)
     })
   })
 
@@ -170,7 +170,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(0, -5, 5)
     assert.throws(() => {
-      tracker.val.max(-1)
+      tracker.max(-1)
     })
   })
 
@@ -180,7 +180,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(1, 1, 2)
     assert.throws(() => {
-      tracker.val.dec()
+      tracker.dec()
     })
   })
 
@@ -190,7 +190,7 @@ describe("Tracker", function(){
     })
     const tracker = new Tracker(2, 1, 2)
     assert.throws(() => {
-      tracker.val.inc()
+      tracker.inc()
     })
   })
 
@@ -199,11 +199,11 @@ describe("Tracker", function(){
     const tracker = new Tracker(0)
 
     let expected = 5
-    let result = tracker.val.changeBy(5)
+    let result = tracker.changeBy(5)
     assert.strictEqual(result, expected)
 
     expected = 2
-    result = tracker.val.changeBy(-3)
+    result = tracker.changeBy(-3)
     assert.strictEqual(result, expected)
   })
 
@@ -211,7 +211,7 @@ describe("Tracker", function(){
     below the min`, () => {
     const tracker = new Tracker(5, 0, 10)
     assert.throws(() => {
-      let result = tracker.val.changeBy(-6)
+      let result = tracker.changeBy(-6)
     })
   })
 
@@ -219,7 +219,7 @@ describe("Tracker", function(){
     above the max`, () => {
     const tracker = new Tracker(5, 0, 10)
     assert.throws(() => {
-      let result = tracker.val.changeBy(6)
+      let result = tracker.changeBy(6)
     })
   })
 })

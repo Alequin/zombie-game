@@ -12,7 +12,7 @@ class Tracker{
       )
     }
 
-    this.val = function(){
+    return function(){
       let value = input
       let min = minValue
       let max = maxValue
