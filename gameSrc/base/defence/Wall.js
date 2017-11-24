@@ -5,16 +5,15 @@ import Structure from "./../other/Structure.js"
 class Wall extends Structure{
   constructor(materials = 0){
     super(
+      materials,
       wallSettings.effortPerConstruction,
       wallSettings.materialsPerConstruction,
       Number.MAX_SAFE_INTEGER
     )
-
-    this._input = materials
   }
 
   calcCurrentDefence(baseSize){
-    return Wall.calcDefence(baseSize, this._input)
+    return Wall.calcDefence(baseSize, this._input.get())
   }
 
   static calcDefence(baseSize, materials){

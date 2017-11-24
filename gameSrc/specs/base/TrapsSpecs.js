@@ -14,7 +14,7 @@ describe("Traps", function(){
   it("can initialise", () => {
     assert.ok(traps)
     assert.ok(traps.effort)
-    assert.strictEqual(traps._input, 0)
+    assert.strictEqual(traps._input.get(), 0)
     assert.strictEqual(traps._effortPerConstruction, trapSettings.effortPerConstruction)
     assert.strictEqual(traps._materialsPerConstruction, trapSettings.materialsPerConstruction)
   })
@@ -33,14 +33,14 @@ describe("Traps", function(){
   })
 
   it("can calculate number caught in traps", () => {
-    traps._input = 10
+    traps._input.inc(10)
 
     let result = traps.calcNumberKilled()
     assert.ok(result >= 0 && result <= traps.totalTraps())
   })
 
   it(`can kill 100 with 100 trap if chance is 100%`, () => {
-    traps._input = 100
+    traps._input.inc(100)
 
     const dice = new PercentageDice(100)
     let expected = 100
@@ -49,7 +49,7 @@ describe("Traps", function(){
   })
 
   it(`can kill 0 with 100 trap if chance is 0%`, () => {
-    traps._input = 100
+    traps._input.inc(100)
 
     const dice = new PercentageDice(0)
     let expected = 0

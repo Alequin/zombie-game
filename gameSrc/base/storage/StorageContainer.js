@@ -5,11 +5,12 @@ import { storageSettings } from "./../Settings.js"
 class StorageContainer extends Structure{
   constructor(input = 1){
     super(
+      input,
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction
     )
-    this._input = input
-    this._capacity = storageSettings.initialCapacity * this._input
+    console.log(this._effortPerConstruction);
+    this._capacity = storageSettings.initialCapacity * this._input.get()
     this._sections = {}
 
     const capacity = this._capacity / storageSettings.sectionNames.length
@@ -97,7 +98,7 @@ class StorageContainer extends Structure{
   }
 
   _updateCapacity(){
-    this._capacity = storageSettings.initialCapacity * this._input
+    this._capacity = storageSettings.initialCapacity * this._input.get()
 
     for(let key of Object.keys(this._sections)){
       const percentage = this._sections[key].percentageCapacity

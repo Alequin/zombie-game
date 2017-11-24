@@ -5,8 +5,7 @@ import PercentageDice from "./../../util/PercentageDice.js"
 
 class Traps extends Structure{
   constructor(trapCount = 0){
-    super(trapSettings.effortPerConstruction, trapSettings.materialsPerConstruction, Number.MAX_SAFE_INTEGER)
-    this._input = trapCount
+    super(trapCount, trapSettings.effortPerConstruction, trapSettings.materialsPerConstruction, Number.MAX_SAFE_INTEGER)
   }
 
   totalTraps(){
@@ -20,7 +19,7 @@ class Traps extends Structure{
 
   _rollForNumberkilled(die){
     let killed = 0
-    for(let j=0; j<this._input; j++){
+    for(let j=0; j<this._input.get(); j++){
       if(die.chance()) killed += 1
     }
     return killed

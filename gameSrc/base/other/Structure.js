@@ -1,27 +1,24 @@
 import Construction from "./Construction.js"
+import Tracker from "./../../util/Tracker.js"
 
 class Structure extends Construction{
-  constructor(effortPerProduction, materialsPerConstruction){
-    super(effortPerProduction, materialsPerConstruction, null, null)
+  constructor(initialInput, effortPerConstruction, materialsPerConstruction){
+    super(effortPerConstruction, materialsPerConstruction, null, null)
     this._add = this.addToInput.bind(this)
     this._remove = this.removeFromInput.bind(this)
-    this._input = 0
+    this._input = new Tracker(initialInput, 0, Number.MAX_SAFE_INTEGER)
   }
 
   totalInput(){
-    return this._input
+    return this._input.get()
   }
 
   addToInput(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    this._input += amount
+    this._input.inc(amount)
   }
 
   removeFromInput(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._input - amount
-    if(result < 0) throw new Error("Cannot remove more buildings than exist")
-    this._input = result
+    this._input.dec(amount)
   }
 }
 

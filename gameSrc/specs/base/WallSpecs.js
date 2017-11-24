@@ -13,7 +13,7 @@ describe("Wall", function(){
   it("can initialise Wall", () => {
     assert.ok(wall)
     assert.ok(wall.effort)
-    assert.strictEqual(wall._input, 0)
+    assert.strictEqual(wall._input.get(), 0)
     assert.strictEqual(
       wall._effortPerConstruction, wallSettings.effortPerConstruction
     )
@@ -24,7 +24,7 @@ describe("Wall", function(){
   })
 
   it("can calculate defence", () => {
-    wall._input = 100
+    wall._input.inc(100)
 
     let expected = 65
     let result = wall.calcCurrentDefence(500)

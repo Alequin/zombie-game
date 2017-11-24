@@ -14,6 +14,7 @@ describe("Storage Container", function(){
 
   it("can initialise a storage container", () => {
     assert.ok(storageContainer)
+    console.log(storageContainer._input.get());
 
     let expected = storageSettings.initialCapacity
     let result = storageContainer._capacity

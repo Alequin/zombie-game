@@ -21,7 +21,7 @@ class Tracker{
         const result = value + amount
         if(!isValueValid(result, min, max)) {
           throw new Error(
-            `Values are not valid.Input: ${input},
+            `Value is not valid. Input: ${input},
             Min: ${minValue}, Max: ${maxValue}`
           )
         }

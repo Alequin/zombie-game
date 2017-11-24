@@ -6,13 +6,13 @@ describe("structure", function(){
   let structure
 
   beforeEach(() => {
-    structure = new Structure(10, 10, 10000)
+    structure = new Structure(0, 10, 10, 10000)
   })
 
   it("can initialise structure", () => {
     assert.ok(structure)
     assert.ok(structure.effort)
-    assert.strictEqual(structure._input, 0)
+    assert.strictEqual(structure._input.get(), 0)
     assert.strictEqual(structure._effortPerConstruction, 10)
     assert.strictEqual(structure._materialsPerConstruction, 10)
   })
