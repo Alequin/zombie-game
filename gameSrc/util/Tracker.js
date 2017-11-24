@@ -1,8 +1,10 @@
 
 class Tracker{
-  constructor(input, minValue, maxValue){
-    minValue = minValue || Number.MIN_SAFE_INTEGER
-    maxValue = maxValue || Number.MAX_SAFE_INTEGER
+  constructor(
+    input,
+    minValue = Number.MIN_SAFE_INTEGER,
+    maxValue = Number.MAX_SAFE_INTEGER)
+  {
     if(!areValuesValid(input, minValue, maxValue)){
       throw new Error(
         `Values are not valid.Input: ${input},
@@ -24,6 +26,9 @@ class Tracker{
             min = minValue
           },
           max: (maxValue) => {
+            if(!isMaxValid(value, min, maxValue)){
+              throw new Error("Max value is not valid")
+            }
             max = maxValue
           },
           inc: (amount) => {
@@ -59,11 +64,18 @@ class Tracker{
 }
 
 function areValuesValid(value, min, max){
-  return isMinValid(value, min, max)
+  return (
+    isMinValid(value, min, max) &&
+    isMaxValid(value, min, max)
+  )
 }
 
 function isMinValid(value, min, max){
   return min < max && min < value
+}
+
+function isMaxValid(value, min, max){
+  return max > min && max > value
 }
 
 export default Tracker
