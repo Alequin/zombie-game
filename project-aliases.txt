@@ -1,1 +1,1 @@
-&& open 'Google Chrome' "
+alias tst="npm test"
