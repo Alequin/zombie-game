@@ -3,7 +3,7 @@ const MAX_ROLL = 100
 
 class PercentageDice{
   constructor(probability){
-    if(probability < 0 || probability > MAX_ROLL) throw new Error("Chance must be between 1 and 100 inclusivly")
+    if(probability < 0 || probability > MAX_ROLL) throw new Error("Chance must be between 1 and 100 inclusively")
     this._probability = Math.round(probability*MAX_ROLL)/MAX_ROLL
   }
 

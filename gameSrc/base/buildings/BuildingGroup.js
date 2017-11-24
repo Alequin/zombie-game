@@ -1,10 +1,11 @@
 import Construction from "./../other/Construction.js"
+import Tracker from "./../../util/Tracker.js"
 
 class BuildingGroup{
   constructor(singleBuildingSize, effortPerConstruction, materialsPerConstruction){
     if(singleBuildingSize < 1) throw new Error("Single size must be at least 1")
 
-    this._count = 0
+    this._count = new Tracker(0, 0, Number.MAX_SAFE_INTEGER)
     this._singleBuildingSize = singleBuildingSize
 
     this.construction = new Construction(
@@ -16,23 +17,19 @@ class BuildingGroup{
   }
 
   count(){
-    return this._count
+    return this._count.get()
   }
 
   add(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    this._count += amount
+    this._count.inc(amount)
   }
 
   remove(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._count - amount
-    if(result < 0) throw new Error("Cannot remove more buildings than exist")
-    this._count = result
+    this._count.dec(amount)
   }
 
   usedSpace(){
-    return this._count * this._singleBuildingSize
+    return this._count.get() * this._singleBuildingSize
   }
 }
 
