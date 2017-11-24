@@ -66,9 +66,7 @@ describe("Tracker", function(){
     })
   })
 
-  it("can set a max and min value - on construction", () => {
-    const tracker = new Tracker(0, -5, 5)
-
+  function testMaxMinValues(tracker){
     tracker.val.inc(5)
     let expected = 5
     let result = tracker.val.get()
@@ -86,6 +84,16 @@ describe("Tracker", function(){
     assert.throws(() => {
       tracker.val.dec(1)
     })
+  }
+  it("can set a max and min value - on construction", () => {
+    testMaxMinValues(new Tracker(0, -5, 5))
+  })
+
+  it("can set a max and min value - with methods", () => {
+    const tracker = new Tracker(0)
+    tracker.val.max(5)
+    tracker.val.min(-5)
+    testMaxMinValues(tracker)
   })
 
 })

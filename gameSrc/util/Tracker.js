@@ -8,6 +8,12 @@ class Tracker{
       return (
         {
           get: () => {return value},
+          min: (minValue) => {
+            min = minValue
+          },
+          max: (maxValue) => {
+            max = maxValue
+          },
           inc: (amount) => {
             amount = amount || 1
             if(amount < 0) throw new Error("Input cannot be negative: " + amount)
