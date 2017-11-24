@@ -20,4 +20,12 @@ describe("Tracker", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can increase the value", () => {
+    const tracker = new Tracker(5)
+    tracker.val.inc()
+    let expected = 6
+    let result = tracker.val.get()
+    assert.strictEqual(result, expected)
+  })
+
 })
