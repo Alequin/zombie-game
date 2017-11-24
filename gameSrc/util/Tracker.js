@@ -5,7 +5,7 @@ class Tracker{
     minValue = Number.MIN_SAFE_INTEGER,
     maxValue = Number.MAX_SAFE_INTEGER)
   {
-    if(!areValuesValid(input, minValue, maxValue)){
+    if(!areAllValuesValid(input, minValue, maxValue)){
       throw new Error(
         `Values are not valid.Input: ${input},
         Min: ${minValue}, Max: ${maxValue}`
@@ -16,6 +16,19 @@ class Tracker{
       let value = input
       let min = minValue
       let max = maxValue
+
+      function changeBy(amount = 0){
+        const result = value + amount
+        if(!isValueValid(result, min, max)) {
+          throw new Error(
+            `Values are not valid.Input: ${input},
+            Min: ${minValue}, Max: ${maxValue}`
+          )
+        }
+        value = result
+        return value
+      }
+
       return (
         {
           get: () => {return value},
@@ -37,51 +50,41 @@ class Tracker{
           getMax: () => {
             return max
           },
-          inc: (amount) => {
-            amount = amount || 1
+          inc: (amount = 1) => {
             if(amount < 0) throw new Error("Input cannot be negative: " + amount)
-            const result = amount + value
-            if(result > max) {
-              throw new Error(
-                `Cannot increase value above the max:
-                Max equals ${max} / Input equals ${amount}`
-              )
-            }
-            value = result
+            changeBy(amount)
             return value
           },
-          dec: (amount) => {
-            amount = amount || 1
+          dec: (amount = 1) => {
             if(amount < 0) throw new Error("Input cannot be negative: " + amount)
-            const result = value - amount
-            if(result < min) {
-              throw new Error(
-                `Cannot decrease value below the min:
-                Min equals ${min} / Input equals ${amount}`
-              )
-            }
-            value = result
+            changeBy(-amount)
             return value
           },
+          changeBy: changeBy
         }
       )
     }()
   }
 }
 
-function areValuesValid(value, min, max){
+function areAllValuesValid(value, min, max){
   return (
+    isValueValid(value, min, max) &&
     isMinValid(value, min, max) &&
     isMaxValid(value, min, max)
   )
 }
 
+function isValueValid(value, min, max){
+  return value >= min && value <= max
+}
+
 function isMinValid(value, min, max){
-  return min < max && min < value
+  return min < max && min <= value
 }
 
 function isMaxValid(value, min, max){
-  return max > min && max > value
+  return max > min && max >= value
 }
 
 export default Tracker

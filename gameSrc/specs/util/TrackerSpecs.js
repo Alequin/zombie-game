@@ -174,4 +174,52 @@ describe("Tracker", function(){
     })
   })
 
+  it("cannot set a value less than the min", () => {
+    assert.throws(() => {
+      new Tracker(0, 1, 2)
+    })
+    const tracker = new Tracker(1, 1, 2)
+    assert.throws(() => {
+      tracker.val.dec()
+    })
+  })
+
+  it("cannot set a value greater than the max", () => {
+    assert.throws(() => {
+      new Tracker(3, 1, 2)
+    })
+    const tracker = new Tracker(2, 1, 2)
+    assert.throws(() => {
+      tracker.val.inc()
+    })
+  })
+
+  it(`can use changeBy method to alter the value
+    using negative and positive values`, () => {
+    const tracker = new Tracker(0)
+
+    let expected = 5
+    let result = tracker.val.changeBy(5)
+    assert.strictEqual(result, expected)
+
+    expected = 2
+    result = tracker.val.changeBy(-3)
+    assert.strictEqual(result, expected)
+  })
+
+  it(`cannot use changeBy method to alter the value
+    below the min`, () => {
+    const tracker = new Tracker(5, 0, 10)
+    assert.throws(() => {
+      let result = tracker.val.changeBy(-6)
+    })
+  })
+
+  it(`cannot use changeBy method to alter the value
+    above the max`, () => {
+    const tracker = new Tracker(5, 0, 10)
+    assert.throws(() => {
+      let result = tracker.val.changeBy(6)
+    })
+  })
 })
