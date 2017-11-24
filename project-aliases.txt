@@ -1,1 +1,7 @@
 alias tst="npm test"
+alias push="git push origin master"
+alias push-f="git push -f origin master"
+alias to-git="open -a 'Google Chrome' https://github.com/Alequin/zombie-game"
+
+alias clear-project-aliases="unalias tst push push-f to-git"
+echo "Project aliases loaded"
