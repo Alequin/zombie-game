@@ -29,11 +29,11 @@ describe("Building Factory", function(){
       farmSettings.singleBuildingSize
     )
     assert.strictEqual(
-      farms.construction._effortPerConstruction,
+      farms._effortPerConstruction,
       farmSettings.effortPerConstruction
     )
     assert.strictEqual(
-      farms.construction._materialsPerConstruction,
+      farms._materialsPerConstruction,
       farmSettings.materialsPerFarm
     )
   })
@@ -53,11 +53,11 @@ describe("Building Factory", function(){
       schoolSettings.singleBuildingSize
     )
     assert.strictEqual(
-      schools.construction._effortPerConstruction,
+      schools._effortPerConstruction,
       schoolSettings.effortPerConstruction
     )
     assert.strictEqual(
-      schools.construction._materialsPerConstruction,
+      schools._materialsPerConstruction,
       schoolSettings.materialsPerSchool
     )
   })
@@ -77,11 +77,11 @@ describe("Building Factory", function(){
       lumberYardSettings.singleBuildingSize
     )
     assert.strictEqual(
-      lumberYards.construction._effortPerConstruction,
+      lumberYards._effortPerConstruction,
       lumberYardSettings.effortPerConstruction
     )
     assert.strictEqual(
-      lumberYards.construction._materialsPerConstruction,
+      lumberYards._materialsPerConstruction,
       lumberYardSettings.materialsPerYard
     )
     assert.strictEqual(
@@ -105,11 +105,11 @@ describe("Building Factory", function(){
       scrapYardSettings.singleBuildingSize
     )
     assert.strictEqual(
-      scrapYards.construction._effortPerConstruction,
+      scrapYards._effortPerConstruction,
       scrapYardSettings.effortPerConstruction
     )
     assert.strictEqual(
-      scrapYards.construction._materialsPerConstruction,
+      scrapYards._materialsPerConstruction,
       scrapYardSettings.materialsPerYard
     )
     assert.strictEqual(

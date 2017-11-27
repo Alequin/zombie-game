@@ -13,8 +13,8 @@ describe("Houses", function(){
   it("can initialise houses", () => {
     assert.ok(houses)
     assert.strictEqual(houses._singleBuildingSize, houseSettings.singleHouseSize)
-    assert.strictEqual(houses.construction._effortPerConstruction, houseSettings.effortPerConstruction)
-    assert.strictEqual(houses.construction._materialsPerConstruction, houseSettings.materialsPerHouse)
+    assert.strictEqual(houses._effortPerConstruction, houseSettings.effortPerConstruction)
+    assert.strictEqual(houses._materialsPerConstruction, houseSettings.materialsPerHouse)
   })
 
   it("can get total Population capacity of houses", () => {

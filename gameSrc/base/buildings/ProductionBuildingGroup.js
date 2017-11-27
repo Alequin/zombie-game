@@ -28,7 +28,7 @@ class ProductionBuildingGroup extends BuildingGroup{
   }
 
   effortCapacity(){
-    return this._singleBuildingEffortCapacity * this._count.get()
+    return this._singleBuildingEffortCapacity * this.getAmount()
   }
 
   calcProduction(){

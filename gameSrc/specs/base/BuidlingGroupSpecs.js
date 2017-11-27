@@ -12,7 +12,6 @@ describe("Building Group - basic", function(){
   it("can initialise buildingGroup", () => {
     assert.ok(buildingGroup)
     assert.strictEqual(buildingGroup._singleBuildingSize, 2)
-    assert.ok(buildingGroup.construction)
   })
 
   it("can count number of buildings", () => {
@@ -95,25 +94,5 @@ describe("Building Group - basic", function(){
     assert.throws(() => {
       new BuildingGroup(-10000)
     })
-  })
-
-  it("can use construction object to add to building count", () => {
-    buildingGroup.construction.effort.add(10)
-    buildingGroup.construction.build()
-
-    let expected = 1
-    let result = buildingGroup.count()
-    assert.strictEqual(expected, result)
-  })
-
-  it("can use construction object to remove from building count", () => {
-    buildingGroup.construction.effort.add(20)
-    buildingGroup.construction.build()
-    buildingGroup.construction.effort.add(10)
-    buildingGroup.construction.tearDown()
-
-    let expected = 1
-    let result = buildingGroup.count()
-    assert.strictEqual(expected, result)
   })
 })

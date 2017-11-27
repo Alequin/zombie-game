@@ -12,7 +12,7 @@ class Houses extends BuildingGroup{
   }
 
   totalPopulationCapacity(){
-    return Houses.calcPossiblePopulationCapacity(this.count())
+    return Houses.calcPossiblePopulationCapacity(this.getAmount())
   }
 
   static calcPossiblePopulationCapacity(houses){

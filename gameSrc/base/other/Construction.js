@@ -3,14 +3,14 @@ import Tracker from "./../../util/Tracker.js"
 
 class Construction{
   constructor(effortPerConstruction, materialsPerConstruction, add, remove){
-    this.effort = new EffortHandler(Number.MAX_SAFE_INTEGER)
+    this.constructionEffort = new EffortHandler(Number.MAX_SAFE_INTEGER)
     this._amount = new Tracker(0, 0, Number.MAX_SAFE_INTEGER)
     this._effortPerConstruction = effortPerConstruction
     this._materialsPerConstruction = materialsPerConstruction
   }
 
   _calcAmountToConstruct(){
-    return this.effort.currentEffort() / this._effortPerConstruction
+    return this.constructionEffort.currentEffort() / this._effortPerConstruction
   }
 
   getEffortPerProduction(){
@@ -32,7 +32,7 @@ class Construction{
   build(){
     const toBuild = this._calcAmountToConstruct()
     this.add(toBuild)
-    this.effort.reset()
+    this.constructionEffort.reset()
   }
 
   calcMaterialsToBuild(){
@@ -42,7 +42,7 @@ class Construction{
   tearDown(){
     const toRemove = this._calcAmountToConstruct()
     this.remove(toRemove)
-    this.effort.reset()
+    this.constructionEffort.reset()
   }
 
   calcMaterialsGainedFromTearDown(){
