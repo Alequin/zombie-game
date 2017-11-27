@@ -11,8 +11,7 @@ describe("structure", function(){
 
   it("can initialise structure", () => {
     assert.ok(structure)
-    assert.ok(structure.effort)
-    assert.strictEqual(structure._input.get(), 0)
+    assert.strictEqual(structure.getAmount(), 0)
     assert.strictEqual(structure._effortPerConstruction, 10)
     assert.strictEqual(structure._materialsPerConstruction, 10)
   })

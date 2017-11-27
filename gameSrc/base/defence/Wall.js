@@ -13,7 +13,7 @@ class Wall extends Structure{
   }
 
   calcCurrentDefence(baseSize){
-    return Wall.calcDefence(baseSize, this._input.get())
+    return Wall.calcDefence(baseSize, this.getAmount())
   }
 
   static calcDefence(baseSize, materials){

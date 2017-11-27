@@ -39,7 +39,7 @@ describe("Storage Container", function(){
   })
 
   it("can add to section contents", () => {
-    storageContainer.add(sections[0], 10)
+    storageContainer.addToSection(sections[0], 10)
     let expected = 10
     let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
@@ -71,8 +71,8 @@ describe("Storage Container", function(){
   })
 
   it("can remove from section contents", () => {
-    storageContainer.add(sections[0], 15)
-    storageContainer.remove(sections[0], 10)
+    storageContainer.addToSection(sections[0], 15)
+    storageContainer.removeFromSection(sections[0], 10)
     let expected = 5
     let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
@@ -101,7 +101,7 @@ describe("Storage Container", function(){
     let result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
 
-    storageContainer.add(sections[0], 10)
+    storageContainer.addToSection(sections[0], 10)
     expected = 10
     result = storageContainer.getContentCount(sections[0])
     assert.strictEqual(result, expected)
@@ -191,7 +191,7 @@ describe("Storage Container", function(){
       assert.strictEqual(result, expected)
     }
 
-    storageContainer.effort.add(200)
+    storageContainer.constructionEffort.add(200)
     storageContainer.build()
 
     let capacity = storageSettings.initialCapacity*2
@@ -206,7 +206,7 @@ describe("Storage Container", function(){
       testCapacity(section, toTest[section])
     }
 
-    storageContainer.effort.add(200)
+    storageContainer.constructionEffort.add(200)
     storageContainer.tearDown()
 
     capacity = storageSettings.initialCapacity

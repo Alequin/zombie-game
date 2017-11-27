@@ -9,7 +9,7 @@ class StorageContainer extends Structure{
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction
     )
-    this._capacity = storageSettings.initialCapacity * this._input.get()
+    this._capacity = storageSettings.initialCapacity * this.getAmount()
     this._sections = {}
 
     const capacity = this._capacity / storageSettings.sectionNames.length
@@ -68,7 +68,7 @@ class StorageContainer extends Structure{
     this._sections[key].storage.capacity = Math.floor(capacityToSet)
   }
 
-  add(key, amount){
+  addToSection(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
     const result = this._sections[key].storage.contentCount + amount
     if(result > this._sections[key].storage.capacity){
@@ -77,7 +77,7 @@ class StorageContainer extends Structure{
     this._sections[key].storage.contentCount = result
   }
 
-  remove(key, amount){
+  removeFromSection(key, amount){
     if(amount < 0) throw new Error("Cannot use negative values")
     const result = this._sections[key].storage.contentCount - amount
     if(result < 0){
@@ -97,7 +97,7 @@ class StorageContainer extends Structure{
   }
 
   _updateCapacity(){
-    this._capacity = storageSettings.initialCapacity * this._input.get()
+    this._capacity = storageSettings.initialCapacity * this.getAmount()
 
     for(let key of Object.keys(this._sections)){
       const percentage = this._sections[key].percentageCapacity

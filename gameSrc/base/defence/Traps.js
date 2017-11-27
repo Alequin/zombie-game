@@ -19,7 +19,7 @@ class Traps extends Structure{
 
   _rollForNumberkilled(die){
     let killed = 0
-    for(let j=0; j<this._input.get(); j++){
+    for(let j=0; j<this.getAmount(); j++){
       if(die.chance()) killed += 1
     }
     return killed

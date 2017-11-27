@@ -24,7 +24,7 @@ class Base{
     this._size = options.size || baseSettings.initialSize
 
     this.wall = new Wall(options.wallMaterials || 0)
-    
+
     this.traps = new Traps(options.totalTraps || 0)
 
     const buildings = options.baseBuildings
@@ -54,7 +54,7 @@ class Base{
         this.storage.setCapacityPercentages(sectionCapacities)
 
         for(let section of sections){
-          this.storage.add(section, resources[section].amount)
+          this.storage.addToSection(section, resources[section].amount)
         }
       }
     }
