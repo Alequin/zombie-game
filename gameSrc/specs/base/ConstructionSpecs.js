@@ -6,7 +6,7 @@ describe("Construction", function(){
   let construction
 
   beforeEach(() => {
-    construction = new Construction(10, 10, () => {}, () => {})
+    construction = new Construction(10, 10)
   })
 
   it("can initialise", () => {
@@ -19,7 +19,6 @@ describe("Construction", function(){
 
   it("can calculate amount to construct", () => {
     construction.constructionEffort.add(10)
-
     let expected = 1
     let result = construction._calcAmountToConstruct()
     assert.strictEqual(result, expected)

@@ -2,7 +2,7 @@ import EffortHandler from "./../../util/EffortHandler.js"
 import Tracker from "./../../util/Tracker.js"
 
 class Construction{
-  constructor(effortPerConstruction, materialsPerConstruction, add, remove){
+  constructor(effortPerConstruction, materialsPerConstruction){
     this.constructionEffort = new EffortHandler(Number.MAX_SAFE_INTEGER)
     this._amount = new Tracker(0, 0, Number.MAX_SAFE_INTEGER)
     this._effortPerConstruction = effortPerConstruction
