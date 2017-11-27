@@ -5,8 +5,6 @@ class Construction{
   constructor(effortPerConstruction, materialsPerConstruction, add, remove){
     this.effort = new EffortHandler(Number.MAX_SAFE_INTEGER)
     this._amount = new Tracker(0, 0, Number.MAX_SAFE_INTEGER)
-    this._add = add
-    this._remove = remove
     this._effortPerConstruction = effortPerConstruction
     this._materialsPerConstruction = materialsPerConstruction
   }
@@ -19,9 +17,21 @@ class Construction{
     return this._effortPerConstruction
   }
 
+  getAmount(){
+    return this._amount.get()
+  }
+
+  add(amount){
+    this._amount.inc(amount)
+  }
+
+  remove(amount){
+    this._amount.dec(amount)
+  }
+
   build(){
     const toBuild = this._calcAmountToConstruct()
-    this._add(toBuild)
+    this.add(toBuild)
     this.effort.reset()
   }
 
@@ -31,7 +41,7 @@ class Construction{
 
   tearDown(){
     const toRemove = this._calcAmountToConstruct()
-    this._remove(toRemove)
+    this.remove(toRemove)
     this.effort.reset()
   }
 

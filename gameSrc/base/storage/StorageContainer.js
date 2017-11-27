@@ -9,7 +9,6 @@ class StorageContainer extends Structure{
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction
     )
-    console.log(this._effortPerConstruction);
     this._capacity = storageSettings.initialCapacity * this._input.get()
     this._sections = {}
 

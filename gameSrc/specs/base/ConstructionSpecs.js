@@ -13,8 +13,6 @@ describe("Construction", function(){
     assert.ok(construction)
     assert.strictEqual(construction._effortPerConstruction, 10)
     assert.strictEqual(construction._materialsPerConstruction, 10)
-    assert.ok(construction._add)
-    assert.ok(construction._remove)
     assert.ok(construction._amount)
   })
 
@@ -26,12 +24,39 @@ describe("Construction", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("can get value of amount", () => {
+    let expected = 0
+    let result = construction.getAmount()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can add to amount", () => {
+    construction.add(10)
+
+    let expected = 10
+    let result = construction.getAmount()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can remove from amount", () => {
+    construction.add(10)
+    construction.remove(5)
+
+    let expected = 5
+    let result = construction.getAmount()
+    assert.strictEqual(result, expected)
+  })
+
   it("can build", () => {
     construction.effort.add(10)
     construction.build()
 
     let expected = 0
     let result = construction.effort.currentEffort()
+    assert.strictEqual(result, expected)
+
+    expected = 1
+    result = construction.getAmount()
     assert.strictEqual(result, expected)
   })
 
@@ -46,9 +71,15 @@ describe("Construction", function(){
   it("can tearDown", () => {
     construction.effort.add(100)
     construction.build()
+    construction.effort.add(100)
+    construction.tearDown()
 
     let expected = 0
     let result = construction.effort.currentEffort()
+    assert.strictEqual(result, expected)
+
+    expected = 0
+    result = construction.getAmount()
     assert.strictEqual(result, expected)
   })
 

@@ -84,8 +84,6 @@ describe("Building Factory", function(){
       lumberYards.construction._materialsPerConstruction,
       lumberYardSettings.materialsPerYard
     )
-    console.log(lumberYards._productionRatio);
-    console.log(lumberYardSettings.productionRatio);
     assert.strictEqual(
       lumberYards._productionRatio,
       lumberYardSettings.productionRatio,
