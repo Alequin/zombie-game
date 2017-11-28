@@ -1,5 +1,6 @@
 import Houses from "./Houses.js"
 import {
+  buildHouses,
   buildFarms,
   buildLumberYards,
   buildScrapYards
@@ -8,7 +9,7 @@ import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{
   constructor(houses = 0, farms = 0, lumberYards = 0, scrapYards = 0){
-    this.houses = new Houses(houses)
+    this.houses = buildHouses(houses)
     this.farms = buildFarms(farms)
     this.lumberYards = buildLumberYards(lumberYards)
     this.scrapYards = buildScrapYards(scrapYards)

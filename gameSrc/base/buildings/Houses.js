@@ -2,21 +2,26 @@ import BuildingGroup from "./BuildingGroup"
 import { houseSettings } from "./../Settings.js"
 
 class Houses extends BuildingGroup{
-  constructor(count = 0){
+  constructor(
+    singleHouseCapacity, singleHouseSize, effortPerConstruction, materialsPerHouse
+  ){
     super(
-      houseSettings.singleHouseSize,
-      houseSettings.effortPerConstruction,
-      houseSettings.materialsPerHouse
+      singleHouseSize,
+      effortPerConstruction,
+      materialsPerHouse
     )
-    this.add(count)
+    this._singleHouseCapacity = singleHouseCapacity
   }
 
   totalPopulationCapacity(){
-    return Houses.calcPossiblePopulationCapacity(this.getAmount())
+    return Houses.calcPossiblePopulationCapacity(
+      this.getAmount(),
+      this._singleHouseCapacity
+    )
   }
 
-  static calcPossiblePopulationCapacity(houses){
-    return houseSettings.singleHouseCapacity * houses
+  static calcPossiblePopulationCapacity(houses, singleHouseCapacity){
+    return singleHouseCapacity * houses
   }
 }
 

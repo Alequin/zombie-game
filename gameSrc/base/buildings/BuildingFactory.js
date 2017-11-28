@@ -1,11 +1,24 @@
+import Houses from "./Houses.js"
 import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 import {
+  houseSettings,
   farmSettings,
   schoolSettings,
   lumberYardSettings,
   scrapYardSettings
 } from "./../Settings.js"
+
+export function buildHouses(count = 0){
+  const houses = new Houses(
+    houseSettings.singleHouseCapacity,
+    houseSettings.singleHouseSize,
+    houseSettings.effortPerConstruction,
+    houseSettings.materialsPerHouse
+  )
+  houses.add(count)
+  return houses
+}
 
 export function buildFarms(count = 0){
   const farms = new ProductionBuildingGroup(
