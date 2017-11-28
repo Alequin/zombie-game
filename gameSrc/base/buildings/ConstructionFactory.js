@@ -81,7 +81,11 @@ export function buildWall(materials = 0){
 }
 
 export function buildTraps(count = 0){
-  const traps = new Traps(trapSettings.chanceToKill)
+  const traps = new Traps(
+    trapSettings.chanceToKill,
+    trapSettings.effortPerConstruction,
+    trapSettings.materialsPerConstruction
+  )
   traps.add(count)
   return traps
 }

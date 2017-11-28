@@ -8,7 +8,11 @@ describe("Traps", function(){
   let traps
 
   beforeEach(() => {
-    traps = new Traps(trapSettings.chanceToKill)
+    traps = new Traps(
+      trapSettings.chanceToKill,
+      trapSettings.effortPerConstruction,
+      trapSettings.materialsPerConstruction
+    )
   })
 
   it("can initialise", () => {
