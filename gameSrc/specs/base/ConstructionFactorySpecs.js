@@ -171,5 +171,4 @@ describe("Construction Factory", function(){
       1
     )
   })
-
 })
