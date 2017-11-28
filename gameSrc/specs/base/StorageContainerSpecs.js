@@ -11,7 +11,8 @@ describe("Storage Container", function(){
     sections = storageSettings.sectionNames
     storageContainer = new StorageContainer(
       storageSettings.effortPerConstruction,
-      storageSettings.materialsPerConstruction
+      storageSettings.materialsPerConstruction,
+      storageSettings.sectionNames
     )
     storageContainer.add(1)
   })

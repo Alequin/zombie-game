@@ -3,7 +3,7 @@ import Construction from "./../other/Construction.js"
 import { storageSettings } from "./../Settings.js"
 
 class StorageContainer extends Construction{
-  constructor(effortPerConstruction, materialsPerConstruction){
+  constructor(effortPerConstruction, materialsPerConstruction, sectionNames = []){
     super(
       effortPerConstruction,
       materialsPerConstruction,
@@ -12,7 +12,7 @@ class StorageContainer extends Construction{
     this._sections = {}
 
     const capacity = this._capacity / storageSettings.sectionNames.length
-    for(let name of storageSettings.sectionNames){
+    for(let name of sectionNames){
       this._sections[name] = {
         storage: new StorageSection(capacity),
         percentageCapacity: Math.floor(100 / storageSettings.sectionNames.length)
