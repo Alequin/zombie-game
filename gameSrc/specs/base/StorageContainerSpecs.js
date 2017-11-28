@@ -29,7 +29,7 @@ describe("Storage Container", function(){
     assert.strictEqual(result, expected)
 
     expected = storageSettings.minimumCapacity/storageSettings.sectionNames.length
-    result = storageContainer._sections[sections[0]].content.getMax()
+    result = storageContainer._sections[sections[0]].getCapacity()
     assert.strictEqual(result, expected)
 
     assert.strictEqual(

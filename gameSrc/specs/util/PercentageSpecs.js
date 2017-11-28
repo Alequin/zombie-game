@@ -24,5 +24,4 @@ describe("Percentage", function(){
     result = percentage.percentage()
     assert.strictEqual(result, expected)
   })
-
 })
