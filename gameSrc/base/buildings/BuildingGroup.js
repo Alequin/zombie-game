@@ -8,10 +8,6 @@ class BuildingGroup extends Construction{
     this._singleBuildingSize = singleBuildingSize
   }
 
-  count(){
-    return this.getAmount()
-  }
-
   usedSpace(){
     return this.getAmount() * this._singleBuildingSize
   }

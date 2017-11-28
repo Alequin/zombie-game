@@ -16,7 +16,7 @@ describe("Building Group - basic", function(){
 
   it("can count number of buildings", () => {
     let expected = 0
-    let result = buildingGroup.count()
+    let result = buildingGroup.getAmount()
     assert.strictEqual(result, expected)
   })
 
@@ -24,7 +24,7 @@ describe("Building Group - basic", function(){
     buildingGroup.add(10)
 
     let expected = 10
-    let result = buildingGroup.count()
+    let result = buildingGroup.getAmount()
     assert.strictEqual(result, expected)
   })
 
@@ -33,7 +33,7 @@ describe("Building Group - basic", function(){
     buildingGroup.remove(5)
 
     let expected = 5
-    let result = buildingGroup.count()
+    let result = buildingGroup.getAmount()
     assert.strictEqual(result, expected)
   })
 

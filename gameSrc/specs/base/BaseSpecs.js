@@ -75,10 +75,10 @@ describe("Base", function(){
     assert.strictEqual(base.traps.totalTraps(), 100)
 
     assert.ok(base.buildings)
-    assert.strictEqual(base.buildings.houses.count(), 10)
-    assert.strictEqual(base.buildings.farms.count(), 20)
-    assert.strictEqual(base.buildings.lumberYards.count(), 30)
-    assert.strictEqual(base.buildings.scrapYards.count(), 40)
+    assert.strictEqual(base.buildings.houses.getAmount(), 10)
+    assert.strictEqual(base.buildings.farms.getAmount(), 20)
+    assert.strictEqual(base.buildings.lumberYards.getAmount(), 30)
+    assert.strictEqual(base.buildings.scrapYards.getAmount(), 40)
 
     assert.ok(base.storage)
     assert.strictEqual(base.storage.totalInput(), 10)
