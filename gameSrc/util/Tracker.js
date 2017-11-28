@@ -80,11 +80,11 @@ function isValueValid(value, min, max){
 }
 
 function isMinValid(value, min, max){
-  return min < max && min <= value
+  return min <= max && min <= value
 }
 
 function isMaxValid(value, min, max){
-  return max > min && max >= value
+  return max >= min && max >= value
 }
 
 export default Tracker

@@ -13,10 +13,8 @@ class StorageContainer extends Construction{
 
     const capacity = this._capacity / storageSettings.sectionNames.length
     for(let name of sectionNames){
-      this._sections[name] = {
-        storage: new StorageSection(capacity),
-        percentageCapacity: Math.floor(100 / storageSettings.sectionNames.length)
-      }
+      const percentageCapacity = Math.floor(100 / storageSettings.sectionNames.length)
+      this._sections[name] = new StorageSection(capacity, percentageCapacity)
     }
   }
 
@@ -39,11 +37,11 @@ class StorageContainer extends Construction{
   }
 
   getContentCount(key){
-    return this._sections[key].storage.contentCount
+    return this._sections[key].content.get()
   }
 
   getCapacity(key){
-    return this._sections[key].storage.capacity
+    return this._sections[key].content.getMax()
   }
 
   getPercentageCapacity(key){
@@ -71,28 +69,15 @@ class StorageContainer extends Construction{
   }
 
   _setSectionCapacity(key, capacityToSet){
-    if(capacityToSet < this._sections[key].contentCount){
-      throw new Error("Cannot set section capacity at less than the current contents")
-    }
-    this._sections[key].storage.capacity = Math.floor(capacityToSet)
+    this._sections[key].content.max(Math.floor(capacityToSet))
   }
 
   addToSection(key, amount){
-    if(amount < 0) throw new Error("Cannot use negative values")
-    const result = this._sections[key].storage.contentCount + amount
-    if(result > this._sections[key].storage.capacity){
-      throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
-    }
-    this._sections[key].storage.contentCount = result
+    this._sections[key].content.inc(amount)
   }
 
   removeFromSection(key, amount){
-    if(amount < 0) throw new Error("Cannot use negative values")
-    const result = this._sections[key].storage.contentCount - amount
-    if(result < 0){
-      throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
-    }
-    this._sections[key].storage.contentCount = result
+    this._sections[key].content.dec(amount)
   }
 
   _updateCapacity(){

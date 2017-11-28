@@ -135,6 +135,20 @@ describe("Tracker", function(){
     testMaxMinValues(tracker)
   })
 
+  it("can set a max and min values to be equal", () => {
+    const tracker = new Tracker(0)
+    tracker.max(0)
+    tracker.min(0)
+    
+    let expected = 0
+    let result = tracker.getMin()
+    assert.strictEqual(result, expected)
+
+    expected = 0
+    result = tracker.getMax()
+    assert.strictEqual(result, expected)
+  })
+
   it("cannot set a min greater than the max", () => {
     assert.throws(() => {
       new Tracker(0, 5, 4)
