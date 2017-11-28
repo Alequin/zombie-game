@@ -139,7 +139,7 @@ describe("Tracker", function(){
     const tracker = new Tracker(0)
     tracker.max(0)
     tracker.min(0)
-    
+
     let expected = 0
     let result = tracker.getMin()
     assert.strictEqual(result, expected)
@@ -236,6 +236,29 @@ describe("Tracker", function(){
     assert.throws(() => {
       let result = tracker.changeBy(6)
     })
+  })
+
+  it(`can reset value to original`, () => {
+    const tracker = new Tracker(0)
+    tracker.changeBy(5)
+    tracker.reset()
+
+    let expected = 0
+    let result = tracker.get()
+    assert.strictEqual(result, expected)
+  })
+
+  it(`can set value to min and max`, () => {
+    const tracker = new Tracker(0, -10, 10)
+    tracker.setToMin()
+    let expected = -10
+    let result = tracker.get()
+    assert.strictEqual(result, expected)
+
+    tracker.setToMax()
+    expected = 10
+    result = tracker.get()
+    assert.strictEqual(result, expected)
   })
 })
 

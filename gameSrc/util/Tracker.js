@@ -60,7 +60,16 @@ class Tracker{
             changeBy(-amount)
             return value
           },
-          changeBy: changeBy
+          changeBy: changeBy,
+          reset: () => {
+            value = input
+          },
+          setToMin: () => {
+            value = min
+          },
+          setToMax: () => {
+            value = max
+          }
         }
       )
     }()
