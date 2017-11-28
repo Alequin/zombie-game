@@ -55,9 +55,9 @@ describe("Base", function(){
     assert.ok(base)
 
     assert.ok(base.population)
-    assert.strictEqual(base.population.countPopulation(1), 5)
-    assert.strictEqual(base.population.countPopulation(2), 10)
-    assert.strictEqual(base.population.countPopulation(3), 0)
+    assert.strictEqual(base.population.countPopulationOfSkill(1), 5)
+    assert.strictEqual(base.population.countPopulationOfSkill(2), 10)
+    assert.strictEqual(base.population.countPopulationOfSkill(3), 0)
 
     assert.ok(base.effort)
     assert.strictEqual(base.effort._effort.getMin(), -11)

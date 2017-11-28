@@ -44,7 +44,7 @@ describe("Population - basic", function(){
 
   it("can get population count", () => {
     let expected = 0
-    let result = population.countPopulation(1)
+    let result = population.countPopulationOfSkill(1)
     assert.strictEqual(result, expected)
   })
 
@@ -52,13 +52,13 @@ describe("Population - basic", function(){
     population.addToPopulation(10, 1)
 
     let expected = 10
-    let result = population.countPopulation(1)
+    let result = population.countPopulationOfSkill(1)
     assert.strictEqual(result, expected)
 
     population.addToPopulation(20, populationSettings.maxSkill)
 
     expected = 20
-    result = population.countPopulation(populationSettings.maxSkill)
+    result = population.countPopulationOfSkill(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 
@@ -77,10 +77,10 @@ describe("Population - basic", function(){
     population.upgradeSkill(25, 1, populationSettings.maxSkill)
 
     let expected = 75
-    let result = population.countPopulation(1)
+    let result = population.countPopulationOfSkill(1)
     assert.strictEqual(result, expected)
     expected = 25
-    result = population.countPopulation(populationSettings.maxSkill)
+    result = population.countPopulationOfSkill(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 
@@ -93,9 +93,9 @@ describe("Population - basic", function(){
 
     let expected = 50
 
-    let result = population.countPopulation(1)
+    let result = population.countPopulationOfSkill(1)
     assert.strictEqual(result, expected)
-    result = population.countPopulation(populationSettings.maxSkill)
+    result = population.countPopulationOfSkill(populationSettings.maxSkill)
     assert.strictEqual(result, expected)
   })
 
@@ -171,16 +171,16 @@ describe("Population - basic", function(){
 
   it("cannot count population with invalid skill level", () => {
     assert.throws(() => {
-      population.countPopulation(-10)
+      population.countPopulationOfSkill(-10)
     })
     assert.throws(() => {
-      population.countPopulation(0)
+      population.countPopulationOfSkill(0)
     })
     assert.throws(() => {
-      population.countPopulation(4)
+      population.countPopulationOfSkill(4)
     })
     assert.throws(() => {
-      population.countPopulation(100)
+      population.countPopulationOfSkill(100)
     })
   })
 })
@@ -193,11 +193,11 @@ describe("Population - input people", function(){
     const population = new Population(2, people)
 
     let expected = 5
-    let result = population.countPopulation(1)
+    let result = population.countPopulationOfSkill(1)
     assert.strictEqual(result, expected)
 
     expected = 10
-    result = population.countPopulation(2)
+    result = population.countPopulationOfSkill(2)
     assert.strictEqual(result, expected)
   })
 })
