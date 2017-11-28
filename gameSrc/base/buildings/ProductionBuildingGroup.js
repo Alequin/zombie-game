@@ -14,11 +14,15 @@ class ProductionBuildingGroup extends BuildingGroup{
 
   add(amount){
     super.add(amount)
-    this.effort.setCapacity(this.effortCapacity())
+    this._updateEffortCapacity()
   }
 
   remove(amount){
     super.remove(amount)
+    this._updateEffortCapacity()
+  }
+
+  _updateEffortCapacity(){
     this.effort.setCapacity(this.effortCapacity())
   }
 
