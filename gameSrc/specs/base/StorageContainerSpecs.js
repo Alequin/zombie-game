@@ -9,7 +9,10 @@ describe("Storage Container", function(){
 
   beforeEach(() => {
     sections = storageSettings.sectionNames
-    storageContainer = new StorageContainer()
+    storageContainer = new StorageContainer(
+      storageSettings.effortPerConstruction,
+      storageSettings.materialsPerConstruction
+    )
     storageContainer.add(1)
   })
 

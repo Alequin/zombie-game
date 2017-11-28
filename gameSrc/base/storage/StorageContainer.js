@@ -3,10 +3,10 @@ import Construction from "./../other/Construction.js"
 import { storageSettings } from "./../Settings.js"
 
 class StorageContainer extends Construction{
-  constructor(){
+  constructor(effortPerConstruction, materialsPerConstruction){
     super(
-      storageSettings.effortPerConstruction,
-      storageSettings.materialsPerConstruction,
+      effortPerConstruction,
+      materialsPerConstruction,
     )
     this._capacity = this._calcCapacity()
     this._sections = {}

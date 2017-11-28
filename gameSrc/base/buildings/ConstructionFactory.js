@@ -12,6 +12,7 @@ import {
   scrapYardSettings,
   trapSettings,
   wallSettings,
+  storageSettings
 } from "./../Settings.js"
 
 export function buildHouses(count = 0){
@@ -99,7 +100,10 @@ export function buildTraps(count = 0){
 }
 
 export function buildStorageContainer(materials = 1){
-  const storage = new StorageContainer()
+  const storage = new StorageContainer(
+    storageSettings.effortPerConstruction,
+    storageSettings.materialsPerConstruction
+  )
   storage.add(materials)
   return storage
 }
