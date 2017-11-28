@@ -38,6 +38,7 @@ describe("Base", function(){
         farms: 20,
         lumberYards: 30,
         scrapYards: 40,
+        schools: 50
       },
       storage: {
         input: 10,
@@ -78,6 +79,7 @@ describe("Base", function(){
     assert.strictEqual(base.buildings.farms.getAmount(), 20)
     assert.strictEqual(base.buildings.lumberYards.getAmount(), 30)
     assert.strictEqual(base.buildings.scrapYards.getAmount(), 40)
+    assert.strictEqual(base.buildings.schools.getAmount(), 50)
 
     assert.ok(base.storage)
     assert.strictEqual(base.storage.getAmount(), 10)

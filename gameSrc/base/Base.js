@@ -41,6 +41,7 @@ class Base{
         buildings.farms,
         buildings.lumberYards,
         buildings.scrapYards,
+        buildings.schools,
       )
     }
 

@@ -9,7 +9,11 @@ import {
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{
-  constructor(houses = 0, farms = 0, lumberYards = 0, scrapYards = 0, schools = 0){
+  constructor(
+    houses = 0, farms = 0,
+    lumberYards = 0, scrapYards = 0,
+    schools = 0)
+  {
     this.houses = buildHouses(houses)
     this.farms = buildFarms(farms)
     this.lumberYards = buildLumberYards(lumberYards)
