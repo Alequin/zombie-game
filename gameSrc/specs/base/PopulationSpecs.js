@@ -30,7 +30,7 @@ describe("Population - basic", function(){
 
   it("can get total effort", () => {
     let expected = 0
-    let result = population.getEffort()
+    let result = population.getTotalEffort()
     assert.strictEqual(result, expected)
 
     expected = 0
@@ -38,7 +38,7 @@ describe("Population - basic", function(){
       population.addToPopulation(100, j)
       expected += 100*j*10
     }
-    result = population.getEffort()
+    result = population.getTotalEffort()
     assert.strictEqual(result, expected)
   })
 

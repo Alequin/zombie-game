@@ -51,7 +51,7 @@ class Population{
     this._people[to] += amount
   }
 
-  getEffort(){
+  getTotalEffort(){
     let effort = 0
     for(let key of Object.keys(this._people)){
       const multiplier = 10*parseInt(key)
