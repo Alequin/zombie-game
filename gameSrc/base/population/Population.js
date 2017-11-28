@@ -1,8 +1,8 @@
 import { populationSettings } from "./../Settings.js"
 
 class Population{
-  constructor(people = []){
-    this._maxSkill = populationSettings.maxSkill
+  constructor(maxSkill, people = []){
+    this._maxSkill = maxSkill
     this._people = {}
     for(let j=1; j<=this._maxSkill; j++){
       if(people[j-1]) this._people[j] = people[j-1]

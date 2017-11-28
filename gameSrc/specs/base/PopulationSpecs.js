@@ -7,7 +7,7 @@ describe("Population - basic", function(){
   let population
 
   beforeEach(() => {
-    population = new Population()
+    population = new Population(populationSettings.maxSkill)
   })
 
   it("can initialise a population", () => {
@@ -190,7 +190,7 @@ describe("Population - input people", function(){
   it("can provide an array of people", () => {
     const people = [5, 10]
 
-    const population = new Population(people)
+    const population = new Population(2, people)
 
     let expected = 5
     let result = population.countPopulation(1)

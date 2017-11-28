@@ -3,7 +3,7 @@ import TurnEffort from "./population/TurnEffort.js"
 import Traps from "./defence/Traps.js"
 import BaseBuildings from "./buildings/BaseBuildings.js"
 import StorageContainer from "./storage/StorageContainer.js"
-import { baseSettings } from "./Settings.js"
+import { baseSettings, populationSettings} from "./Settings.js"
 import {
   buildWall,
   buildTraps,
@@ -12,7 +12,9 @@ import {
 
 class Base{
   constructor(options = {}){
-    this.population = new Population(options.people)
+    this.population = new Population(
+      populationSettings.maxSkill, options.people
+    )
 
     if(!options.turnEffort){
       this.effort = new TurnEffort()
