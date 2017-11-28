@@ -21,25 +21,16 @@ describe("Effort", function(){
     assert.strictEqual(result, expected)
   })
 
-  it("cannot use 0 or less effort", () => {
-    assert.throws(() => {
-      effort.use(0)
-    })
-    assert.throws(() => {
-      effort.use(-10)
-    })
-    assert.throws(() => {
-      effort.use(-100)
-    })
-  })
-
-  it("cannot use effort greater than the max", () => {
+  it("cannot use more that max effort * 2", () => {
     effort.prepareValuesForNextTurn(30)
-    effort.use(10)
-    effort.use(10)
-    effort.use(10)
     assert.throws(() => {
-      effort.use(1)
+      effort.use(61)
+    })
+    assert.throws(() => {
+      effort.use(600)
+    })
+    assert.throws(() => {
+      effort.use(60000)
     })
   })
 
@@ -88,9 +79,10 @@ describe("Effort", function(){
 describe("effort - initial values", function(){
 
   it("can set inital values manually", () => {
-    let effort = new TurnEffort(1,2,3,4)
-    assert.strictEqual(effort._usedThisTurn, 1)
-    assert.strictEqual(effort._totalThisTurn, 2)
+    let effort = new TurnEffort(2,3,4)
+    assert.ok(effort._effort)
+    assert.strictEqual(effort._effort.getMin(), -2)
+    assert.strictEqual(effort.getTotalThisTurn(), 2)
     assert.strictEqual(effort._usedLastTurn, 3)
     assert.strictEqual(effort._totalLastTurn, 4)
   })

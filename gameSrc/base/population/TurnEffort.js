@@ -1,24 +1,24 @@
+import Tracker from "./../../util/Tracker.js"
 
 class TurnEffort{
 
   constructor(
-    usedThisTurn = 0,
-    totalThisTurn = 0,
+    total = 0,
     usedLastTurn = 0,
     totalLastTurn = 0)
   {
-    this._usedThisTurn = usedThisTurn
-    this._totalThisTurn = totalThisTurn
+    this._effort = new Tracker(total, -total, total)
+
     this._usedLastTurn = usedLastTurn
     this._totalLastTurn = totalLastTurn
   }
 
   getUsedThisTurn(){
-    return this._usedThisTurn
+    return this.getTotalThisTurn() - this._effort.get()
   }
 
   getTotalThisTurn(){
-    return this._totalThisTurn
+    return this._effort.getMax()
   }
 
   getUsedLastTurn(){
@@ -29,30 +29,21 @@ class TurnEffort{
     return this._totalLastTurn
   }
 
-  prepareValuesForNextTurn(ToUse){
-    this._usedLastTurn = this._usedThisTurn
-    this._totalLastTurn = this._totalThisTurn
+  prepareValuesForNextTurn(toUse){
+    this._usedLastTurn = this.getUsedThisTurn()
+    this._totalLastTurn = this.getUsedLastTurn()
 
-    this._totalThisTurn = ToUse
-    this._usedThisTurn = 0
+    this._effort.min(-toUse)
+    this._effort.max(toUse)
+    this._effort.setToMax()
   }
 
   use(amount){
-    if(amount <= 0) throw new Error("Effort used cannot be less than or equal to 0")
-    const result = this._usedThisTurn + amount
-    if(result > this._totalThisTurn){
-      throw new Error("Effort used cannot be greater than the current max")
-    }
-    this._usedThisTurn = result
+    this._effort.dec(amount)
   }
 
   return(amount){
-    if(amount <= 0) throw new Error("Effort returned cannot be less than or equal to 0")
-    const result = this._usedThisTurn - amount
-    if(result < 0){
-      throw new Error("Returned effort cannot be greater than the used effort")
-    }
-    this._usedThisTurn = result
+    this._effort.inc(amount)
   }
 }
 

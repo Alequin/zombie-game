@@ -26,8 +26,7 @@ describe("Base", function(){
     const options = {
       people: [5,10,0,0],
       turnEffort: {
-        usedThisTurn: 10,
-        totalThisTurn: 11,
+        total: 11,
         usedLastTurn: 12,
         totalLastTurn: 13,
       },
@@ -61,8 +60,8 @@ describe("Base", function(){
     assert.strictEqual(base.population.countPopulation(3), 0)
 
     assert.ok(base.effort)
-    assert.strictEqual(base.effort._usedThisTurn, 10)
-    assert.strictEqual(base.effort._totalThisTurn, 11)
+    assert.strictEqual(base.effort._effort.getMin(), -11)
+    assert.strictEqual(base.effort.getTotalThisTurn(), 11)
     assert.strictEqual(base.effort._usedLastTurn, 12)
     assert.strictEqual(base.effort._totalLastTurn, 13)
 

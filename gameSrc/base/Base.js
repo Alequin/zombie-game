@@ -18,8 +18,7 @@ class Base{
       this.effort = new TurnEffort()
     }else{
       this.effort = new TurnEffort(
-        options.turnEffort.usedThisTurn,
-        options.turnEffort.totalThisTurn,
+        options.turnEffort.total,
         options.turnEffort.usedLastTurn,
         options.turnEffort.totalLastTurn,
       )
