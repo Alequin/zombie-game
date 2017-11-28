@@ -13,12 +13,8 @@ describe("Population - basic", function(){
   it("can initialise a population", () => {
     assert.ok(population)
 
-    const expected = {}
-    for(let j=1; j<=populationSettings.maxSkill; j++){
-      expected[j] = 0
-    }
-
-    const result = population._people
+    const expected = populationSettings.maxSkill
+    const result = Object.keys(population._people).length
     assert.deepEqual(result, expected)
   })
 

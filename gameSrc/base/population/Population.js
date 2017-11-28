@@ -1,12 +1,15 @@
 import { populationSettings } from "./../Settings.js"
+import { newMaxValueTracker } from "./../../util/TrackerFactory.js"
 
 class Population{
   constructor(maxSkill, people = []){
     this._maxSkill = maxSkill
     this._people = {}
     for(let j=1; j<=this._maxSkill; j++){
-      if(people[j-1]) this._people[j] = people[j-1]
-      else this._people[j] = 0
+      if(people[j-1]) 
+        this._people[j] = newMaxValueTracker(people[j-1])
+      else
+        this._people[j] = newMaxValueTracker(0)
     }
   }
 
@@ -15,29 +18,24 @@ class Population{
   }
 
   addToPopulation(amount, skillLevel){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    this._alterPopulation(amount, skillLevel)
+    this._isSkillInCorrectRange(skillLevel)
+    this._people[skillLevel].inc(amount)
   }
 
   removeFromPopulation(amount, skillLevel){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    this._alterPopulation(-amount, skillLevel)
-  }
-
-  _alterPopulation(amount, skillLevel){
     this._isSkillInCorrectRange(skillLevel)
-    this._people[skillLevel] += amount
+    this._people[skillLevel].dec(amount)
   }
 
   countPopulationOfSkill(skillLevel){
     this._isSkillInCorrectRange(skillLevel)
-    return this._people[skillLevel]
+    return this._people[skillLevel].get()
   }
 
   totalPopulation(){
     let count = 0
     for(let key of Object.keys(this._people)){
-      count += this._people[key]
+      count += this.countPopulationOfSkill(key)
     }
     return count
   }
@@ -47,15 +45,15 @@ class Population{
     this._isSkillInCorrectRange(to)
     if(this._people[from] < amount) throw new Error("Not enough people to upgrade")
 
-    this._people[from] -= amount
-    this._people[to] += amount
+    this._people[from].dec(amount)
+    this._people[to].inc(amount)
   }
 
   getTotalEffort(){
     let effort = 0
     for(let key of Object.keys(this._people)){
       const multiplier = 10*parseInt(key)
-      effort += this._people[key] * multiplier
+      effort += this.countPopulationOfSkill(key) * multiplier
     }
     return effort
   }
