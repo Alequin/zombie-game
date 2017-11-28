@@ -1,41 +1,32 @@
+import Tracker from "./Tracker.js"
 
 class EffortHandler{
-  constructor(capacity){
-    this._effort = 0
-    this._capacity = capacity
+  constructor(capacity, minimum = 0){
+    this._effort = new Tracker(0, minimum, capacity)
   }
 
   getCapacity(){
-    return this._capacity
+    return this._effort.getMax()
   }
 
   setCapacity(capacity){
-    if(capacity < this._effort)
-      throw new Error("Cannot set capacity to less than the current effort")
-
-    this._capacity = capacity
+    this._effort.max(capacity)
   }
 
   currentEffort(){
-    return this._effort
+    return this._effort.get()
   }
 
   add(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._effort + amount
-    if(result > this._capacity) throw new Error("Amount cannot push effort over capacity")
-    this._effort += result
+    this._effort.inc(amount)
   }
 
   remove(amount){
-    if(amount < 0) throw new Error("Amount cannot be negative")
-    const result = this._effort - amount
-    if(result < 0) throw new Error("Cannot remove more effort than is within the building")
-    this._effort = result
+    this._effort.dec(amount)
   }
 
   reset(){
-    this._effort = 0
+    this._effort.dec(this._effort.get())
   }
 
 }

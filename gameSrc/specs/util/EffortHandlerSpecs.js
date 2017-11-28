@@ -11,8 +11,10 @@ describe("test", function(){
 
   it("can initialise EffortHandler", () => {
     assert.ok(effortHandler)
-    assert.strictEqual(effortHandler._effort, 0)
-    assert.strictEqual(effortHandler._capacity, 100)
+    assert.ok(effortHandler._effort)
+    assert.strictEqual(effortHandler._effort.get(), 0)
+    assert.strictEqual(effortHandler._effort.getMin(), 0)
+    assert.strictEqual(effortHandler._effort.getMax(), 100)
   })
 
   it("can get effort capacity", () => {
