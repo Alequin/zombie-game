@@ -183,6 +183,11 @@ describe("Storage Container", function(){
     assert.strictEqual(result, expected)
   })
 
+  it("Can calculate capacity", () => {
+    let expected = storageSettings.minimumCapacity * storageContainer.getAmount()
+    let result = storageContainer._calcCapacity()
+    assert.strictEqual(result, expected)
+  })
 
   it("On call of build and tearDown capacity changes", () => {
 

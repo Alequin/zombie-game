@@ -8,7 +8,7 @@ class StorageContainer extends Construction{
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction,
     )
-    this._capacity = storageSettings.minimumCapacity * this.getAmount()
+    this._capacity = this._calcCapacity()
     this._sections = {}
 
     const capacity = this._capacity / storageSettings.sectionNames.length
@@ -96,13 +96,16 @@ class StorageContainer extends Construction{
   }
 
   _updateCapacity(){
-    this._capacity = storageSettings.minimumCapacity * this.getAmount()
-
+    this._capacity = this._calcCapacity()
     for(let key of Object.keys(this._sections)){
       const percentage = this._sections[key].percentageCapacity
       const capacity = this._capacity*(percentage/100)
       this._setSectionCapacity(key, capacity)
     }
+  }
+
+  _calcCapacity(){
+    return storageSettings.minimumCapacity * this.getAmount()
   }
 }
 
