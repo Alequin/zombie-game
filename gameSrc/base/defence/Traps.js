@@ -1,11 +1,15 @@
 import { trapSettings } from "./../Settings.js"
 import EffortHandler from "./../../util/EffortHandler.js"
-import Structure from "./../other/Structure.js"
+import Construction from "./../other/Construction.js"
 import PercentageDice from "./../../util/PercentageDice.js"
 
-class Traps extends Structure{
+class Traps extends Construction{
   constructor(trapCount = 0){
-    super(trapCount, trapSettings.effortPerConstruction, trapSettings.materialsPerConstruction, Number.MAX_SAFE_INTEGER)
+    super(
+      trapSettings.effortPerConstruction,
+      trapSettings.materialsPerConstruction,
+      trapCount
+    )
   }
 
   totalTraps(){

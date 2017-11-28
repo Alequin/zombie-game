@@ -1,13 +1,13 @@
 import StorageSection from "./StorageSection.js"
-import Structure from "./../other/Structure.js"
+import Construction from "./../other/Construction.js"
 import { storageSettings } from "./../Settings.js"
 
-class StorageContainer extends Structure{
+class StorageContainer extends Construction{
   constructor(input = 1){
     super(
-      input,
       storageSettings.effortPerConstruction,
-      storageSettings.materialsPerConstruction
+      storageSettings.materialsPerConstruction,
+      input,
     )
     this._capacity = storageSettings.initialCapacity * this.getAmount()
     this._sections = {}

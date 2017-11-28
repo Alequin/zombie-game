@@ -1,14 +1,13 @@
 import { wallSettings } from "./../Settings.js"
 import EffortHandler from "./../../util/EffortHandler.js"
-import Structure from "./../other/Structure.js"
+import Construction from "./../other/Construction.js"
 
-class Wall extends Structure{
+class Wall extends Construction{
   constructor(materials = 0){
     super(
-      materials,
       wallSettings.effortPerConstruction,
       wallSettings.materialsPerConstruction,
-      Number.MAX_SAFE_INTEGER
+      materials,
     )
   }
 
