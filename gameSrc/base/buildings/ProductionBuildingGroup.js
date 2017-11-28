@@ -9,7 +9,7 @@ class ProductionBuildingGroup extends BuildingGroup{
     super(singleBuildingSize, effortPerConstruction, materialsPerConstruction)
     this._productionPerEffort = productionPerEffort
     this._singleBuildingEffortCapacity = singleBuildingEffortCapacity
-    this.effort = new EffortHandler(this.effortCapacity())
+    this.productionEffort = new EffortHandler(this.effortCapacity())
   }
 
   add(amount){
@@ -23,7 +23,7 @@ class ProductionBuildingGroup extends BuildingGroup{
   }
 
   _updateEffortCapacity(){
-    this.effort.setCapacity(this.effortCapacity())
+    this.productionEffort.setCapacity(this.effortCapacity())
   }
 
   getMinimumPossibleEffortInput(){
@@ -36,12 +36,12 @@ class ProductionBuildingGroup extends BuildingGroup{
   }
 
   calcProduction(){
-    return this._productionPerEffort * this.effort.currentEffort()
+    return this._productionPerEffort * this.productionEffort.currentEffort()
   }
 
   produce(){
     const result = this.calcProduction()
-    this.effort.reset()
+    this.productionEffort.reset()
     return result
   }
 }

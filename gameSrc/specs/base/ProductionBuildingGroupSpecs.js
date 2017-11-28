@@ -18,7 +18,7 @@ describe("production Building Group - basic", function(){
 
   it("can calculate production", () => {
     productionBuildingGroup.add(10)
-    productionBuildingGroup.effort.add(50)
+    productionBuildingGroup.productionEffort.add(50)
 
     let expected = 100
     let result = productionBuildingGroup.calcProduction()
@@ -27,14 +27,14 @@ describe("production Building Group - basic", function(){
 
   it("can produce", () => {
     productionBuildingGroup.add(10)
-    productionBuildingGroup.effort.add(50)
+    productionBuildingGroup.productionEffort.add(50)
 
     let expected = 100
     let result = productionBuildingGroup.produce()
     assert.strictEqual(result, expected)
 
     expected = 0
-    result = productionBuildingGroup.effort.currentEffort()
+    result = productionBuildingGroup.productionEffort.currentEffort()
     assert.strictEqual(result, expected)
   })
 
@@ -42,13 +42,13 @@ describe("production Building Group - basic", function(){
     productionBuildingGroup.add(10)
 
     let expected = 100
-    let result = productionBuildingGroup.effort.getCapacity()
+    let result = productionBuildingGroup.productionEffort.getCapacity()
     assert.strictEqual(result, expected)
 
     productionBuildingGroup.remove(5)
 
     expected = 50
-    result = productionBuildingGroup.effort.getCapacity()
+    result = productionBuildingGroup.productionEffort.getCapacity()
     assert.strictEqual(result, expected)
   })
 
