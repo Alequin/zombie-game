@@ -1,10 +1,10 @@
 import EffortHandler from "./../../util/EffortHandler.js"
-import Tracker from "./../../util/Tracker.js"
+import { newMaxValueTracker } from "./../../util/TrackerFactory.js"
 
 class Construction{
   constructor(effortPerConstruction, materialsPerConstruction){
     this.constructionEffort = new EffortHandler(Number.MAX_SAFE_INTEGER)
-    this._amount = new Tracker(0, 0, Number.MAX_SAFE_INTEGER)
+    this._input = newMaxValueTracker(0)
     this._effortPerConstruction = effortPerConstruction
     this._materialsPerConstruction = materialsPerConstruction
   }
@@ -18,15 +18,15 @@ class Construction{
   }
 
   getAmount(){
-    return this._amount.get()
+    return this._input.get()
   }
 
   add(amount){
-    this._amount.inc(amount)
+    this._input.inc(amount)
   }
 
   remove(amount){
-    this._amount.dec(amount)
+    this._input.dec(amount)
   }
 
   build(){

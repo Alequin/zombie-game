@@ -1,5 +1,6 @@
 import assert from "assert"
 import Tracker from "./../../util/Tracker.js"
+import { newMaxValueTracker } from "./../../util/TrackerFactory.js"
 
 describe("Tracker", function(){
 
@@ -222,4 +223,25 @@ describe("Tracker", function(){
       let result = tracker.changeBy(6)
     })
   })
+})
+
+describe("Tracker - factory functions", function(){
+
+  it("can initialise max value tracker", () => {
+    const maxValueTracker = newMaxValueTracker(10)
+
+    let expected = 10
+    let result = maxValueTracker.get()
+    assert.strictEqual(result, expected)
+
+    expected = 0
+    result = maxValueTracker.getMin()
+    assert.strictEqual(result, expected)
+
+    expected = Number.MAX_SAFE_INTEGER
+    result = maxValueTracker.getMax()
+    assert.strictEqual(result, expected)
+
+  })
+
 })

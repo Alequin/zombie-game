@@ -14,7 +14,7 @@ describe("Construction", function(){
     assert.ok(construction.constructionEffort)
     assert.strictEqual(construction._effortPerConstruction, 10)
     assert.strictEqual(construction._materialsPerConstruction, 10)
-    assert.ok(construction._amount)
+    assert.ok(construction._input)
   })
 
   it("can calculate amount to construct", () => {
