@@ -20,8 +20,18 @@ class StorageContainer extends Construction{
     }
   }
 
+  add(amount){
+    super.add(amount)
+    this._updateCapacity()
+  }
+
+  remove(amount){
+    super.remove(amount)
+    this._updateCapacity()
+  }
+
   getSectionNames(){
-    return storageSettings.sectionNames
+    return Object.keys(this._sections)
   }
 
   totalCapacity(){
@@ -83,16 +93,6 @@ class StorageContainer extends Construction{
       throw new Error("Cannot add to storage if the value increases the contents past the max capacity")
     }
     this._sections[key].storage.contentCount = result
-  }
-
-  add(amount){
-    super.add(amount)
-    this._updateCapacity()
-  }
-
-  remove(amount){
-    super.remove(amount)
-    this._updateCapacity()
   }
 
   _updateCapacity(){
