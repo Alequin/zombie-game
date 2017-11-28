@@ -10,7 +10,8 @@ import {
   schoolSettings,
   lumberYardSettings,
   scrapYardSettings,
-  trapSettings
+  trapSettings,
+  wallSettings,
 } from "./../Settings.js"
 
 export function buildHouses(count = 0){
@@ -75,8 +76,15 @@ export function buildScrapYards(count = 0){
 }
 
 export function buildWall(materials = 0){
-  const wall = new Wall()
-  wall.add(materials)
+  const wall = new Wall(
+    wallSettings.effortPerConstruction,
+    wallSettings.materialsPerConstruction
+  )
+  wall.add(
+    materials,
+    wallSettings.effortPerConstruction,
+    wallSettings.materialsPerConstruction
+  )
   return wall
 }
 

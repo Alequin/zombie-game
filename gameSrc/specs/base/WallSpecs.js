@@ -7,7 +7,10 @@ describe("Wall", function(){
   let wall
 
   beforeEach(() => {
-    wall = new Wall()
+    wall = new Wall(
+      wallSettings.effortPerConstruction,
+      wallSettings.materialsPerConstruction
+    )
   })
 
   it("can initialise Wall", () => {

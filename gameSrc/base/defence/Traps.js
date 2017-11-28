@@ -1,5 +1,3 @@
-import { trapSettings } from "./../Settings.js"
-import EffortHandler from "./../../util/EffortHandler.js"
 import Construction from "./../other/Construction.js"
 import PercentageDice from "./../../util/PercentageDice.js"
 
