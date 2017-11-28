@@ -4,20 +4,16 @@ import Construction from "./../other/Construction.js"
 import PercentageDice from "./../../util/PercentageDice.js"
 
 class Traps extends Construction{
-  constructor(){
+  constructor(chanceToKillEnemies){
     super(
       trapSettings.effortPerConstruction,
       trapSettings.materialsPerConstruction
     )
-  }
-
-  totalTraps(){
-    return this.getAmount()
+    this._chanceToKill = new PercentageDice(chanceToKillEnemies)
   }
 
   calcNumberKilled(){
-    const die = new PercentageDice(trapSettings.chanceToKill)
-    return this._rollForNumberkilled(die)
+    return this._rollForNumberkilled(this._chanceToKill)
   }
 
   _rollForNumberkilled(die){

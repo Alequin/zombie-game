@@ -72,7 +72,7 @@ describe("Base", function(){
     assert.strictEqual(base.wall.getAmount(), 100)
 
     assert.ok(base.traps)
-    assert.strictEqual(base.traps.totalTraps(), 100)
+    assert.strictEqual(base.traps.getAmount(), 100)
 
     assert.ok(base.buildings)
     assert.strictEqual(base.buildings.houses.getAmount(), 10)

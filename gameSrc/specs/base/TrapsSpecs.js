@@ -8,7 +8,7 @@ describe("Traps", function(){
   let traps
 
   beforeEach(() => {
-    traps = new Traps()
+    traps = new Traps(trapSettings.chanceToKill)
   })
 
   it("can initialise", () => {
@@ -20,14 +20,14 @@ describe("Traps", function(){
 
   it("can count traps", () => {
     let expected = 0
-    let result = traps.totalTraps()
+    let result = traps.getAmount()
     assert.strictEqual(result, expected)
 
     traps.constructionEffort.add(10)
     traps.build()
 
     expected = 1
-    result = traps.totalTraps()
+    result = traps.getAmount()
     assert.strictEqual(result, expected)
   })
 
@@ -35,7 +35,7 @@ describe("Traps", function(){
     traps.add(10)
 
     let result = traps.calcNumberKilled()
-    assert.ok(result >= 0 && result <= traps.totalTraps())
+    assert.ok(result >= 0 && result <= traps.getAmount())
   })
 
   it(`can kill 100 with 100 trap if chance is 100%`, () => {

@@ -9,7 +9,8 @@ import {
   farmSettings,
   schoolSettings,
   lumberYardSettings,
-  scrapYardSettings
+  scrapYardSettings,
+  trapSettings
 } from "./../Settings.js"
 
 export function buildHouses(count = 0){
@@ -80,7 +81,7 @@ export function buildWall(materials = 0){
 }
 
 export function buildTraps(count = 0){
-  const traps = new Traps()
+  const traps = new Traps(trapSettings.chanceToKill)
   traps.add(count)
   return traps
 }
