@@ -1,4 +1,7 @@
 import Houses from "./Houses.js"
+import Wall from "./../defence/Wall.js"
+import Traps from "./../defence/Traps.js"
+import StorageContainer from "./../storage/StorageContainer.js"
 import ProductionBuildingGroup from "./ProductionBuildingGroup.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 import {
@@ -68,4 +71,22 @@ export function buildScrapYards(count = 0){
   )
   scrapYards.add(count)
   return scrapYards
+}
+
+export function buildWall(materials = 0){
+  const wall = new Wall()
+  wall.add(materials)
+  return wall
+}
+
+export function buildTraps(count = 0){
+  const traps = new Traps()
+  traps.add(count)
+  return traps
+}
+
+export function buildStorageContainer(materials = 1){
+  const storage = new StorageContainer()
+  storage.add(materials)
+  return storage
 }

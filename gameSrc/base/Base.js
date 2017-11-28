@@ -1,10 +1,14 @@
 import Population from "./population/Population.js"
 import TurnEffort from "./population/TurnEffort.js"
-import Wall from "./defence/Wall.js"
 import Traps from "./defence/Traps.js"
 import BaseBuildings from "./buildings/BaseBuildings.js"
 import StorageContainer from "./storage/StorageContainer.js"
 import { baseSettings } from "./Settings.js"
+import {
+  buildWall,
+  buildTraps,
+  buildStorageContainer
+} from "./buildings/ConstructionFactory.js"
 
 class Base{
   constructor(options = {}){
@@ -23,9 +27,9 @@ class Base{
 
     this._size = options.size || baseSettings.initialSize
 
-    this.wall = new Wall(options.wallMaterials || 0)
+    this.wall = buildWall(options.wallMaterials || 0)
 
-    this.traps = new Traps(options.totalTraps || 0)
+    this.traps = buildTraps(options.totalTraps || 0)
 
     const buildings = options.baseBuildings
     if(!buildings){
@@ -40,9 +44,9 @@ class Base{
     }
 
     if(!options.storage){
-      this.storage = new StorageContainer()
+      this.storage = buildStorageContainer()
     }else{
-      this.storage = new StorageContainer(options.storage.input)
+      this.storage = buildStorageContainer(options.storage.input)
       if(options.storage.resources){
         const resources = options.storage.resources
         const sections = Object.keys(resources)

@@ -2,9 +2,9 @@ import EffortHandler from "./../../util/EffortHandler.js"
 import { newMaxValueTracker } from "./../../util/TrackerFactory.js"
 
 class Construction{
-  constructor(effortPerConstruction, materialsPerConstruction, initialInput = 0){
+  constructor(effortPerConstruction, materialsPerConstruction){
     this.constructionEffort = new EffortHandler(Number.MAX_SAFE_INTEGER)
-    this._input = newMaxValueTracker(initialInput)
+    this._input = newMaxValueTracker(0)
     this._effortPerConstruction = effortPerConstruction
     this._materialsPerConstruction = materialsPerConstruction
   }

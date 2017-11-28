@@ -3,11 +3,10 @@ import EffortHandler from "./../../util/EffortHandler.js"
 import Construction from "./../other/Construction.js"
 
 class Wall extends Construction{
-  constructor(materials = 0){
+  constructor(){
     super(
       wallSettings.effortPerConstruction,
-      wallSettings.materialsPerConstruction,
-      materials,
+      wallSettings.materialsPerConstruction
     )
   }
 

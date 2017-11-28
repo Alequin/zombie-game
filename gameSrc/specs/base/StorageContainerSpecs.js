@@ -10,6 +10,7 @@ describe("Storage Container", function(){
   beforeEach(() => {
     sections = storageSettings.sectionNames
     storageContainer = new StorageContainer()
+    storageContainer.add(1)
   })
 
   it("can initialise a storage container", () => {

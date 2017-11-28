@@ -4,15 +4,21 @@ import {
   schoolSettings,
   lumberYardSettings,
   scrapYardSettings,
+  wallSettings,
+  trapSettings,
+  storageSettings,
 } from "./../../base/Settings.js"
 import {
   buildFarms,
   buildSchools,
   buildLumberYards,
   buildScrapYards,
-} from "./../../base/buildings/BuildingFactory.js"
+  buildWall,
+  buildTraps,
+  buildStorageContainer,
+} from "./../../base/buildings/ConstructionFactory.js"
 
-describe("Building Factory", function(){
+describe("Construction Factory", function(){
 
   it("can build farms", () => {
     const farms = buildFarms()
@@ -115,6 +121,54 @@ describe("Building Factory", function(){
     assert.strictEqual(
       scrapYards._productionRatio,
       scrapYardSettings.productionRatio,
+    )
+  })
+
+  it("can build wall", () => {
+    const wall = buildWall()
+    assert.strictEqual(
+      wall._effortPerConstruction,
+      wallSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      wall._materialsPerConstruction,
+      wallSettings.materialsPerConstruction
+    )
+    assert.strictEqual(
+      wall.getAmount(),
+      0
+    )
+  })
+
+  it("can build traps", () => {
+    const traps = buildTraps()
+    assert.strictEqual(
+      traps._effortPerConstruction,
+      trapSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      traps._materialsPerConstruction,
+      trapSettings.materialsPerConstruction
+    )
+    assert.strictEqual(
+      traps.getAmount(),
+      0
+    )
+  })
+
+  it("can build Storage Container", () => {
+    const storage = buildStorageContainer()
+    assert.strictEqual(
+      storage._effortPerConstruction,
+      storageSettings.effortPerConstruction
+    )
+    assert.strictEqual(
+      storage._materialsPerConstruction,
+      storageSettings.materialsPerConstruction
+    )
+    assert.strictEqual(
+      storage.getAmount(),
+      1
     )
   })
 

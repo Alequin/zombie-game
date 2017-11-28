@@ -3,11 +3,10 @@ import Construction from "./../other/Construction.js"
 import { storageSettings } from "./../Settings.js"
 
 class StorageContainer extends Construction{
-  constructor(input = 1){
+  constructor(){
     super(
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction,
-      input,
     )
     this._capacity = storageSettings.initialCapacity * this.getAmount()
     this._sections = {}
@@ -86,13 +85,13 @@ class StorageContainer extends Construction{
     this._sections[key].storage.contentCount = result
   }
 
-  build(){
-    super.build()
+  add(amount){
+    super.add(amount)
     this._updateCapacity()
   }
 
-  tearDown(){
-    super.tearDown()
+  remove(amount){
+    super.remove(amount)
     this._updateCapacity()
   }
 

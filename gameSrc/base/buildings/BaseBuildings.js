@@ -4,7 +4,7 @@ import {
   buildFarms,
   buildLumberYards,
   buildScrapYards
-} from "./BuildingFactory.js"
+} from "./ConstructionFactory.js"
 import InputProductionBuildingGroup from "./InputProductionBuildingGroup.js"
 
 class BaseBuildings{

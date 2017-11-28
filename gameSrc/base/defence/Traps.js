@@ -4,11 +4,10 @@ import Construction from "./../other/Construction.js"
 import PercentageDice from "./../../util/PercentageDice.js"
 
 class Traps extends Construction{
-  constructor(trapCount = 0){
+  constructor(){
     super(
       trapSettings.effortPerConstruction,
-      trapSettings.materialsPerConstruction,
-      trapCount
+      trapSettings.materialsPerConstruction
     )
   }
 
