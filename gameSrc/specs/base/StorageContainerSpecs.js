@@ -16,7 +16,7 @@ describe("Storage Container", function(){
   it("can initialise a storage container", () => {
     assert.ok(storageContainer)
 
-    let expected = storageSettings.initialCapacity
+    let expected = storageSettings.minimumCapacity
     let result = storageContainer._capacity
     assert.strictEqual(result, expected)
 
@@ -24,7 +24,7 @@ describe("Storage Container", function(){
     result = Object.keys(storageContainer._sections).length
     assert.strictEqual(result, expected)
 
-    expected = storageSettings.initialCapacity/storageSettings.sectionNames.length
+    expected = storageSettings.minimumCapacity/storageSettings.sectionNames.length
     result = storageContainer._sections[sections[0]].storage.capacity
     assert.strictEqual(result, expected)
 
@@ -109,14 +109,14 @@ describe("Storage Container", function(){
   })
 
   it("can get a sections capacity", () => {
-    let expected = storageSettings.initialCapacity / storageSettings.sectionNames.length
+    let expected = storageSettings.minimumCapacity / storageSettings.sectionNames.length
     let result = storageContainer.getCapacity(sections[0])
     assert.strictEqual(result, expected)
   })
 
   it("can get a sections percentage capacity", () => {
-    let capacity = storageSettings.initialCapacity / storageSettings.sectionNames.length
-    let expected = capacity/storageSettings.initialCapacity*100
+    let capacity = storageSettings.minimumCapacity / storageSettings.sectionNames.length
+    let expected = capacity/storageSettings.minimumCapacity*100
     let result = storageContainer.getPercentageCapacity(sections[0])
     assert.strictEqual(result, expected)
   })
@@ -144,14 +144,14 @@ describe("Storage Container", function(){
 
     for(let j=0; j<sections.length; j++){
       if(j === sections.length-1){
-        let expected = storageSettings.initialCapacity*((100-count)/100)
+        let expected = storageSettings.minimumCapacity*((100-count)/100)
         let result = storageContainer.getCapacity(sections[j])
         assert.strictEqual(result, expected)
         expected = 100-count
         result = storageContainer.getPercentageCapacity(sections[j])
         assert.strictEqual(result, expected)
       }else{
-        let expected = storageSettings.initialCapacity*((j+1)*2/100)
+        let expected = storageSettings.minimumCapacity*((j+1)*2/100)
         let result = storageContainer.getCapacity(sections[j])
         assert.strictEqual(result, expected)
         expected = (j+1)*2
@@ -178,7 +178,7 @@ describe("Storage Container", function(){
   })
 
   it("Can get max capacity", () => {
-    let expected = storageSettings.initialCapacity
+    let expected = storageSettings.minimumCapacity
     let result = storageContainer.totalCapacity()
     assert.strictEqual(result, expected)
   })
@@ -195,7 +195,7 @@ describe("Storage Container", function(){
     storageContainer.constructionEffort.add(200)
     storageContainer.build()
 
-    let capacity = storageSettings.initialCapacity*2
+    let capacity = storageSettings.minimumCapacity*2
     let result = storageContainer.totalCapacity()
     assert.strictEqual(result, capacity)
 
@@ -210,7 +210,7 @@ describe("Storage Container", function(){
     storageContainer.constructionEffort.add(200)
     storageContainer.tearDown()
 
-    capacity = storageSettings.initialCapacity
+    capacity = storageSettings.minimumCapacity
     result = storageContainer.totalCapacity()
     assert.strictEqual(result, capacity)
 
