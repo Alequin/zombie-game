@@ -23,7 +23,7 @@ describe("Wall", function(){
   })
 
   it("can calculate defence", () => {
-    wall.addToInput(100)
+    wall.add(100)
 
     let expected = 65
     let result = wall.calcCurrentDefence(500)
@@ -59,7 +59,7 @@ describe("Wall", function(){
     let wall = new Wall(100)
 
     let expected = 100
-    let result = wall.totalInput()
+    let result = wall.getAmount()
     assert.strictEqual(result, expected)
   })
 })

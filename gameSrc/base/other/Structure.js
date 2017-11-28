@@ -6,18 +6,6 @@ class Structure extends Construction{
     super(effortPerConstruction, materialsPerConstruction)
     this.add(initialInput)
   }
-
-  totalInput(){
-    return this.getAmount()
-  }
-
-  addToInput(amount){
-    this.add(amount)
-  }
-
-  removeFromInput(amount){
-    this.remove(amount)
-  }
 }
 
 export default Structure

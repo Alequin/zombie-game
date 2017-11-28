@@ -9,7 +9,7 @@ class Traps extends Structure{
   }
 
   totalTraps(){
-    return this.totalInput()
+    return this.getAmount()
   }
 
   calcNumberKilled(){

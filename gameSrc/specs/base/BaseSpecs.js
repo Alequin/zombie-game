@@ -69,7 +69,7 @@ describe("Base", function(){
     assert.strictEqual(base.getSize(), 1500)
 
     assert.ok(base.wall)
-    assert.strictEqual(base.wall.totalInput(), 100)
+    assert.strictEqual(base.wall.getAmount(), 100)
 
     assert.ok(base.traps)
     assert.strictEqual(base.traps.totalTraps(), 100)
@@ -81,7 +81,7 @@ describe("Base", function(){
     assert.strictEqual(base.buildings.scrapYards.getAmount(), 40)
 
     assert.ok(base.storage)
-    assert.strictEqual(base.storage.totalInput(), 10)
+    assert.strictEqual(base.storage.getAmount(), 10)
     assert.strictEqual(base.storage.getCapacity("food"), 2500)
     assert.strictEqual(base.storage.getCapacity("materials"), 2500)
     assert.strictEqual(base.storage.getCapacity("lumber"), 2500)

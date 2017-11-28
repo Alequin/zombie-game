@@ -18,55 +18,55 @@ describe("structure", function(){
 
   it("can get input count", () => {
     let expected = 0
-    let result = structure.totalInput()
+    let result = structure.getAmount()
     assert.strictEqual(result, expected)
   })
 
   it("can add to input", () => {
-    structure.addToInput(10)
+    structure.add(10)
     let expected = 10
-    let result = structure.totalInput()
+    let result = structure.getAmount()
     assert.strictEqual(result, expected)
   })
 
   it("can remove from input", () => {
-    structure.addToInput(10)
-    structure.removeFromInput(5)
+    structure.add(10)
+    structure.remove(5)
     let expected = 5
-    let result = structure.totalInput()
+    let result = structure.getAmount()
     assert.strictEqual(result, expected)
   })
 
   it("cannot alter input with negative values", () => {
     assert.throws(() => {
-      structure.addToInput(-1)
+      structure.add(-1)
     })
     assert.throws(() => {
-      structure.addToInput(-100)
+      structure.add(-100)
     })
     assert.throws(() => {
-      structure.addToInput(-10000)
+      structure.add(-10000)
     })
     assert.throws(() => {
-      structure.removeFromInput(-1)
+      structure.remove(-1)
     })
     assert.throws(() => {
-      structure.removeFromInput(-100)
+      structure.remove(-100)
     })
     assert.throws(() => {
-      structure.removeFromInput(-10000)
+      structure.remove(-10000)
     })
   })
 
   it("cannot reduce input to less than 0", () => {
     assert.throws(() => {
-      structure.removeFromInput(1)
+      structure.remove(1)
     })
     assert.throws(() => {
-      structure.removeFromInput(100)
+      structure.remove(100)
     })
     assert.throws(() => {
-      structure.removeFromInput(10000)
+      structure.remove(10000)
     })
   })
 })
