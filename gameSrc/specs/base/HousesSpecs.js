@@ -25,4 +25,10 @@ describe("Houses", function(){
     let result = houses.totalPopulationCapacity()
     assert.strictEqual(result, expected)
   })
+
+  it("can calculate population capacity when given values", () => {
+    let expected = 200
+    let result = Houses.calcPossiblePopulationCapacity(50, 4)
+    assert.strictEqual(result, expected)
+  })
 })
