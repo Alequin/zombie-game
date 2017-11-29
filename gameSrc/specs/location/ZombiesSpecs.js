@@ -68,4 +68,20 @@ describe("test", function(){
     let result = zombies.getFluctuationPercentage()
     assert.strictEqual(result, expected)
   })
+
+  it("can set fluctuation percentage", () => {
+    zombies.setFluctuationPercentage(50)
+    let expected = 50
+    let result = zombies.getFluctuationPercentage()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can change zombie count by a random amount (based on fluctuation percentage)", () => {
+    zombies.add(1000)
+    zombies.setFluctuationPercentage(20)
+    zombies.changeCountRandomly()
+    let num = zombies.count()
+    assert.ok(num >= 800 && num <= 1000)
+    assert.ok(num % 1 === 0)
+  })
 })

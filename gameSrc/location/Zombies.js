@@ -1,5 +1,7 @@
 import { newMaxValueTracker } from "./../util/TrackerFactory.js"
 import Percentage from "./../util/Percentage.js"
+import PercentageDice from "./../util/PercentageDice.js"
+import Dice from "./../util/Dice.js"
 
 class Zombies{
   constructor(zombieCount = 0, fluctuationPercentage = 20){
@@ -26,6 +28,16 @@ class Zombies{
 
   setFluctuationPercentage(value){
     return this._fluctuation.set(value)
+  }
+
+  changeCountRandomly(directonChance){
+    const directionDice = new PercentageDice(directonChance || 50)
+    const amountDice = new Dice(
+      0, (this.getFluctuationPercentage()/this.count())*100
+    )
+
+    const amount = amountDice.roll()
+    return directionDice.chance() ? amount : Math.abs(amount)
   }
 }
 
