@@ -1,8 +1,10 @@
 import { newMaxValueTracker } from "./../util/TrackerFactory.js"
+import Percentage from "./../util/Percentage.js"
 
 class Zombies{
-  constructor(zombieCount = 0){
+  constructor(zombieCount = 0, fluctuationPercentage = 20){
     this._count = newMaxValueTracker(zombieCount)
+    this._fluctuation = new Percentage(fluctuationPercentage)
   }
 
   count(){

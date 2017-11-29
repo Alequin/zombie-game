@@ -13,6 +13,7 @@ describe("test", function(){
   it("can initialise", () => {
     assert.ok(zombies)
     assert.strictEqual(zombies.count(), 0)
+    assert.strictEqual(zombies._fluctuation.percentage(), 20)
   })
 
   it("can initialise with intital zombie count", () => {
