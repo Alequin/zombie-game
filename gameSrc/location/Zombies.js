@@ -12,6 +12,10 @@ class Zombies{
   add(amount){
     this._count.inc(amount)
   }
+
+  remove(amount){
+    this._count.dec(amount)
+  }
 }
 
 

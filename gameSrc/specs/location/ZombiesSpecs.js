@@ -38,13 +38,19 @@ describe("test", function(){
     assert.strictEqual(result, expected)
   })
 
-  //TODO test for getting zombies after some have being added
-
-  it("can add to zombie count", () => {
+  it("can add to zombie count and find out how many their are", () => {
     zombies.add(10)
     let expected = 10
     let result = zombies.count()
     assert.strictEqual(result, expected)
   })
 
+  it("can remove from zombie count and find out how many their are", () => {
+    zombies.add(10)
+    zombies.remove(5)
+
+    let expected = 5
+    let result = zombies.count()
+    assert.strictEqual(result, expected)
+  })
 })
