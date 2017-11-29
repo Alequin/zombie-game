@@ -18,6 +18,15 @@ class Zombies{
   remove(amount){
     this._count.dec(amount)
   }
+
+  getFluctuationPercentage(){
+    console.log(this._fluctuation.percentage());
+    return this._fluctuation.percentage()
+  }
+
+  setFluctuationPercentage(value){
+    return this._fluctuation.set(value)
+  }
 }
 
 

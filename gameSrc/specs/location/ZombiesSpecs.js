@@ -16,9 +16,10 @@ describe("test", function(){
     assert.strictEqual(zombies._fluctuation.percentage(), 20)
   })
 
-  it("can initialise with intital zombie count", () => {
-    zombies = new Zombies(100)
+  it("can initialise with intital zombie count and fluctuation percentage", () => {
+    zombies = new Zombies(100, 50)
     assert.strictEqual(zombies.count(), 100)
+    assert.strictEqual(zombies._fluctuation.percentage(), 50)
   })
 
   it("cannot initialise with negative zombie count", () => {
@@ -52,6 +53,19 @@ describe("test", function(){
 
     let expected = 5
     let result = zombies.count()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can get fluctuation percentage", () => {
+    let expected = 20
+    let result = zombies.getFluctuationPercentage()
+    assert.strictEqual(result, expected)
+  })
+
+  it("can set fluctuation percentage", () => {
+    zombies.setFluctuationPercentage(50)
+    let expected = 50
+    let result = zombies.getFluctuationPercentage()
     assert.strictEqual(result, expected)
   })
 })
