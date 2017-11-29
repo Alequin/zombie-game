@@ -1,3 +1,5 @@
+clear-project-aliases
+
 alias tst="npm test"
 alias push="git push origin master"
 alias push-f="git push -f origin master"

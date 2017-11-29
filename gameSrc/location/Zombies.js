@@ -1,7 +1,8 @@
+import { newMaxValueTracker } from "./../util/TrackerFactory.js"
 
 class Zombies{
-  constructor(){
-
+  constructor(zombieCount = 0){
+    this._count = newMaxValueTracker(zombieCount)
   }
 }
 
