@@ -12,12 +12,12 @@ describe("test", function(){
 
   it("can initialise", () => {
     assert.ok(zombies)
-    assert.strictEqual(zombies._count.get(), 0)
+    assert.strictEqual(zombies.count(), 0)
   })
 
   it("can initialise with intital zombie count", () => {
     zombies = new Zombies(100)
-    assert.strictEqual(zombies._count.get(), 100)
+    assert.strictEqual(zombies.count(), 100)
   })
 
   it("cannot initialise with negative zombie count", () => {
@@ -31,5 +31,13 @@ describe("test", function(){
       zombies = new Zombies(-10000)
     })
   })
+
+  it("can get zombie count", () => {
+    let expected = 0
+    let result = zombies.count()
+    assert.strictEqual(result, expected)
+  })
+
+  //TODO test for getting zombies after some have being added
 
 })
