@@ -8,7 +8,8 @@ class Percentage{
   }
 
   set(percentage){
-    if(percentage < 0 || percentage > 100) throw new Error("Percentage must be between 1 and 100 inclusivly")
+    if(!percentage || percentage < 0 || percentage > 100)
+      throw new Error("Percentage must be between 1 and 100 inclusivly")
     this._percentage = percentage
   }
 }

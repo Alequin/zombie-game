@@ -24,4 +24,10 @@ describe("Percentage", function(){
     result = percentage.percentage()
     assert.strictEqual(result, expected)
   })
+
+  it("cannot pass set method an undefined value", () => {
+    assert.throws(() => {
+      percentage.set()
+    })
+  })
 })
