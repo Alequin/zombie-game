@@ -8,6 +8,10 @@ class Zombies{
   count(){
     return this._count.get()
   }
+
+  add(amount){
+    this._count.inc(amount)
+  }
 }
 
 

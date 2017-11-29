@@ -40,4 +40,11 @@ describe("test", function(){
 
   //TODO test for getting zombies after some have being added
 
+  it("can add to zombie count", () => {
+    zombies.add(10)
+    let expected = 10
+    let result = zombies.count()
+    assert.strictEqual(result, expected)
+  })
+
 })
