@@ -81,7 +81,25 @@ describe("test", function(){
     zombies.setFluctuationPercentage(20)
     zombies.changeCountRandomly()
     let num = zombies.count()
+    assert.ok(num >= 800 && num <= 1200)
+    assert.ok(num % 1 === 0)
+  })
+
+  it("can change zombie count by a random negative amount", () => {
+    zombies.add(1000)
+    zombies.setFluctuationPercentage(20)
+    zombies.changeCountRandomly(0)
+    let num = zombies.count()
     assert.ok(num >= 800 && num <= 1000)
+    assert.ok(num % 1 === 0)
+  })
+
+  it("can change zombie count by a random positive amount", () => {
+    zombies.add(1000)
+    zombies.setFluctuationPercentage(20)
+    zombies.changeCountRandomly(100)
+    let num = zombies.count()
+    assert.ok(num >= 100 && num <= 1200)
     assert.ok(num % 1 === 0)
   })
 })

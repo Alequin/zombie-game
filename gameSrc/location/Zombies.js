@@ -22,7 +22,6 @@ class Zombies{
   }
 
   getFluctuationPercentage(){
-    console.log(this._fluctuation.percentage());
     return this._fluctuation.percentage()
   }
 
@@ -30,14 +29,15 @@ class Zombies{
     return this._fluctuation.set(value)
   }
 
-  changeCountRandomly(directonChance){
-    const directionDice = new PercentageDice(directonChance || 50)
+  changeCountRandomly(directonChance = 50){
+    const directionDice = new PercentageDice(directonChance)
     const amountDice = new Dice(
-      0, (this.getFluctuationPercentage()/this.count())*100
+      0, this.count()*(this.getFluctuationPercentage()/100)
     )
 
-    const amount = amountDice.roll()
-    return directionDice.chance() ? amount : Math.abs(amount)
+    let amount = Math.floor(amountDice.roll())
+    if(directionDice.chance()) this.add(amount)
+    else this.remove(amount)
   }
 }
 
