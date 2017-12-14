@@ -8,11 +8,11 @@ describe("Storage Container", function(){
   let sections
 
   beforeEach(() => {
-    sections = storageSettings.sectionNames
+    sections = ["food", "materials", "lumber", "scraps"]
     storageContainer = new StorageContainer(
       storageSettings.effortPerConstruction,
       storageSettings.materialsPerConstruction,
-      storageSettings.sectionNames
+      sections
     )
     storageContainer.add(1)
   })
@@ -127,42 +127,30 @@ describe("Storage Container", function(){
 
   it("can set section capacities", () => {
 
-    const sectionCapacities = {}
-
-    let count = 0
-    const capacities = []
-    for(let j=1; j<=sections.length; j++){
-      if(j === sections.length){
-        capacities.push(100-count)
-      }else{
-        capacities.push(j*2)
-        count += j*2
-      }
-    }
-
-    for(let j in sections){
-      sectionCapacities[sections[j]] = capacities[j]
+    const sectionCapacities = {
+      food: 10,
+      materials: 20,
+      lumber: 30,
+      scraps: 40
     }
 
     storageContainer.setCapacityPercentages(sectionCapacities)
 
-    for(let j=0; j<sections.length; j++){
-      if(j === sections.length-1){
-        let expected = storageSettings.minimumCapacity*((100-count)/100)
-        let result = storageContainer.getCapacity(sections[j])
-        assert.strictEqual(result, expected)
-        expected = 100-count
-        result = storageContainer.getPercentageCapacity(sections[j])
-        assert.strictEqual(result, expected)
-      }else{
-        let expected = storageSettings.minimumCapacity*((j+1)*2/100)
-        let result = storageContainer.getCapacity(sections[j])
-        assert.strictEqual(result, expected)
-        expected = (j+1)*2
-        result = storageContainer.getPercentageCapacity(sections[j])
-        assert.strictEqual(result, expected)
-      }
-    }
+    let expected = 10
+    let result = storageContainer.getPercentageCapacity("food")
+    assert.strictEqual(result, expected)
+
+    expected = 20
+    result = storageContainer.getPercentageCapacity("materials")
+    assert.strictEqual(result, expected)
+
+    expected = 30
+    result = storageContainer.getPercentageCapacity("lumber")
+    assert.strictEqual(result, expected)
+
+    expected = 40
+    result = storageContainer.getPercentageCapacity("scraps")
+    assert.strictEqual(result, expected)
   })
 
   it("cannot set section capacities if any sections are missing", () => {
