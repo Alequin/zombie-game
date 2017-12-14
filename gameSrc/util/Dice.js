@@ -5,8 +5,12 @@ class Dice{
   }
 
   roll(){
-    return Math.floor(Math.random() * ((this.max-this.min)+1) + this.min)
+    return Math.random() * ((this.max-this.min)+1) + this.min
   }
 }
 
 export default Dice
+
+export const newDice = function(min, max){
+  return new Dice(min, max)
+}
